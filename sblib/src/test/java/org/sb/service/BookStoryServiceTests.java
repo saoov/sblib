@@ -3,6 +3,7 @@ package org.sb.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sb.domain.BookStoryVO;
+import org.sb.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -28,7 +29,7 @@ public class BookStoryServiceTests {
 	
 	@Test
 	public void testGetList() {
-		service.getList().forEach(vo -> log.info(vo));
+		service.getList(new Page(2,10)).forEach(vo -> log.info(vo));
 	}
 	
 	@Test

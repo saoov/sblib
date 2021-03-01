@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="register" method="post">
+	<form action="/bookstory/register" method="post">
 		<label>제목</label>
 		<input type="text" name="story_title">
 		<label>내용</label>

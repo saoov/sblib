@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jqeury-latest.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
 			<c:forEach items="#{list }" var="bookstory">
 				<tr>
 					<td>${bookstory.story_no }</td>
-					<td>${bookstory.story_title }</td>
+					<td><a href='/bookstory/get?story_no=<c:out value="${bookstory.story_no }"/>'><c:out value="${bookstory.story_title }"></c:out></a></td>
 					<td>${bookstory.story_content }</td>
 					<td>${bookstory.story_author }</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_regDate }"/></td>
@@ -31,5 +32,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<script>
+		$(document).ready(function(){
+			var result = '<c:out value="${result}"/>';
+		})
+	</script>
 </body>
 </html>

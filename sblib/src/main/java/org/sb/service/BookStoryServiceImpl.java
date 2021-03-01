@@ -3,6 +3,7 @@ package org.sb.service;
 import java.util.List;
 
 import org.sb.domain.BookStoryVO;
+import org.sb.domain.Page;
 import org.sb.mapper.BookStoryMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class BookStoryServiceImpl implements BookStoryService{
 	}
 
 	@Override
-	public List<BookStoryVO> getList() {
-		return mapper.getList();
+	public List<BookStoryVO> getList(Page page) {
+		return mapper.getListWithPaging(page);
 	}
 
 	@Override
