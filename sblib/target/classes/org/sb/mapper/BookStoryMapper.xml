@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.sb.mapper.BookStoryMapper">
+		<insert id="insert">
+			insert into bookstory(story_no, story_title,story_content, story_author)
+			values(seq_bookstory.nextval, #{story_title}, #{story_content}, #{story_author})
+		</insert>
+		
+		<select id="getList" resultType="org.sb.domain.BookStoryVO">
+			select * from bookstory
+		</select>
+		
+		<select id="read" resultType="org.sb.domain.BookStoryVO">
+			select * from bookstory where story_no = #{story_no}
+		</select>
+		
+		<delete id="delete">
+			delete from bookstory where story_no = #{story_no}
+		</delete>
+		
+		<update id="update">
+			update bookstory set story_title = #{story_title}, 
+			story_content = #{story_content}
+			where story_no = #{story_no}
+		</update>
+	</mapper>
