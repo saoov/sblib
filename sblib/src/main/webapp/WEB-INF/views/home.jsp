@@ -5,12 +5,15 @@
 <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/slick.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/f09348b148.js" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
     <title>Document</title>
@@ -166,36 +169,116 @@
             margin: 0 auto;
             overflow: hidden;
             padding: 20px;
-            background-color: #42a5f5;
+            
         }
 
         #content1 .article2 {
             width: 100%;
-            height: 220px;
-            background-color: #42a5f5;
+            height: 280px;
+            
         }
 
         #content1 .article2 .box1 {
+            position: relative;
             float: left;
             width: 32%;
             height: 100%;
-            background-color: #b388ff;
-        }
-
-        #content1 .article2 .box2 {
-            float: left;
-            margin-left: 2%;
-            width: 32%;
-            height: 100%;
-            background-color: #b388ff;
+            border: 2px solid #bdbdbd;
         }
         
-        #content1 .article2 .box3 {
+        #content1 .noticeContent {
+            width: 100%;
+            height: 215px;
+            padding: 10px;
+        }
+        
+        .noticeContent ul li{
+            list-style: none;
+        }   
+        
+        .noticeContent ul li a{
+            color: black;
+        } 
+
+        #content1 .article2 .box2 {
+            position: relative;
             float: left;
             margin-left: 2%;
             width: 32%;
             height: 100%;
-            background-color: #7c4dff;
+            border: 2px solid #bdbdbd;
+        }
+        
+        #content1 .slider{
+           width: 100%;
+           height: 215px;
+           padding: 10px;
+        }
+        
+        /* 이미지 슬라이드 */
+        
+        div,ul,li,button,figure,figcaption{margin:0;padding:0;}
+        
+        button {border: 0;}
+        
+        img {width: 100%;}
+        
+        .slider figure {position: relative;}       
+        .slider .slick-dots {display: block; width: 100%; text-align: center;}
+        .slider .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
+        .slider .slick-dots li button {
+            font-size: 0; 
+            line-height: 0; 
+            display: block; 
+            width: 15px; height: 15px;
+            cursor: pointer; 
+            background: #5dbfeb; 
+            border-radius: 50%;
+        }
+        .slider .slick-dots li.slick-active button {background: #2b91c8;}
+        .slider .slick-prev {
+            position: absolute; left: 0; bottom: 0; 
+            z-index: 1000;
+            width: 30px; height: 30px; 
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            text-indent: -9999px;
+        }
+        .slider .slick-prev::before {
+            content: "\f053";
+            color: #5dbfeb;
+            text-indent: 0;
+            position: absolute; left: 9px; top: 8px;
+        }
+        .slider .slick-next {
+            position: absolute; right: 0; bottom: 0; 
+            z-index: 1000;
+            width: 30px; height: 30px; 
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            text-indent: -9999px;
+        }
+        .slider .slick-next::before {
+            content: "\f054";
+            color: #5dbfeb;
+            text-indent: 0;
+            position: absolute; left: 11px; top: 8px;
+        }
+        /* 이미지 슬라이드 */
+        
+        #content1 .article2 .box3 {
+            position: relative;            
+            float: left;
+            margin-left: 2%;
+            width: 32%;
+            height: 100%;
+            border: 2px solid #bdbdbd;
+        }
+        
+        #content1 .calendar {
+            width: 100%;
+            height: 215px;
+            padding: 10px;
         }
 
         #content2 {
@@ -265,11 +348,72 @@
             color: dodgerblue;
         }
 
-        #quick-service {
-           width: 100%;
+        #content3 {
+            width: 100%;
             height: 100px;
-            background-color: #2196f3;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 9px;
+            background-color: #598DCA;
         }
+        
+        #content3 .article1{
+            width: 100%;
+            height: 80px;
+            
+        }
+        
+        #content3 .article1 .bar_icon{
+            position: relative;
+            float: left;
+            margin-left: 15%;
+            width: 70%;
+            height: 100%;
+            
+        }
+        
+        .bar_icon ul{
+            padding: 0;
+            margin: 0;
+        }
+        .bar_icon ul li{
+            float: left;
+            list-style: none;
+            height: 160px;
+            text-align: center;
+            width: 20%;
+            font-size: 13px;
+            color: #fff;
+        }
+        .bar_icon ul li a{
+            background-color: #396FAF;
+            border-radius: 50%;
+            width: 60px; 
+            height: 60px;  
+            color: #fff;
+            display: inline-block;
+            font-size: 35px;
+            line-height: 60px;
+            transition: all 0.3s ease;
+                        
+        }
+        .bar_icon ul ul{
+            margin-top: 5px;
+        }
+        .bar_icon ul ul li{
+            width: 100%;
+            height: 30px;
+            
+        }
+        .bar_icon ul ul a{
+            color: black;
+            font-weight: 900;
+        }
+        .bar_icon ul li a:hover{
+            text-decoration: none;
+            box-shadow: 0 0 0 3px rgba(75,154,191,0.9) inset,
+                        0 0 0 100px rgba(0,0,0,0.1) inset;}
+        
              
         #footer {
             width: 100%;
@@ -338,6 +482,9 @@
                 width: 100%;
             }
             #content2 {
+                width: 100%;
+            }
+            #content3{
                 width: 100%;
             }
             #bar {
@@ -436,12 +583,26 @@
                 margin-left: 0;
                 margin-top: 2%;
             }
+                        
             .box2 ul li{
                 width: 25%
             }
             .box2 ul li:nth-child(5n){
                 display: none;
             }
+            
+            #content3 .article1 .bar_icon{
+                width: 100%;
+                
+            }
+            
+            .bar_icon ul li{
+                width: 25%
+            }
+            .bar_icon ul li:nth-child(4n){
+                display: none;
+            }
+            
             #bar {
                 width: 85%
             }
@@ -478,6 +639,17 @@
                 width: 33.3333%
             }
             .box2 ul li:nth-child(4n){
+                display: none;
+            }
+            
+            #content3 {
+                padding: 0
+            }
+            
+            .bar_icon ul li{
+                width: 33.3333%
+            }
+            .bar_icon ul li:nth-child(4n){
                 display: none;
             }
  
@@ -563,30 +735,79 @@
         </div>
     </section>
     
+    <!-- content1 수정(eunbi) -->
     <section id="content1">
         <article class="article2">
-            <div class="box1">공지사항</div>
-            <div class="box2">공지사항배너</div>
-            <div class="box3">달력</div>
+            <div class="box1">
+                <p style="text-align: center; margin-top: 10px;">공지사항</p>
+                <a class="notice" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
+                <hr style="margin-left: 20px; margin-right: 20px;">
+                <div class="noticeContent">
+                <ul>
+                <li class="noticeTitle1"><a href=""><span>title1</span></a></li>
+                <li class="noticeTitle2"><a href=""><span>title2</span></a></li>
+                <li class="noticeTitle3"><a href=""><span>title3</span></a></li>
+                </ul>
+                </div>
+            </div>
+            
+            <!-- 이미지 슬라이드 시작 -->
+            <div class="box2">                        
+				<div class="slider">
+					<div><figure>
+			     		<img src="resources/images/banner1.png" alt="이미지1">
+					</figure></div>
+					<div><figure>
+                        <img src="resources/images/banner2.png" alt="이미지2">
+                    </figure></div>
+			        <div><figure>
+			            <img src="resources/images/banner3.png" alt="이미지3">
+		            </figure></div>
+				</div>			
+            </div>
+            <!--//이미지 슬라이드 끝 -->
+            
+            <div class="box3">
+                <p style="text-align: center; margin-top: 10px;">일정 안내</p>
+                <hr style="margin-left: 20px; margin-right: 20px;">
+                <div class="calendar">
+                    캘린더로 일정안내 
+                </div>
+            </div>
         </article>
     </section>
+    <!-- content1 수정(eunbi) -->
     
-    <!-- 자주찾는 서비스 시작 -->
-    <div id="quick-service">
-        <div class="inner">
-            <div class="quick-service">
-                <em>자주찾는 서비스</em>
-            </div>
-            <ul>
-                <li class="item bg01"><a href=""><span>전자책</span></a></li>
-                <li class="item bg02"><a href=""><span>오디오북</span></a></li>
-                <li class="item bg03"><a href=""><span>시요일</span></a></li>
-                <li class="item bg04"><a href=""><span>영어전자책</span></a></li>
-                <li class="item bg05"><a href=""><span>문화강좌</span></a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- 자주찾는 서비스 끝 -->
+    <!-- content3 자주찾는 서비스(eunbi) -->
+    <section id="content3">
+        <article class="article1">
+            <div class="bar_icon">
+              <ul>
+                <li>
+                <a href="#"><i class="fas fa-book-open" aria-hidden="true"></i></a>
+                <ul><li>책이야기</li></ul>
+                </li>
+                <li>
+                <a href="#"><i class="fas fa-inbox" aria-hidden="true"></i></a>
+                <ul><li>자료현황</li></ul>
+                </li>
+                <li>
+                <a href="#"><i class="far fa-file-alt" aria-hidden="true"></i></a>
+                <ul><li>이용안내</li></ul>
+                </li>
+                <li>
+                <a href="#"><i class="far fa-comment-dots" aria-hidden="true"></i></a>
+                <ul><li>묻고답하기</li></ul>
+                </li>
+                <li>
+                <a href="#"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
+                <ul><li>오시는길</li></ul>
+                </li>
+              </ul>
+           </div>
+         </article>
+    </section>
+    <!-- content3 자주찾는 서비스(eunbi) -->
    
     <section id="content2">
         <article class="article1">
@@ -656,6 +877,11 @@
             <p style="color: white; text-align: center;">Copyright © 2018 tcpschool.co.,Ltd. All rights reserved.</p>
         </div>
     </footer>
+    
+     <!-- JavaScript Libraries -->
+    <script src="resources/js/jquery.min_1.12.4.js"></script>
+    <script src="resources/js/modernizr-custom.js"></script>
+    <script src="resources/js/slick.min.js"></script>   
         
     <script>
         $(".menus ul li").on("click",function() {
@@ -663,6 +889,23 @@
         });
         $(".addbooks").on("click", function(){
             window.open('selectBook.html', '네이버팝업', 'width=700px,height=800px,scrollbars=no');
-        })
+        });
+        
+        //이미지 슬라이더
+        $(".slider").slick({
+			dots: true,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			arrows: false,
+			responsive: [
+			    {
+				    breakpoint: 768,
+				    settings: {
+				        autoplay: false,
+			      	}
+			    }
+			]
+		}); //이미지 슬라이더
+        
     </script>
 </body></html>
