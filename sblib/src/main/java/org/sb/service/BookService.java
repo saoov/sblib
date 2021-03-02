@@ -13,7 +13,11 @@ public interface BookService {
 	
 	List<Book> getList(Page page);
 	
+	Book getBookById(long bno);
+	
 	void removeById(long bno);
+	
+	int getTotalCount();
 	
 	
 }

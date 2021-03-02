@@ -8,29 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
-		<thead>
-			<tr>
-				<td>제목</td>
-				<td>이미지</td>
-				<td>작가</td>
-				<td>가격</td>
-				<td>출판사</td>
-				<td>ISBN</td>
-			</tr>
-		</thead>
-		<tbody>
-		<c:forEach items="#{books }" var="book">
-			<tr>
-				<td>${book.title }</td>
-				<td><img src='${book.image }'></td>
-				<td>${book.author }</td>
-				<td>${book.price }</td>
-				<td>${book.publisher }</td>
-				<td>${book.isbn }</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
+	<img src='<c:out value="${book.image } "/>'>
+	<hr>
+	<c:out value="${book.title } "/>
+	<hr>
+	출판사 : <c:out value="${book.publisher } "/>
+	<hr>
+	지은이 : <c:out value="${book.author } "/>
+	<hr>
+	ISBN : <c:out value="${book.isbn } "/>
+	<hr>
+	가격 : <c:out value="${book.price } "/>원
+	<hr>
+	출간일 : <c:out value="${book.pubdate } "/>
+	<hr>
+	<c:out value="${book.description } "/>
+	<hr>
 </body>
 </html>

@@ -11,9 +11,11 @@ public interface BookMapper {
 	
 	List<Book> getList(Page page);
 	
+	Book getBookById(long bno);
+	
 	void deleteById(long bno);
 	
-	int getTotalBook();
+	int getTotalCount();
 	
 	
 }

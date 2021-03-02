@@ -156,6 +156,16 @@ public class BookServiceImpl implements BookService{
 	public void removeById(long bno) {
 		bookMapper.deleteById(bno);
 	}
+
+	@Override
+	public int getTotalCount() {
+		return bookMapper.getTotalCount();
+	}
+
+	@Override
+	public Book getBookById(long bno) {
+		return bookMapper.getBookById(bno);
+	}
 	
 	
 	
