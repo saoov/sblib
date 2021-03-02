@@ -17,19 +17,17 @@
 				<td>가격</td>
 				<td>출판사</td>
 				<td>ISBN</td>
-				<td>설명</td>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="#{books }" var="book">
 			<tr>
 				<td>${book.title }</td>
-				<td>${book.image }</td>
+				<td><img src='${book.image }'></td>
 				<td>${book.author }</td>
 				<td>${book.price }</td>
 				<td>${book.publisher }</td>
 				<td>${book.isbn }</td>
-				<td>${book.description }</td>
 			</tr>
 		</c:forEach>
 		</tbody>

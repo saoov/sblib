@@ -11,26 +11,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sb.domain.Book;
-import org.sb.mapper.BookStoryMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.sb.domain.Page;
+import org.sb.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
 @Service
-public class NaverBookService {
-	
+@RequiredArgsConstructor
+@Log4j
+public class BookServiceImpl implements BookService{
+	//naver api
 	private static String clientID = "DhoCvBShsOqANYrSaRxW";
 	private static String clientSecret = "gywPzqx4WS";
-	@Autowired
-	private BookStoryMapper mapper;
-			
 
-	//display ==> 몇개 출력
-    //start==>몇번쨰부터 (item)
-    public List<Book> searchBook(String keyword, int display, int start){
-        List<Book> list = null;
+	//DI
+	private final BookMapper bookMapper;
+
+	@Override
+	public List<Book> searchByKeyword(String keyword, int display, int start) {
+		List<Book> list = null;
         try {
             URL url;
             url = new URL("https://openapi.naver.com/v1/search/"
@@ -122,9 +126,6 @@ public class NaverBookService {
                 eventType = parser.next();
             }
             
-            
-            
-            
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -139,11 +140,24 @@ public class NaverBookService {
             e.printStackTrace();
         }
         return list;
-    }
-    
-    public void addList(List<Book> list) {
-    	list.forEach(book -> mapper.insertBook(book));
-    }
+	}
 
+	@Override
+	public void register(List<Book> list) {
+		list.forEach(book -> bookMapper.insert(book));
+	}
+
+	@Override
+	public List<Book> getList(Page page) {
+		return bookMapper.getList(page);
+	}
+
+	@Override
+	public void removeById(long bno) {
+		bookMapper.deleteById(bno);
+	}
+	
+	
+	
 
 }

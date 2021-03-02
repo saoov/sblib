@@ -68,13 +68,4 @@
 			story_no > 0
 		</select>
 		
-		<insert id="insertBook">
-			insert into book(title,link,image,author,price,discount,publisher,isbn,description)
-			values (#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{isbn},#{description})
-		</insert>
-		
-		<select id="getBook" resultType="org.sb.domain.Book">
-			select title,image,author,price,publisher,isbn,description from book
-		</select>
-		
 	</mapper>
