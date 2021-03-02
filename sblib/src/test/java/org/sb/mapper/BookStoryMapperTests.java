@@ -31,4 +31,18 @@ public class BookStoryMapperTests {
 		
 		list.forEach(vo -> log.info(vo));
 	}
+	
+	@Test
+	public void testSearch() {
+		Page page = new Page();
+//		page.setKeyword("ㅎ");
+//		page.setType("T");
+		List<BookStoryVO> list = mapper.getListWithPaging(page);
+		list.forEach(vo -> log.info(vo));
+	}
+	
+	@Test
+	public void testGetBook() {
+		mapper.getBook().forEach(book -> log.info(book));
+	}
 }

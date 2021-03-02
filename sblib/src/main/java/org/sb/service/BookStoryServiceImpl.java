@@ -40,4 +40,11 @@ public class BookStoryServiceImpl implements BookStoryService{
 		return mapper.update(bookStory);
 	}
 
+	@Override
+	public int getTotal(Page page) {
+		return mapper.getTotalCount(page);
+	}
+	
+	
+
 }

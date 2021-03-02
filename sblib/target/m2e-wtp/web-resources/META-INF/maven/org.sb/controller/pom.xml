@@ -53,6 +53,12 @@
          <artifactId>ojdbc6</artifactId>
          <version>11.2.0.4</version>
       </dependency>
+      
+      	<dependency>
+            <groupId>net.sf.sociaal</groupId>
+            <artifactId>xmlpull-xpp3</artifactId>
+            <version>3.0.0.20130526</version>
+        </dependency>
 				
 		<!-- AspectJ -->
 		<dependency>

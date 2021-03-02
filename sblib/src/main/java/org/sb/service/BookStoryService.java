@@ -16,4 +16,6 @@ public interface BookStoryService {
 	boolean remove(long story_no);
 	
 	boolean modify(BookStoryVO bookStory);
+	
+	int getTotal(Page page);
 }
