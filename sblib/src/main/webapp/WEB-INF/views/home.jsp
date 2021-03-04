@@ -49,13 +49,13 @@
             <!-- 이미지 슬라이드 시작 -->
             <div class="box2">                        
 				<div class="slider">
-					<div><figure>
+					<div class="slider-box"><figure>
 			     		<img src="resources/images/banner1.png" alt="이미지1">
 					</figure></div>
-					<div><figure>
+					<div class="slider-box"><figure>
                         <img src="resources/images/banner2.png" alt="이미지2">
                     </figure></div>
-			        <div><figure>
+			        <div class="slider-box"><figure>
 			            <img src="resources/images/banner3.png" alt="이미지3">
 		            </figure></div>
 				</div>			
