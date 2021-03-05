@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>Document</title>
 </head>
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
 <link rel="stylesheet" href="resources/css/slick.css">
 <body>    
 
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<link href="resources/css/main.css" rel="stylesheet">
-
 
 <!-- home -->
     <section id="banner">
@@ -49,13 +49,13 @@
             <!-- 이미지 슬라이드 시작 -->
             <div class="box2">                        
 				<div class="slider">
-					<div><figure>
+					<div class="slider-box"><figure>
 			     		<img src="resources/images/banner1.png" alt="이미지1">
 					</figure></div>
-					<div><figure>
+					<div class="slider-box"><figure>
                         <img src="resources/images/banner2.png" alt="이미지2">
                     </figure></div>
-			        <div><figure>
+			        <div class="slider-box"><figure>
 			            <img src="resources/images/banner3.png" alt="이미지3">
 		            </figure></div>
 				</div>			
@@ -160,29 +160,10 @@
     </section>
 
 
-<!-- footer -->
-<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-<!-- JavaScript Libraries -->
-<script src="resources/js/modernizr-custom.js"></script>
-<script src="resources/js/slick.min.js"></script>   
-<script src="resources/js/main.js"></script>
-
-<!-- fontawesome -->
-<script src="https://kit.fontawesome.com/f09348b148.js" crossorigin="anonymous"></script>
-
+<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
 <script>
-      //이미지 슬라이더
 $(".slider").slick({
 	dots: true,
 	autoplay: true,
@@ -196,7 +177,9 @@ $(".slider").slick({
 	      	}
 	    }
 	]
-}); //이미지 슬라이더
-      
-  </script>
-</body></html>
+}); 
+</script>
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+</body>
+</html>

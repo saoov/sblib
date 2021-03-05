@@ -12,11 +12,6 @@
       font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     }
 
-    #calendar {
-      position:relative;
-      max-width: 1100px;
-      margin: 40px auto;
-    }
     .add-button{
     position: absolute;
     top: 1px;
@@ -28,11 +23,59 @@
     border-radius:3px;
     width:90px;
     }
+	
+	#body{
+	position:relative;
+	margin:0 auto;
+	width: 1200px;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	}
+	#sidemenu {
+		width: 18%;
+		background-color: white;
+		float:left;
+		margin-right: 4%;
+	}
+	#calendar{
+		position:relative;
+		width: 78%;
+	}
+	
+	#sidemenu ul{
+		margin : 0;
+		padding : 0;
+		background-color: gray;
+		border-radius: 10px;
+	}
+	#sidemenu ul li{
+		list-style: none;
+		width : 100%;
+		height : 50px;
+		line-height: 3.5;
+        text-align: center;
+        border-bottom: 0.7px solid white;
+	}
+	#sidemenu ul li a{
+		display : block;
+		color : white;
+	}
+	#sidemenu ul li a:hover{
+		background-color: #424242;
+		text-decoration: none;
+	}
+	#sidemenu .title{
+		width: 100%;
+	}
+	.title h1{
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	
 
   </style>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href='/resources/fullcalendar-scheduler/main.css' rel='stylesheet' />
 <script src='/resources/fullcalendar-scheduler/main.js'></script>
 <script>
@@ -100,20 +143,32 @@
 </script>
 <title>Insert title here</title>
 </head>
+ <!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
+
 <body>
 
 <!-- header -->
  <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<link href="../resources/css/main.css" rel="stylesheet">
-    
- <div id='calendar'>
- <button class = "add-button" type = "button" onclick="click_add();">일정 추가</button>
- </div>
- 
- <!-- footer -->
- <tiles:insertAttribute name="footer"></tiles:insertAttribute>
- 
- <script src="../resources/js/main.js"></script>
+	<div id='body'>
+		<div id='sidemenu'>
+			<div class="title">
+				<h1>프로그램</h1>
+			</div>
+			<hr>
+			<ul>
+				<li><a href="#">도서관일정</a></li>
+				<li><a href="#">독서문화행사</a></li>
+			</ul>
+		</div>
+		<div id='calendar'>
+			<button class="add-button" type="button" onclick="click_add();">일정추가</button>
+		</div>
+		</div>
+
+ <!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
+
  <script>
  function click_add() {
 		var url = "popup";
@@ -122,8 +177,8 @@
 		window.open(url,name,option)
 	};
  </script>
-
-
-
+ 
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
 </html>

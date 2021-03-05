@@ -17,10 +17,15 @@ public class EventController {
 	@GetMapping("calendar")
 	public String calendar(Model model) {
 		log.info("-----calendar");
-		return "event/calendar.tiles";
+		return "event/calendar";
 	}
 	@GetMapping("popup")
 	public void popup(Model model) {
 		log.info("------popup");
+	}
+	@GetMapping("eventBoard")
+	public String eventBoard(Model model) {
+		log.info("------eventBoard");
+		return "event/eventBoard";
 	}
 }

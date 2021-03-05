@@ -19,7 +19,7 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
 
-		return "home.tiles";
+		return "home";
 	}
 	
 //	@RequestMapping(value ="/calendar")

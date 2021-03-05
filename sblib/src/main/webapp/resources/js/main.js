@@ -4,3 +4,4 @@ $(".menus ul li").on("click",function() {
 $(".addbooks").on("click", function(){
     window.open('selectBook.html', '네이버팝업', 'width=700px,height=800px,scrollbars=no');
 });
+
