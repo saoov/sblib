@@ -24,6 +24,10 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="org.sb.mapper"/>
+	<mybatis-spring:scan base-package="org.sb.event.mapper"/>
+	
 	
 	<context:component-scan base-package="org.sb.service"></context:component-scan>	
+	<context:component-scan base-package="org.sb.event.service"></context:component-scan>	
+	
 </beans>

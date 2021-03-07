@@ -76,8 +76,34 @@
 
   </style>
 <meta charset="UTF-8">
-<link href='/resources/fullcalendar-scheduler/main.css' rel='stylesheet' />
-<script src='/resources/fullcalendar-scheduler/main.js'></script>
+
+<title>Insert title here</title>
+</head>
+ <!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
+
+<body>
+
+<!-- header -->
+ <tiles:insertAttribute name="header"></tiles:insertAttribute>
+	<div id='body'>
+		<div id='sidemenu'>
+			<div class="title">
+				<h1>프로그램</h1>
+			</div>
+			<hr>
+			<ul>
+				<li><a href="#">도서관일정</a></li>
+				<li><a href="#">독서문화행사</a></li>
+			</ul>
+		</div>
+		<div id='calendar'>
+			<button class="add-button" type="button" onclick="click_add();">일정추가</button>
+		</div>
+		</div>
+
+ <!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -141,43 +167,15 @@
     calendar.render();
   });
 </script>
-<title>Insert title here</title>
-</head>
- <!-- css -->
-<tiles:insertAttribute name="css"></tiles:insertAttribute>
+<script>
+function click_add() {
+	var url = "popup";
+	var name = "schedulePopup";
+	var option = "width = 300, height = 500 left = 100, top=50,location=no";
+	window.open(url,name,option)
+};
+</script>
 
-<body>
-
-<!-- header -->
- <tiles:insertAttribute name="header"></tiles:insertAttribute>
-	<div id='body'>
-		<div id='sidemenu'>
-			<div class="title">
-				<h1>프로그램</h1>
-			</div>
-			<hr>
-			<ul>
-				<li><a href="#">도서관일정</a></li>
-				<li><a href="#">독서문화행사</a></li>
-			</ul>
-		</div>
-		<div id='calendar'>
-			<button class="add-button" type="button" onclick="click_add();">일정추가</button>
-		</div>
-		</div>
-
- <!-- js -->
-<tiles:insertAttribute name="js"></tiles:insertAttribute>
-
- <script>
- function click_add() {
-		var url = "popup";
-		var name = "schedulePopup";
-		var option = "width = 300, height = 500 left = 100, top=50,location=no";
-		window.open(url,name,option)
-	};
- </script>
- 
 <!-- footer -->
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
