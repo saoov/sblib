@@ -18,6 +18,8 @@ public class Book {
 	private String pubdate;
 	private String isbn;
 	private String description;
+	private String count;
+	private String nowcount;
 
 
 }

@@ -143,7 +143,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public void register(List<Book> list) {
+	public void registers(List<Book> list) {
 		list.forEach(book -> bookMapper.insert(book));
 	}
 
@@ -166,6 +166,13 @@ public class BookServiceImpl implements BookService{
 	public Book getBookById(long bno) {
 		return bookMapper.getBookById(bno);
 	}
+
+	@Override
+	public void register(Book book) {
+		bookMapper.insert(book);
+	}
+
+
 	
 	
 	

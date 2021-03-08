@@ -5,8 +5,8 @@
 	
 	<mapper namespace="org.sb.mapper.BookMapper">
 		<insert id="insert">
-			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description)
-			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description})
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,count,nowcount)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},#{count},#{count})
 		</insert>
 		
 		<select id="getBookById" resultType="org.sb.domain.Book">
@@ -15,8 +15,8 @@
 		
 		<select id="getList" resultType="org.sb.domain.Book">
 			<![CDATA[
-				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description
-				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description
+				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,count
+				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,count
 					from book where rownum <= #{pageNum} * #{amount} 
 					)
 					where rn > (#{pageNum} -1 ) * #{amount}
@@ -24,7 +24,7 @@
 		</select>
 		
 		<select id="getTotalCount" resultType="int">
-			select count(*) from book where bno > 0
+			select count(*) from BOOK where bno > 0
 		</select>
 		
 		<delete id="deleteById">

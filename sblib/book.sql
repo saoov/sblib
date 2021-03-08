@@ -9,7 +9,10 @@ discount varchar2(500),
 publisher varchar2(500),
 pubdate varchar2(500),
 isbn varchar2(500),
-description varchar2(500)
+description varchar2(500),
+nowcount number,
+count number,
+ 
 );
 create sequence seq_book;
 

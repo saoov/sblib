@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<img src='<c:out value="${book.image } "/>'>
+	<img style="width:200px" src='<c:out value="${book.image } "/>'>
 	<hr>
 	<c:out value="${book.title } "/>
 	<hr>

@@ -50,28 +50,25 @@
    
   <div style="width:100%; height:100%; min-height: 650px">
    <div class="dropdown">
-      <button class="dropbtn">도서개수보기</button>
+      <button class="dropbtn">유저목록개수</button>
       <div class="dropdown-content">
-        <a href="/book/bookList?pageNum=1&amount=5">5개씩보기</a>
-        <a href="/book/bookList?pageNum=1&amount=10">10개씩보기</a>
-        <a href="/book/bookList?pageNum=1&amount=20">20개씩보기</a>
+        <a href="/book/userList?pageNum=1&amount=5">5개씩보기</a>
+        <a href="/book/userList?pageNum=1&amount=10">10개씩보기</a>
+        <a href="/book/userList?pageNum=1&amount=20">20개씩보기</a>
       </div>
     </div>
   
     <table>
     	<thead>
     		<tr>
-    			<td>사진</td>
-    			<td>도서명</td>
-    			<td>지은이</td>
-    			<td>가격</td>
-    			<td>출판사</td>
-    			<td>출판일</td>
-    			<td>ISBN</td>
-    			<td>수량</td>
+    			<td>이름</td>
+    			<td>아이디</td>
+    			<td>계정생성일</td>
+    			<td>대출중인도서수</td>
+    			
     		</tr>
     	</thead>
-	        <c:forEach items="${bookList}" var ="book" >
+	        <c:forEach items="${userlist}" var ="user" >
 	            <tr>
 	                <td><img src="${book.image}"></td>
 	                <td><a class='move' href='<c:out value='${book.bno}'/>'><c:out value='${book.title.replaceAll("\\\<.*?\\\>","")}'/></a></td>

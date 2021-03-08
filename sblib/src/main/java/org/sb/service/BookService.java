@@ -9,7 +9,7 @@ public interface BookService {
 
 	List<Book> searchByKeyword(String keyword, int display, int start);
 	
-	void register(List<Book> list);
+	void registers(List<Book> list);
 	
 	List<Book> getList(Page page);
 	
@@ -18,6 +18,8 @@ public interface BookService {
 	void removeById(long bno);
 	
 	int getTotalCount();
+
+	void register(Book book);
 	
 	
 }

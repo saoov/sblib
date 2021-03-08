@@ -19,7 +19,7 @@ public class BookServiceTests {
 	
 	@Test
 	public void testInsert() {
-		service.register(service.searchByKeyword("메이플스토리", 100, 1));
+		service.registers(service.searchByKeyword("메이플스토리", 100, 1));
 	}
 	
 	@Test
