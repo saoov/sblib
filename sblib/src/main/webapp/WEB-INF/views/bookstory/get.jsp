@@ -10,24 +10,56 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">책이야기 글</h1>
+  </div>
+ <!-- /.col-lg-12 -->
+</div>
+   <!-- /.row -->
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                              작성글 내용입니다.
+                 </div>
+
+ <!-- /.panel-heading -->
+ <div class="panel-body">
+
+	<div class="form-group">
 		<label>글번호</label>
-		<input type="text" value='<c:out value="${vo.story_no }"/>' readonly/>
+		<input class="form-control" name="story_no" readonly="readonly" value='<c:out value="${bookstory.story_no }"/>'>
+		<!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
 	</div>
-	<div>
+	<div class="form-group">
 		<label>제목</label>
-		<input type="text" value='<c:out value="${vo.story_title }"/>' readonly/>
+		<input class="form-control" name="story_title" readonly="readonly" value='<c:out value="${bookstory.story_title }"/>'>
 	</div>
-	<div>
+	<div class="form-group">
 		<label>내용</label>
-		<input type="text" value='<c:out value="${vo.story_content }"/>' readonly/>
+		<textarea rows="5" cols="50" name="story_content" class="form-control"><c:out value="${bookstory.story_content}"/></textarea>
 	</div>
-	<div>
+	
+	<div class="form-group">
+        <label>작성자</label>
+        <input class="form-control" name="story_author" value='<c:out value="${bookstory.story_author}"/>'>
+    </div>
+	
+	<div class="form-group">
 		<label>작성일</label>
-		<input type="text" value='<fmt:formatDate value="${vo.story_regDate }"/>' readonly/>
+		<input type="text" value='<fmt:formatDate value="${vo.story_regdate }"/>' readonly/>
 	</div>
-		<button type="submit" data-oper='modify'>수정</button>
-		<button type="submit" data-oper='list'>목록</button>
+		<button type="reset" class="btn btn-default" data-oper='modify'>수정</button>
+		<button type="submit" class="btn btn-default" data-oper='list'>목록</button>
+		
+ </div>
+ <!-- /.panel-body -->
+ </div>
+ </div>
+ </div>
+         
 		<form id='operForm' action="/bookstory/modify" method="get">
 			<input type='hidden' id='story_no' name="story_no" value='<c:out value="${vo.story_no }"/>'>
 			<input type='hidden' name='pageNum' value='<c:out value="${page.pageNum }"/>'>

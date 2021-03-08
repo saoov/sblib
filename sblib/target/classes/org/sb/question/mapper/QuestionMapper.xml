@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.sb.question.mapper.QuestionMapper">
+
+  <sql id="page">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" item="type" separator="OR">
+				<if test="type=='T'.toString()">
+					title like '%'||#{keyword}||'%'
+				</if>
+				<if test="type=='C'.toString()">
+					content like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+			</trim>
+  </sql>
+  <select id="getList" resultType="org.sb.question.domain.QuestionVO">
+     select * from question order by que_no desc
+  </select> 
+  
+  <!-- 페이징 -->
+  <select id="getListWithPaging" resultType="org.sb.question.domain.QuestionVO">
+  
+     <![CDATA[
+		select * from
+			(
+			select /*+ INDEX_DESC(question pk_question) */ rownum rn, que_no, que_title, que_content, que_author, que_regdate, que_status 
+			from question 
+			where
+			]]>
+			<include refid="page"></include>
+			<![CDATA[
+			que_no > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
+			)
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+
+  </select>
+  <!-- 페이징 -->
+  
+  <insert id="insert">
+  insert into question (que_no, que_title, que_content, que_author, que_status)
+  values (seq_question.nextval, #{que_title}, #{que_content}, #{que_author}, #{que_status})
+  </insert>
+  
+  <insert id="insertSelectKey">
+    <selectKey order="BEFORE" keyProperty="que_no" resultType="long">
+    select seq_question.nextval from dual
+    </selectKey>    
+    insert into question (que_no, que_title, que_content, que_author, que_status)
+    values (#{que_no}, #{que_title}, #{que_content}, #{que_author}, #{que_status})        
+  </insert>
+  
+  <select id="read" resultType="org.sb.question.domain.QuestionVO">
+  select * from question where que_no = #{que_no}
+  </select>
+  
+  <delete id="delete">
+  delete from question where que_no = #{que_no}
+  </delete>
+  
+  <update id="update">
+  update question
+  set que_title = #{que_title},
+  que_content = #{que_content},
+  que_author = #{que_author},
+  que_status = #{que_status}
+  where que_no = #{que_no} 
+  </update>
+  
+  <select id="getTotal" resultType="int">
+			select count(que_no) from question where <include refid="page"></include> que_no > 0
+  </select>
+  
+<!-- 마이페이지 -->		
+  <select id="getMyList" resultType="org.sb.question.domain.QuestionVO">
+  select * from question where que_author = #{que_author}
+  </select>
+<!-- 마이페이지 -->	  
+
+
+  
+</mapper>	

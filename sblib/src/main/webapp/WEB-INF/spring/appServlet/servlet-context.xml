@@ -45,6 +45,9 @@
 	
 	<context:component-scan base-package="org.sb.controller" />
 	<context:component-scan base-package="org.sb.event.controller"></context:component-scan>
+	<context:component-scan base-package="org.sb.answer.controller"></context:component-scan>
+	<context:component-scan base-package="org.sb.question.controller"></context:component-scan>
+	<context:component-scan base-package="org.sb.bookstory.controller"></context:component-scan>
 	
 
 </beans:beans>

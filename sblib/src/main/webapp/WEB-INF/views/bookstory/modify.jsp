@@ -16,19 +16,19 @@
 		<input type="hidden" name="keyword" value="<c:out value='${page.keyword }'/>">		
 		<div>
 			<label>글번호</label> 
-			<input type="text" name="story_no" value='<c:out value="${vo.story_no }"/>' readonly />
+			<input class="form-control" name="story_no" readonly="readonly" value='<c:out value="${bookstory.story_no }"/>'>
 		</div>
 		<div>
 			<label>제목</label> 
-			<input type="text" name="story_title" value='<c:out value="${vo.story_title }"/>'/>
+			<input class="form-control" name="story_title" value='<c:out value="${bookstory.story_title }"/>'/>
 		</div>
 		<div>
 			<label>내용</label> 
-			<input type="text" name="story_content" value='<c:out value="${vo.story_content }"/>'/>
+			<textarea rows="5" cols="50" name="story_content" class="form-control"><c:out value="${bookstory.story_content}"/></textarea>
 		</div>
-		<button type="submit" data-oper='modify'>변경</button>
-		<button type="submit" data-oper='remove'>삭제</button>
-		<button type="submit" data-oper='list'>목록</button>
+		<button class="btn btn-default" data-oper='modify'>변경</button>
+		<button class="btn btn-danger" data-oper='remove'>삭제</button>
+		<button class="btn btn-info" data-oper='list'>목록</button>
 	</form>
 	<script>
 		$(document).ready(function(){
