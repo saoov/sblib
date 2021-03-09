@@ -10,7 +10,7 @@ import lombok.ToString;
 public class Rent {
 
 	private String rentId;
-	private String userId;
+	private int member_no;
 	private Date rentDate;
 	private Date returnexDate;
 }

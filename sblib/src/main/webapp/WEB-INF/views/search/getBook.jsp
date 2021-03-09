@@ -38,7 +38,7 @@
 				};
 				
 				$.ajax({
-					url : "/book/addCart",
+					url : "/search/addCart",
 					type : "post",
 					data : data,
 					success : function(){

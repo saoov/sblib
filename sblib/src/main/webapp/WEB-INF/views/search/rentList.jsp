@@ -12,7 +12,7 @@
 		<c:forEach items="${rentList}" var="rentList">
 			<li>
 				<div>
-					대여정보 : <p><a href="/book/rentView?n=${rentList.rentId }">${rentList.rentId }</a></p>
+					대여정보 : <p><a href="/search/rentView?n=${rentList.rentId }">${rentList.rentId }</a></p>
 					아이디 : <p>${rentList.userId }</p>
 					대출일 : <p>${rentList.rentDate }</p>
 					반납예정일 : <p>${rentList.returnexDate }</p>

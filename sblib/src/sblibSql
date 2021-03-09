@@ -11,7 +11,7 @@ drop table event
 
 create sequence seq_event;
 alter table event add constraint pk_event primary key (event_no);
-insert into event(event_no, event_title, event_info, event_start, event_end) values (seq_event.nextval, '½Ã³¶¼Û´ëÈ¸', '½Ã³¶¼ÛÀ» ¿­½ÉÈ÷ ÇÕ½Ã´Ù', SYSDATE, to_date('2021-03-21','YYYY-MM-DD'))
+insert into event(event_no, event_title, event_info, event_start, event_end) values (seq_event.nextval, 'ï¿½Ã³ï¿½ï¿½Û´ï¿½È¸', 'ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õ½Ã´ï¿½', SYSDATE, to_date('2021-03-21','YYYY-MM-DD'))
 
 select * from event order by event_no desc
 insert into event(event_no, event_title, event_info, event_start, event_end, event_image) (select seq_event.nextval, event_title, event_info, event_start, event_end, event_image from event);
@@ -22,7 +22,7 @@ select * from(
     where event_no > 0 and rownum > 0 and rownum <= 1*9)
 where rn > (1-1)*9
 
-insert into event(event_no, event_title, event_info, event_start, event_end, event_image) values(seq_event.nextval, '´ëÃàÁ¦','´ëÃàÁ¦¸¦ÇÏÀÚ', to_date('2021-02-04','YYYY-MM-DD'), to_date('2021-02-09','YYYY-MM-DD'), 'gd.jpg')
+insert into event(event_no, event_title, event_info, event_start, event_end, event_image) values(seq_event.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', to_date('2021-02-04','YYYY-MM-DD'), to_date('2021-02-09','YYYY-MM-DD'), 'gd.jpg')
 
 
 select * from(
@@ -32,7 +32,7 @@ select * from(
 where rn > (1-1)*9
 
 with example as(
-select '<p><img src="/resources/fileupload/0cf81655-87b9-4dbb-bf97-7dd06f883cd6.jpg" style="width: 747px;"></p><p>¤±¤«¤¤¤©</p>' as str from dual
+select '<p><img src="/resources/fileupload/0cf81655-87b9-4dbb-bf97-7dd06f883cd6.jpg" style="width: 747px;"></p><p>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>' as str from dual
 )
 select
 substr(str, instr(str, '"', 1, 2)) from example
@@ -130,17 +130,17 @@ select*from book
 --book cart table
 create table book_cart(
 cartNum number not null,
-userId varchar2(50) not null,
+member_no number not null,
 bno number not null,
 cartStock number not null,
 addDate date default sysdate,
-primary key(cartNum, userId)
+primary key(cartNum, member_no)
 );
 
 create sequence seq_book_cart;
 
 alter table book_cart add constraint book_cart_book foreign key(bno) references book(bno);
-alter table book_cart add constraint book_cart_member foreign key(userId) references member(member_no);
+alter table book_cart add constraint book_cart_member foreign key(member_no) references member(member_no);
 desc book
 
 ---------------------------
@@ -153,7 +153,6 @@ rentDate date default sysdate
 
 alter table rent add constraint rent_pk primary key(rentid);
 alter table rent add constraint rent_userid_fk foreign key(userid) references member(member_no);
-alter table rent add constraint rent_book_fk foreign key(bno) references book(bno);
 alter table rent add returnexDate date default sysdate+15 not null;
 alter table rent add returndate date;
 ------------------------------
@@ -183,17 +182,17 @@ CREATE TABLE notice
 	notice_filename       VARCHAR2(500)  NULL 
 );
 
-insert into notice(notice_no,notice_title,notice_content) values (noticeno_seq.NEXTVAL,'Á¦¸ñ','³»¿ë') 
+insert into notice(notice_no,notice_title,notice_content) values (noticeno_seq.NEXTVAL,'ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½') 
 
 
 
-CREATE UNIQUE INDEX XPK°øÁö»çÇ× ON notice
+CREATE UNIQUE INDEX XPKï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ON notice
 (notice_no  ASC);
 
 CREATE SEQUENCE noticeno_seq START WITH 1 INCREMENT BY 1;
 
 ALTER TABLE notice
-	ADD CONSTRAINT  XPK°øÁö»çÇ× PRIMARY KEY (notice_no);
+	ADD CONSTRAINT  XPKï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PRIMARY KEY (notice_no);
 
 
 select rownum, notice_no from notice;  

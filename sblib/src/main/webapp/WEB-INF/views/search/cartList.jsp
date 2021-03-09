@@ -39,12 +39,12 @@
 							});
 							
 							$.ajax({
-								url : "/book/deleteCart",
+								url : "/search/deleteCart",
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
 									if(result == 1){
-										location.href = "/book/bookList";
+										location.href = "/search/bookList";
 									} else {
 										alert("삭제 실패"+result);
 									}
@@ -84,12 +84,12 @@
 							checkArr.push($(this).attr("data-cartNum"));
 							//이 부분 result값을 controller에서 잘못받는 듯.......(수정 필요)
 							$.ajax({
-								url : "/book/deleteCart",
+								url : "/search/deleteCart",
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
 									if(result == 1){
-										location.href = "/book/bookList";
+										location.href = "/search/bookList";
 									} else {
 										alert("삭제 실패"+result);
 									}
@@ -124,11 +124,11 @@
 							});
 							console.log(checkArr);
 							$.ajax({
-								url : "/book/cartList",
+								url : "/search/cartList",
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
-									location.href = "/book/rentList";
+									location.href = "/search/rentList";
 									console.log(result);
 								}
 							});

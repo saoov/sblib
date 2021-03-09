@@ -5,8 +5,8 @@
 	
 	<mapper namespace="org.sb.manage.mapper.BookMapper">
 		<insert id="insert">
-			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,count,nowcount)
-			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},#{count},#{count})
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
 		</insert>
 		
 		<select id="getBookById" resultType="org.sb.manage.domain.Book">
@@ -15,8 +15,8 @@
 		
 		<select id="getList" resultType="org.sb.manage.domain.Book">
 			<![CDATA[
-				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,count
-				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,count
+				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
+				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
 					from book where rownum <= #{pageNum} * #{amount} 
 					)
 					where rn > (#{pageNum} -1 ) * #{amount}

@@ -10,8 +10,7 @@ import lombok.ToString;
 public class BookCart {
 
 	private int cartNum;
-	private String userId;
+	private int member_no;
 	private int bno;
-	private int cartStock;
 	private Date addDate;
 }

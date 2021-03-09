@@ -24,10 +24,6 @@ public interface SearchService {
 	
 	int getTotalCount(Page page);
 	
-	void loanBook(long bno);
-	
-	void returnBook(long bno);
-	
 	void addCart(BookCart cart);
 	
 	List<BookCartList> cartList(String userId);
@@ -38,7 +34,7 @@ public interface SearchService {
 	
 	void rentInfoDetails(RentDetail rendtDetails);
 	
-	void cartAllDelete(String userId);
+	void cartAllDelete(int memberNo);
 	
 	List<Rent> rentList(Rent rent);
 	

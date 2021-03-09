@@ -40,7 +40,7 @@
 					<td>${book.publisher }</td>
 					<td>${book.pubdate }</td>
 					<td>${book.isbn }</td>
-					<td>${book.isloan }
+					<td>${book.nowcount }
 			</tr>
 	            <tr>
 	                <td colspan="7">${book.description}</td>
@@ -68,7 +68,7 @@
 	<!-- pagination -->
 	<!-- search -->
 	<div class="search">
-		<form id='searchForm' action='/book/bookList' method='get'>
+		<form id='searchForm' action='/search/bookList' method='get'>
 			<select name='type'>
 				<option value="T">서명</option>
 				<option value='A'>저자</option>
@@ -101,7 +101,7 @@
 				e.preventDefault();
 				actionForm.append("<input type='hidden' name='bno' value='"+
 						$(this).attr("href")+"'>");
-				actionForm.attr("action", "/book/getBook");
+				actionForm.attr("action", "/search/getBook");
 				actionForm.submit();
 			})
 			

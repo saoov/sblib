@@ -29,7 +29,7 @@
 				var checkArr = $(this).attr("data-bno");
 				console.log(checkArr);
 				$.ajax({
-					url : "/book/rentView",
+					url : "/search/rentView",
 					type : "post",
 					data : {
 						bno : checkArr

@@ -166,16 +166,6 @@ public class SearchServiceImpl implements SearchService{
 	public int getTotalCount(Page page) {
 		return bookMapper.getTotalCount(page);
 	}
-	
-	@Override
-	public void loanBook(long bno) {
-		bookMapper.loanBook(bno);
-	}
-
-	@Override
-	public void returnBook(long bno) {
-		bookMapper.returnBook(bno);
-	}
 
 
 	@Override
@@ -210,8 +200,8 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public void cartAllDelete(String userId) {
-		bookMapper.cartAllDelete(userId);
+	public void cartAllDelete(int memberNo) {
+		bookMapper.cartAllDelete(memberNo);
 	}
 
 	@Override
@@ -223,13 +213,5 @@ public class SearchServiceImpl implements SearchService{
 	public List<RentList> rentView(Rent rent) {
 		return bookMapper.rentView(rent);
 	}
-
-	
-	
-	
-	
-	
-	
-	
 
 }

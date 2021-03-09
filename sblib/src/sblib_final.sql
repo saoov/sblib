@@ -147,19 +147,23 @@ drop table book_cart
 
 ---------------------------
 --rent table
-create table rent(
-rentid varchar2(50) not null,
-userid varchar2(50) not null,
+create table rentInfo(
+rentid varchar2(50) not null primary key,
+bno number not null,
+member_no number not null,
 rentDate date default sysdate
 );
 
+
+
+
 alter table rent add constraint rent_pk primary key(rentid);
-alter table rent add constraint rent_userid_fk foreign key(userid) references member(member_no);
+alter table member add constraint rent_member_fk foreign key(member_no) references member(member_no);
 alter table rent add constraint rent_book_fk foreign key(bno) references book(bno);
 alter table rent add returnexDate date default sysdate+15 not null;
 alter table rent add returndate date;
 ------------------------------
---rent details table
+--rent details table---일단 안쓰는 테이블
 create table rent_details(
 rentDetailNum number not null primary key,
 rentid varchar2(50) not null,
@@ -171,6 +175,12 @@ cartStock number not null
 create sequence seq_rent_details;
 alter table rent_details add constraint rent_details_rentid foreign key(rentid) references rent(rentid);
 
+----------------------
+create table returnInfo(
+rentid varchar2(50) primary key not null,
+returndate date
+);
+alter table returnInfo add constraint rentid_fk foreign key(rentid) references rentInfo(rentid);
 ----------------------
 --notice table
 CREATE TABLE notice

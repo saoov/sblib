@@ -17,10 +17,8 @@ public class Book {
 	private String publisher;
 	private String pubdate;
 	private String isbn;
-	private String isloan;
 	private String description;
-	private String count;
-	private String nowcount;
+	private int nowcount;
 
 
 }

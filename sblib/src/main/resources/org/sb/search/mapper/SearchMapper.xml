@@ -28,8 +28,8 @@
 	
 	
 		<insert id="insert">
-			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount,count)
-			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},0,0)
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,count)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
 		</insert>
 		
 		<select id="getBookById" resultType="org.sb.manage.domain.Book">
@@ -38,8 +38,8 @@
 		
 		<select id="getList" resultType="org.sb.manage.domain.Book">
 			<![CDATA[
-				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,isloan
-				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,isloan
+				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
+				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
 					from book where
 			]]>
 			<include refid="search"></include>
@@ -60,25 +60,14 @@
 			delete from book where bno = #{bno}
 		</delete>
 		
-		<select id="isLoan" resultType="org.sb.search.domain.Rent">
-		</select>
-		
-		<update id="loanBook">
-			update book set isloan = 'Y' where bno = #{bno}
-		</update>
-		
-		<update id="returnBook">
-			update book set isloan = 'N' where bno = #{bno}
-		</update>
-		
 		<insert id="addCart">
-			insert into book_cart(cartNum, userId, bno, cartStock)
-			values(seq_book_cart.nextval, #{userId}, #{bno}, 1)
+			insert into book_cart(cartNum, userId, bno)
+			values(seq_book_cart.nextval, #{userId}, #{bno})
 		</insert>
 		
 		<select id="cartList" resultType="org.sb.search.domain.BookCartList">
 			select row_number() over(order by c.cartNum desc) as num,
-				c.cartNum, c.userId, c.bno, c.cartStock, c.addDate,
+				c.cartNum, c.userId, c.bno, c.addDate,
 				b.title, b.isbn, b.author, b.publisher
 			from book_cart c inner join book b on c.bno = b.bno
 				where c.userid = #{userId}
@@ -96,14 +85,14 @@
 		</insert>
 		
 		<insert id="rentInfoDetails">
-			insert into rent_details(rentDetailNum, rentId, bno, cartStock)
+			insert into rent_details(rentDetailNum, rentId, bno)
 			 select seq_rent_details.nextval, #{rentId}, bno, cartStock from book_cart
 		</insert>
 		
 		<!-- 대여 후 카트 삭제 -->
 		<delete id="cartAllDelete">
 			delete book_cart 
-				where userId = #{userId}
+				where member_no = #{member_no}
 		</delete>
 		
 		<!-- 대여 정보 보기 -->
