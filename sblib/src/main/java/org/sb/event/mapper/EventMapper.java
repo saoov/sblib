@@ -3,6 +3,7 @@ package org.sb.event.mapper;
 import java.util.List;
 
 import org.sb.event.domain.EventVO;
+import org.sb.event.domain.HolidayVO;
 import org.sb.event.domain.Page;
 
 public interface EventMapper {
@@ -13,4 +14,6 @@ public interface EventMapper {
 	int modify(EventVO event);
 	int getTotal(Page page);
 	EventVO read(Long event_no);
+	void addSchedule(HolidayVO holiday);
+	List<HolidayVO> showSchedule();
 }

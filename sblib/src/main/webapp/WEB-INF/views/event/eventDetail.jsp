@@ -107,13 +107,14 @@
 				<form id='actionForm' action="/event/eventBoard" method="get">
 					<input type="hidden" name="pageNum" value="${page.pageNum }">
 					<input type="hidden" name="amount" value="${page.amount }">
-					<input type="hidden" name="bno" value="${event.event_no}"> 
+					<input type="hidden" name="event_no" value="${event.event_no}"> 
 					<input type="hidden" name="type" value="${page.type}"> 
 					<input type="hidden" name="keyword" value="${page.keyword}">
 				</form>
 
 				<button type="button" id="listBtn" class="btn btn-secondary" onclick=>목록으로</button>
-				<button type="button" id="modifyBtn" class="btn btn-danger">수정</button>
+				<button type="button" id="modifyBtn" class="btn btn-warning">수정</button>
+				<button type="button" id="deleteBtn" class="btn btn-danger">삭제</button>
 		</div>
 		
 </div>
@@ -130,7 +131,13 @@
 
 	$("#modifyBtn").click(function(e) {
 		e.preventDefault();
-		actionForm.attr("action", "/event/modify");
+		actionForm.attr("action", "/event/eventModify");
+		actionForm.submit();
+	});
+	$("#deleteBtn").click(function(e) {
+		e.preventDefault();
+		actionForm.attr("action", "/event/eventDelete");
+		actionForm.attr("method", "post");
 		actionForm.submit();
 	});
 </script>

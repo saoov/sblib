@@ -3,6 +3,7 @@ package org.sb.event.service;
 import java.util.List;
 
 import org.sb.event.domain.EventVO;
+import org.sb.event.domain.HolidayVO;
 import org.sb.event.domain.Page;
 import org.sb.event.mapper.EventMapper;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,16 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public EventVO get(Long event_no) {
 		return mapper.read(event_no);
+	}
+
+	@Override
+	public void addSchedule(HolidayVO holiday) {
+		mapper.addSchedule(holiday);		
+	}
+
+	@Override
+	public List<HolidayVO> showSchedule() {
+		return mapper.showSchedule();
 	}
 
 

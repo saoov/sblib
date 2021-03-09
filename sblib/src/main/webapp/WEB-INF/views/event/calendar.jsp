@@ -143,7 +143,16 @@ document.addEventListener('DOMContentLoaded', function() {
               color: getRandomColor()
             },
             </c:forEach>
- 
+            <c:forEach items="${holiday}" var="holiday">
+            {
+              title: "${holiday.holiday_title}",
+              start: "${holiday.holiday_start}",
+              end: "${holiday.holiday_end}",
+              color: "#e3f2fd",
+              backgroundColor: "#0d47a1"
+            },
+            </c:forEach>
+
           ]
     });
     calendar.render();

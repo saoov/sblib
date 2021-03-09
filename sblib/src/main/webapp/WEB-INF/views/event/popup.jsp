@@ -15,11 +15,11 @@
 <h1 class = "zTree-h1"> 일정 추가 </h1>
 <hr>
 <form id = "scheduleData">
-		<input class = "subject" id = "subject" type = "text" name = "subject" placeholder="휴관 사유를 입력해주세요">
+		<input class = "subject" id = "subject" type = "text" name = "holiday_title" placeholder="휴관 사유를 입력해주세요">
 		<h3 class = "zTree-h3"> 시작 </h3>
-		<input class = "date" id = "startDate" type = "text" name = "startDate" id = "startDate">
+		<input class = "date" id = "startDate" type = "text" name = "holiday_start">
 		<h3 class = "zTree-h3"> 종료 </h3>
-		<input class = "date" id = "endDate" type = "text" name = "endDate" id = "endDate">
+		<input class = "date" id = "endDate" type = "text" name = "holiday_end">
 </form>
 <button class = "ok-button" type= "button" onclick="click_ok();">확인</button>
 <script>
@@ -43,6 +43,7 @@ $(function() {
 	$("#endDate").datepicker('setDate', 'today');
 });
 
+//여러 개 데이터를 전송시킬 때 jquery의 serializeObject를 이용한다.
 $.fn.serializeObject = function(){
     var o = {};
     var a = this.serializeArray();

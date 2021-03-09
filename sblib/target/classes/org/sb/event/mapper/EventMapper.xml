@@ -52,7 +52,7 @@
 			event_info = #{event_info}, 
 			event_start = #{event_start}, 
 			event_end = #{event_end}, 
-			event_fileid = #{event_image}
+			event_image = #{event_image}
 			where event_no = #{event_no}
 		</update>
 		
@@ -62,5 +62,13 @@
 		
 		<select id="read" resultType="org.sb.event.domain.EventVO">
 			select*from event where event_no = #{event_no}
+		</select>
+		
+		<insert id="addSchedule">
+			insert into holiday(holiday_title, holiday_start, holiday_end)
+			values (#{holiday_title}, to_date(#{holiday_start},'YYYY-MM-DD'), to_date(#{holiday_end},'YYYY-MM-DD'))
+		</insert>
+		<select id="showSchedule" resultType="org.sb.event.domain.HolidayVO">
+			select * from holiday
 		</select>
 	</mapper>
