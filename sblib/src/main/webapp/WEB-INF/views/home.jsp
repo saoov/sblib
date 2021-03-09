@@ -165,7 +165,7 @@
 <tiles:insertAttribute name="js"></tiles:insertAttribute>
 <script>
 var jqdate = $.noConflict(true);
-jqdate(".slider").slick({
+$(".slider").slick({
 	dots: true,
 	autoplay: true,
 	autoplaySpeed: 3000,
