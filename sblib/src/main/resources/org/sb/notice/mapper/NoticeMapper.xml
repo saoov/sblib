@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.sb.notice.mapper.NoticeMapper">
+	<sql id="search">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							notice_title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							notice_content like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+		<insert id="insert" >
+			insert into notice(notice_no, notice_title, notice_content, notice_regdate, notice_readcount)
+			values(noticeno_seq.NEXTVAL, #{notice_title},  #{notice_content}, sysdate, 0)
+		</insert>
+		
+		<select id="getList" resultType="org.sb.notice.domain.NoticeVO">
+			select * from notice
+		</select>
+		
+		<select id="read" resultType="org.sb.notice.domain.NoticeVO">
+			select * from notice where notice_no = #{notice_no}
+		</select>
+		
+		<delete id="delete">
+			delete from notice where notice_no = #{notice_no}
+		</delete>
+		
+		<update id="update">
+			update notice set notice_title = #{notice_title}, notice_content = #{notice_content}, notice_updatedate = sysdate
+			where notice_no = #{notice_no}
+
+		</update>
+		
+		<select id="getListWithPaging" resultType="org.sb.notice.domain.NoticeVO">
+		<![CDATA[
+			select notice_no, notice_title, notice_content, notice_regdate, notice_updatedate, notice_readcount
+			from (select rownum rn, notice_no, notice_title, notice_content, notice_regdate, notice_updatedate, notice_readcount
+					from notice where
+		]]> 
+		<include refid="search"></include>
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount}
+			)
+			where rn > (#{pageNum} -1 ) * #{amount}
+		]]>
+		</select>
+		
+		<select id="getTotalCount" resultType="int">
+			select count(*) from notice where 
+			<include refid="search"></include>
+			<![CDATA[
+			notice_no > 0
+			]]>
+		</select>
+		
+	</mapper>

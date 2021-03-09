@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.sb.bookstory.mapper.BookStoryMapper">
+	<sql id="search">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							story_title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							story_content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'A'.toString()">
+							story_author like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+		<insert id="insert">
+			insert into bookstory(story_no, story_title, story_content, story_author, story_readcount)
+			values(seq_bookstory.nextval, #{story_title}, #{story_content}, #{story_author}, #{story_readcount})
+		</insert>
+		
+		<select id="getList" resultType="org.sb.bookstory.domain.BookStoryVO">
+			select * from bookstory
+		</select>
+		
+		<select id="read" resultType="org.sb.bookstory.domain.BookStoryVO">
+			select * from bookstory where story_no = #{story_no}
+		</select>
+		
+		<delete id="delete">
+			delete from bookstory where story_no = #{story_no}
+		</delete>
+		
+		<update id="update">
+			update bookstory set story_title = #{story_title}, 
+			story_content = #{story_content},
+			story_author = #{story_author},
+			story_updatedate = sysdate,
+			story_readcount = #{story_readcount}
+			where story_no = #{story_no}
+		</update>
+		
+		<select id="getListWithPaging" resultType="org.sb.bookstory.domain.BookStoryVO">
+		<![CDATA[
+			select story_no, story_title, story_content, story_author, story_regdate, story_updatedate, story_readcount
+			from (select rownum rn, story_no, story_title, story_content, story_author, story_regdate, story_updatedate, story_readcount
+					from bookstory where
+		]]> 
+		<include refid="search"></include>
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount}
+			)
+			where rn > (#{pageNum} -1 ) * #{amount}
+		]]>
+		</select>
+		
+		<select id="getTotalCount" resultType="int">
+			select count(*) from bookstory where 
+			<include refid="search"></include>
+			story_no > 0
+		</select>
+		
+		<!-- 추가 -->
+		
+		  <select id="getMyList" resultType="org.sb.bookstory.domain.BookStoryVO">
+            select * from bookstory where story_author = #{story_author}
+          </select>
+		
+	</mapper>
