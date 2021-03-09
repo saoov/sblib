@@ -7,13 +7,9 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class Rent {
+public class ReturnInfo {
 
 	private String rentId;
-	private int member_no;
-	private int bno;
-	private Date rentDate;
-	private String title;
 	private Date returnDate;
-	private String status;
+	
 }

@@ -7,7 +7,6 @@ import org.sb.search.domain.BookCart;
 import org.sb.search.domain.BookCartList;
 import org.sb.search.domain.Page;
 import org.sb.search.domain.Rent;
-import org.sb.search.domain.RentList;
 
 public interface SearchMapper {
 
@@ -32,9 +31,9 @@ public interface SearchMapper {
 	
 	void cartAllDelete(int memberNo);
 	
-	List<Rent> rentList(int memberNo);
+	List<Rent> returnList(int memberNo);
 	
-	List<RentList> rentView(Rent rent);
+	List<Rent> rentList(int memberNo);
 	
 	//대여시 책 정보 대여중으로 변경
 	void rentByBno(int bno);
@@ -42,4 +41,11 @@ public interface SearchMapper {
 	//대여시 책 정보 대여가능으로 변경
 	void returnByBno(int bno);
 	
+	//returnId로 책 반납 테이블에 등록
+	void returnBook(String rentId);
+	
+	
+	
+	
+	List<Rent> getReturnDate();
 }

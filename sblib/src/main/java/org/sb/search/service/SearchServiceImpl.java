@@ -15,7 +15,6 @@ import org.sb.search.domain.BookCart;
 import org.sb.search.domain.BookCartList;
 import org.sb.search.domain.Page;
 import org.sb.search.domain.Rent;
-import org.sb.search.domain.RentList;
 import org.sb.search.mapper.SearchMapper;
 import org.springframework.stereotype.Service;
 import org.xmlpull.v1.XmlPullParser;
@@ -198,15 +197,15 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public List<Rent> rentList(int memberNo) {
-		return bookMapper.rentList(memberNo);
+	public List<Rent> returnList(int memberNo) {
+		return bookMapper.returnList(memberNo);
 	}
 
 	@Override
-	public List<RentList> rentView(Rent rent) {
-		return bookMapper.rentView(rent);
+	public List<Rent> rentList(int memberNo) {
+		return bookMapper.rentList(memberNo);
 	}
-
+	
 	@Override
 	public void rentByBno(int bno) {
 		bookMapper.rentByBno(bno);
@@ -216,6 +215,20 @@ public class SearchServiceImpl implements SearchService{
 	public void returnByBno(int bno) {
 		bookMapper.returnByBno(bno);
 	}
+
+	@Override
+	public void returnBook(String rentId) {
+		bookMapper.returnBook(rentId);
+		
+	}
+
+	@Override
+	public List<Rent> getReturnDate() {
+		return bookMapper.getReturnDate();
+	}
+
+	
+
 	
 	
 

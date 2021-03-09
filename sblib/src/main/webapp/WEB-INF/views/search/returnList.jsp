@@ -17,33 +17,11 @@
 					<p>회원번호 : ${rentList.member_no }</p>
 					<p>대여도서 : ${rentList.bno } 번 - 제목 : ${rentList.title}
 					<p>대출일 : ${rentList.rentDate }</p>
-					<button type="button" class="returnBtn" data-rentid="${rentList.rentId }" data-bno="${rentList.bno }">반납하기</button>
+					<p>반납일 : <c:out value="${rentList.returnDate }"/></p>
+					<p>상태 : ${rentList.status }</p>
 				</div>
 			</li>
 		</c:forEach>
 	</ul>
-	<script>
-		$(".returnBtn").on("click", function() {
-			var confirm_val = confirm("도서를 반납하시겠습니까?");
-
-			if (confirm_val) {
-				var bno = $(this).attr("data-bno");
-				var rentid = $(this).attr("data-rentid");
-				console.log(bno);
-				$.ajax({
-					url : "/search/returnBook",
-					type : "post",
-					data : {
-						bno : bno,
-						rentId : rentid
-					},
-					success : function() {
-						alert("무야호");
-						location.href="/search/rentList";					
-						}
- 			});
-			}
-		});
-	</script>
 </body>
 </html>

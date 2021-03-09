@@ -1,6 +1,5 @@
 package org.sb.search.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.sb.member.domain.MemberVO;
@@ -9,7 +8,6 @@ import org.sb.search.domain.BookCartList;
 import org.sb.search.domain.Page;
 import org.sb.search.domain.PageDTO;
 import org.sb.search.domain.Rent;
-import org.sb.search.domain.RentList;
 import org.sb.search.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,6 +121,19 @@ public class SearchController {
 		return "redirect:/search/rentList";
 	}
 	
+	
+	//반납 목록 확인
+	@GetMapping("/returnList")
+	public void getReturnList(Model model) {
+//		MemberVO member = new MemberVO();
+//		member.setMember_no(1);
+//		int memberNo = member.getMember_no();
+//		
+//		List<Rent> rentList = service.returnList(memberNo);
+		List<Rent> rentList = service.getReturnDate();
+		model.addAttribute("rentList", rentList);
+	}
+	
 	@GetMapping("/rentList")
 	public void getRentList(Rent rent, Model model) {
 		MemberVO member = new MemberVO();
@@ -135,9 +146,11 @@ public class SearchController {
 	
 	@PostMapping("/returnBook")
 	@ResponseBody
-	public void returnBook(@RequestParam("bno")int bno) {
+	public void returnBook(int bno, String rentId) {
 		log.info("returnBook의 bno : "+bno);
+		log.info("returnBook의 rentId : " + rentId);
 		service.returnByBno(bno);
+		service.returnBook(rentId);
 	}
 	
 	

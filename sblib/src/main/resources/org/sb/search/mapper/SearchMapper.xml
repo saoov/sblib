@@ -92,12 +92,22 @@
 				where member_no = #{member_no}
 		</delete>
 		
+		<!-- 반납된 도서 목록 보기 -->
+		<select id="returnList" resultType="org.sb.search.domain.Rent">
+			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, re.returnDate
+			from rentinfo r
+				inner join book b on r.bno = b.bno
+				inner join returninfo re on re.rentid = r.rentid 
+			where member_no = #{member_no} 
+			order by r.rentid desc
+		</select>
+		
 		<!-- 대여 목록 보기 -->
 		<select id="rentList" resultType="org.sb.search.domain.Rent">
 			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title
 			from rentinfo r
 				inner join book b on r.bno = b.bno
-			where member_no = #{member_no} 
+			where member_no = #{member_no} and r.returnDate is null
 			order by r.rentid desc
 		</select>
 		
@@ -110,18 +120,26 @@
 			update book set nowcount = 1 where bno = #{bno}
 		</update>
 		
-
-		<!-- 대여정보 디테일 보기 -->
-<!-- 		<select id="rentView" resultType="org.sb.search.domain.RentList"> -->
-<!-- 			select r.rentid, r.userid, r.rentdate, r.returnexDate, -->
-<!-- 				d.rentDetailNum, d.bno, d.cartStock, -->
-<!-- 				b.title, b.author, b.publisher, b.isbn -->
-<!-- 			from rent r -->
-<!-- 				inner join rent_details d on r.rentid = d.rentid -->
-<!-- 				inner join book b on b.bno = d.bno -->
-<!-- 				where r.userId = #{userId} -->
-<!-- 				and r.rentid = #{rentId} -->
-<!-- 		</select> -->
+		<update id="returnBook">
+			update rentInfo set returnDate = sysdate
+			where rentId = #{rentId}
+		</update>
 		
+<!-- 		<insert id="returnBook"> -->
+<!-- 			insert into returnInfo(rentId,returnDate) -->
+<!-- 			values(#{rentId},sysdate) -->
+<!-- 		</insert> -->
+
+		<select id="getReturnDate" resultType="org.sb.search.domain.Rent">
+		<![CDATA[
+			select rentid,bno,member_no,rentdate, returndate,
+ 				case 
+    				when returndate is null then '대여중'
+    				when returndate < sysdate then '반납완료'
+    				end as status
+			from rentInfo
+		]]>
+		</select>
+
 		
 	</mapper>
