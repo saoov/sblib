@@ -1,7 +1,6 @@
 package org.sb.search.controller;
 
-import java.text.DecimalFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sb.member.domain.MemberVO;
@@ -10,7 +9,6 @@ import org.sb.search.domain.BookCartList;
 import org.sb.search.domain.Page;
 import org.sb.search.domain.PageDTO;
 import org.sb.search.domain.Rent;
-import org.sb.search.domain.RentDetail;
 import org.sb.search.domain.RentList;
 import org.sb.search.service.SearchService;
 import org.springframework.stereotype.Controller;
@@ -38,7 +36,7 @@ public class SearchController {
 		
 		model.addAttribute("bookList", service.getList(page));
 		int total = service.getTotalCount(page);
-		log.info(total);
+		log.info("총 검색된 책 수  : " +total);
 		
 		model.addAttribute("pageDTO", new PageDTO(page,total));
 	}
@@ -53,7 +51,7 @@ public class SearchController {
 	@PostMapping("/addCart")
 	public void addCart(BookCart cart) {
 		MemberVO member = new MemberVO();
-		member.setMember_no(200800380);
+		member.setMember_no(1);
 		log.info("member : " + member);
 		cart.setMember_no(member.getMember_no());
 		log.info("cart : "+cart);
@@ -63,11 +61,12 @@ public class SearchController {
 	
 	@GetMapping("/cartList")
 	public void getCartList(Model model) {
-		log.info("getCartList");
-		
 		MemberVO member = new MemberVO();
-		member.setMember_id("20210303001");
-		List<BookCartList> cartList = service.cartList(member.getMember_id());
+		member.setMember_no(1);
+		
+		log.info("회원 번호 " +member.getMember_no()+"에 대한 getCartList Method");
+		
+		List<BookCartList> cartList = service.cartList(member.getMember_no());
 		model.addAttribute("cartList", cartList);
 	}
 
@@ -78,7 +77,7 @@ public class SearchController {
 		log.info("chArr : " + chArr);
 		log.info("cart : "+cart);
 		MemberVO member = new MemberVO();
-		member.setMember_no(200800380);
+		member.setMember_no(1);
 		int userNo = member.getMember_no();
 		
 		int result = 0;
@@ -100,73 +99,49 @@ public class SearchController {
 		return result;
 	}
 	
+	//chArr : cartList.jsp에서 넘겨 받은 대여 도서 bno 배열
 	@PostMapping("/cartList")
-	public String rent(@RequestParam(value = "chbox[]")List<String> chArr, Rent rent, RentDetail rentDetails) {
-		log.info("rent~~~~~~" + rent);
-		log.info("rentDetails~~~~~~" + rentDetails);
-		log.info("chArr!!!!!!!!!!!!!!!!"+ chArr);
-		
+	public String rent(@RequestParam(value = "chbox[]")List<Integer> chArr, Rent rent) {
+		log.info("chArr 객체 : "+ chArr);
 		
 		MemberVO member = new MemberVO();
-		member.setMember_no(200800380);
+		member.setMember_no(1);
 		int userNo = member.getMember_no();
 		
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		String subNum = "";
-		 
-		for (int i = 1; i <= 6; i++) {
-			subNum += (int) (Math.random() * 10);
-		}
-
-		String rentId = ymd + "_" + subNum;
-
-		rent.setRentId(rentId);
+		//임의의 1번 아이디
 		rent.setMember_no(userNo);
-
-		service.rentInfo(rent);
 		
-		rentDetails.setRentId(rentId);
-
-		int bno = 0;
+		for(int i = 0; i<chArr.size(); i++) {
+			rent.setBno(chArr.get(i));
+			log.info("rent.getBno() 메소드 : " +rent.getBno());
+			service.rentInfo(rent);
+			service.rentByBno(rent.getBno());
+		}
 		
-		
-		
-		service.rentInfoDetails(rentDetails);
+		log.info("rent 객체 : " + rent);
 		service.cartAllDelete(userNo);
-		return "redirect:/book/rentList";
-	}
-	
-	@GetMapping("/myPage")
-	public void myPage() {
+		return "redirect:/search/rentList";
 	}
 	
 	@GetMapping("/rentList")
 	public void getRentList(Rent rent, Model model) {
 		MemberVO member = new MemberVO();
-		member.setMember_id("20210303001");
+		member.setMember_no(1);
 		int memberNo = member.getMember_no();
 		
-		rent.setMember_no(memberNo);
-		List<Rent> rentList = service.rentList(rent);
+		List<Rent> rentList = service.rentList(memberNo);
 		model.addAttribute("rentList", rentList);
 	}
 	
-	@GetMapping("/rentView")
-	public void getRentList( @RequestParam("n")String rentId, Rent rent, Model model) {
-		log.info("rentId~~~~"+rentId);
-		log.info("rent~~~~~"+rent);
-		MemberVO member = new MemberVO();
-		member.setMember_no(200800380);
-		int memberNo = member.getMember_no();
-		
-		rent.setMember_no(memberNo);
-		rent.setRentId(rentId);
-		List<RentList> rentView = service.rentView(rent);
-		model.addAttribute("rentView",rentView);
+	@PostMapping("/returnBook")
+	@ResponseBody
+	public void returnBook(@RequestParam("bno")int bno) {
+		log.info("returnBook의 bno : "+bno);
+		service.returnByBno(bno);
 	}
+	
+	
+	
 	
 	
 }

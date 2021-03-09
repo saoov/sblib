@@ -27,7 +27,7 @@ public class Page {
 	}
 	
 	public String[] getTypeArr() {
-		log.info("getTypeArrt 메서드 실행" + type);
+		log.info("getTypeArr 메서드 검색 조건 : " + type);
 		return type == null ? new String[] {} : type.split("");
 	}
 	

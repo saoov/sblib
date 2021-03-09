@@ -128,8 +128,8 @@
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
+									alert("도서를 대여하였습니다.");									
 									location.href = "/search/rentList";
-									console.log(result);
 								}
 							});
 						}

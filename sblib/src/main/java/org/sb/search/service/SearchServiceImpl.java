@@ -15,7 +15,6 @@ import org.sb.search.domain.BookCart;
 import org.sb.search.domain.BookCartList;
 import org.sb.search.domain.Page;
 import org.sb.search.domain.Rent;
-import org.sb.search.domain.RentDetail;
 import org.sb.search.domain.RentList;
 import org.sb.search.mapper.SearchMapper;
 import org.springframework.stereotype.Service;
@@ -179,8 +178,8 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public List<BookCartList> cartList(String userId) {
-		return bookMapper.cartList(userId);
+	public List<BookCartList> cartList(int memberNo) {
+		return bookMapper.cartList(memberNo);
 	}
 
 	@Override
@@ -194,24 +193,31 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public void rentInfoDetails(RentDetail rendtDetails) {
-		bookMapper.rentInfoDetails(rendtDetails);
-		
-	}
-
-	@Override
 	public void cartAllDelete(int memberNo) {
 		bookMapper.cartAllDelete(memberNo);
 	}
 
 	@Override
-	public List<Rent> rentList(Rent rent) {
-		return bookMapper.rentList(rent);
+	public List<Rent> rentList(int memberNo) {
+		return bookMapper.rentList(memberNo);
 	}
 
 	@Override
 	public List<RentList> rentView(Rent rent) {
 		return bookMapper.rentView(rent);
 	}
+
+	@Override
+	public void rentByBno(int bno) {
+		bookMapper.rentByBno(bno);
+	}
+
+	@Override
+	public void returnByBno(int bno) {
+		bookMapper.returnByBno(bno);
+	}
+	
+	
+
 
 }

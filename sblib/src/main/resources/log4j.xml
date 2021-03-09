@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.sb.controller">
+	<logger name="org.sb">
 		<level value="info" />
 	</logger>
 	

@@ -23,7 +23,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	<mybatis-spring:scan base-package="org.sb.mapper"/>
+<!-- 	<mybatis-spring:scan base-package="org.sb.mapper"/> -->
 	<mybatis-spring:scan base-package="org.sb.event.mapper"/>
 	<mybatis-spring:scan base-package="org.sb.answer.mapper"/>
 	<mybatis-spring:scan base-package="org.sb.question.mapper"/>
