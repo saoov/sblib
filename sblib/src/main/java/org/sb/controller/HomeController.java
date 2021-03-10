@@ -22,4 +22,9 @@ public class HomeController {
 		return "home";
 	}
 	
+//	@RequestMapping(value ="/calendar")
+//	public void calendar() {
+//		
+//	}
+	
 }

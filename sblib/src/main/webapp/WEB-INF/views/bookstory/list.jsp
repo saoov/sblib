@@ -8,17 +8,44 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>Insert title here</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
 </head>
+
 <body>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">책이야기 게시판 목록</h1>                                                           
+      </div>
+    <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+                    이곳은 책에 관한 이야기를 자유롭게 나누는 게시판입니다.
+           <button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
+          </div>
+
 	<form id='actionForm' action="/bookstory/list" method="get">
 		<input type="hidden" name="pageNum" value="${page.page.pageNum }">
 		<input type="hidden" name="amount" value="${page.page.amount }">
 		<input type="hidden" name="type" value="<c:out value='${page.page.type }'/>">
 		<input type="hidden" name="keyword" value="<c:out value='${page.page.keyword }'/>">		
 	</form>
+	
 	<!-- table -->
-	<div class="table">
-		<table border="1">
+	<div class="panel-body">
+		<table width="100%" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
 					<td>번호</td>
@@ -30,18 +57,22 @@
 			</thead>
 			<tbody>
 				<c:forEach items="#{list }" var="bookstory">
-					<tr>
+					<tr class="odd gradeX">
 						<td>${bookstory.story_no }</td>
-						<td><a class='move' href='<c:out value="${bookstory.story_no }"/>'><c:out value='${bookstory.story_title }'/></a></td>
+						<td><a href='/bookstory/get?story_no=<c:out value="${bookstory.story_no }"/>'><c:out value='${bookstory.story_title }'/></a></td>
 						<td>${bookstory.story_content }</td>
 						<td>${bookstory.story_author }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_regDate }"/></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_regdate }"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	</div>
+		</div>
+		</div>
+		</div>
+		</div>
 	<!-- table -->
+	
 	<!-- search -->
 	<div class="search">
 		<form id='searchForm' action='/bookstory/list' method='get'>
@@ -85,6 +116,10 @@
 			var actionForm = $("#actionForm");
 			var searchForm = $("#searchForm");
 			
+			checkModal(result);			
+			history.replaceState({}, null, null);
+			
+			
 			$("li a").on("click",function(e){
 				e.preventDefault();
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
@@ -108,6 +143,30 @@
 				e.preventDefault();
 				searchForm.submit();
 			})
+			
+			    function checkModal(result) {
+				 
+				      if (result === ''|| history.state) {
+				        return;
+				      }
+				
+				      if (result === 'success') {
+					        $(".modal-body").html(
+					            "정상적으로 처리되었습니다.");
+					
+					      }else if (parseInt(result) > 0) {
+				        $(".modal-body").html(
+				            "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+				      }
+				
+				       $("#myModal").modal("show");
+				    }    
+				
+				$("#regBtn").click(function(){
+					
+					self.location = "/bookstory/register";
+					
+				});
 		});
 	</script>
 </body>

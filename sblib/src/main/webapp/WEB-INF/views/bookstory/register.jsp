@@ -8,13 +8,21 @@
 </head>
 <body>
 	<form action="/bookstory/register" method="post">
+	
+	    <div class="form-group">
 		<label>제목</label>
-		<input type="text" name="story_title">
+		<input class="form-control" name="story_title">
+		</div>
+		<div class="form-group">
 		<label>내용</label>
-		<input type="text" name="story_content">
+		<textarea rows="5" cols="50" name="story_content" class="form-control"></textarea>
+		</div>
+		<div class="form-group">
 		<label>작성자</label>
-		<input type="text" name="story_author">
-		<button type="submit">전송</button>
+		<input class="form-control" name="story_author">
+		</div>
+        <button type="submit" class="btn btn-default">전송</button>
+        <button type="reset" class="btn btn-default">수정</button>
 	</form>
 </body>
 </html>

@@ -2,8 +2,9 @@ package org.sb.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sb.domain.BookStoryVO;
-import org.sb.domain.Page;
+import org.sb.bookstory.domain.BookStoryVO;
+import org.sb.bookstory.domain.Page;
+import org.sb.bookstory.service.BookStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

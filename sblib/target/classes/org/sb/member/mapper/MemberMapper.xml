@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="org.sb.member.mapper.MemberMapper">
+	
+	
+	<!-- 회원가입 -->
+	<insert id="memberRegister">
+	INSERT INTO member (member_no, member_name, member_id, member_pw, member_birth, member_addr, member_tel, member_email, member_grade)
+	values(memberno_seq.NEXTVAL, #{member_name}, #{member_id}, #{member_pw}, #{member_birth},#{member_addr}, #{member_tel},  #{member_email}, 'manager')
+	</insert>
+	
+	<!-- 아이디 중복 검사 -->
+	<select id="checkOverId" parameterType="String" resultType="String">
+		select count(*) from member where member_id = #{member_id}
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="checkOverEmail" parameterType="String" resultType="String">
+		select count(*) from member where member_email = #{member_email}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="memberLogin" resultType="org.sb.member.domain.MemberVO">
+		select * from member where member_id =  #{member_id}
+    </select>
+    
+    <!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		update member set member_pw = #{member_pw}, member_addr = #{member_addr}, 
+		member_tel=#{member_tel} where member_id = #{member_id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete">
+		delete from member WHERE member_id = #{member_id} AND member_pw = #{member_pw} 
+	</delete>
+
+	</mapper>
+	
+	
+	

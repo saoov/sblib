@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.sb.manage.mapper.BookMapper">
+		<insert id="insert">
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
+		</insert>
+		
+		<select id="getBookById" resultType="org.sb.manage.domain.Book">
+			select * from book where bno = #{bno}
+		</select>
+		
+		<select id="getList" resultType="org.sb.manage.domain.Book">
+			<![CDATA[
+				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
+				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
+					from book where rownum <= #{pageNum} * #{amount} 
+					)
+					where rn > (#{pageNum} -1 ) * #{amount}
+			]]>
+		</select>
+		
+		<select id="getTotalCount" resultType="int">
+			select count(*) from BOOK where bno > 0
+		</select>
+		
+		<delete id="deleteById">
+			delete from book where bno = #{bno}
+		</delete>
+		
+	</mapper>

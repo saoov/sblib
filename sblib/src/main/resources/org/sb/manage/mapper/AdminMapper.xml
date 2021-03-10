@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.sb.manage.mapper.AdminMapper">
+	
+	
+		
+		<select id="search" resultType="org.sb.manage.domain.RentalVO" parameterType="hashmap">
+			<![CDATA[
+					select "rentid","member_name","member_no","book_title","returndate","rental_date","book_no","rexpected_date","delay_date"
+				from (select rownum rn,"rentid","member_name","member_no","book_title","returndate","rental_date","book_no","rexpected_date","delay_date"
+					from rentalmanage where "member_no" = #{member_no} and rownum<= #{pageNum} * #{amount} 
+					)
+					where rn > (#{pageNum} -1 ) * #{amount}
+			]]>
+		</select>
+	
+		
+		<select id="getList" resultType="org.sb.manage.domain.RentalVO">
+			<![CDATA[
+					select "rentid","member_name","member_no","book_title","returndate","rental_date","book_no","rexpected_date","delay_date"
+				from (select rownum rn,"rentid","member_name","member_no","book_title","returndate","rental_date","book_no","rexpected_date","delay_date"
+					from rentalmanage where rownum <= #{pageNum} * #{amount} 
+					)
+					where rn > (#{pageNum} -1 ) * #{amount}
+			]]>
+		</select>
+		
+		<select id="getTotalCount" resultType="int">
+			select count(*) from rentalmanage where "rentid" > 0
+		</select>
+		
+		<select id="searchgetTotalCount" resultType="int">
+			select count(*) from rentalmanage where "member_no" = #{member_no} and "rentid" > 0
+		</select>
+		
+	</mapper>

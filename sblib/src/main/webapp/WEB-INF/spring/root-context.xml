@@ -23,7 +23,23 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	<mybatis-spring:scan base-package="org.sb.mapper"/>
+<!-- 	<mybatis-spring:scan base-package="org.sb.mapper"/> -->
+	<mybatis-spring:scan base-package="org.sb.event.mapper"/>
+	<mybatis-spring:scan base-package="org.sb.answer.mapper"/>
+	<mybatis-spring:scan base-package="org.sb.question.mapper"/>
+	<mybatis-spring:scan base-package="org.sb.bookstory.mapper"/>
+	<mybatis-spring:scan base-package="org.sb.manage.mapper"/>	
+	<mybatis-spring:scan base-package="org.sb.member.mapper"/>	
+	<mybatis-spring:scan base-package="org.sb.notice.mapper"/>	
+	<mybatis-spring:scan base-package="org.sb.search.mapper"/>	
 	
 	<context:component-scan base-package="org.sb.service"></context:component-scan>	
+	<context:component-scan base-package="org.sb.event.service"></context:component-scan>	
+	<context:component-scan base-package="org.sb.answer.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.question.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.bookstory.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.manage.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.member.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.notice.service"></context:component-scan>
+	<context:component-scan base-package="org.sb.search.service"></context:component-scan>
 </beans>
