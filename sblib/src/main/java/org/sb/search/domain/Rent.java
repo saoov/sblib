@@ -14,6 +14,7 @@ public class Rent {
 	private int bno;
 	private Date rentDate;
 	private String title;
+	private String author;
 	private Date returnDate;
 	private String status;
 }

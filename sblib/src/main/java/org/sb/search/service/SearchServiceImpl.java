@@ -223,14 +223,20 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public List<Rent> getReturnDate() {
-		return bookMapper.getReturnDate();
+	public List<Rent> getReturnDate(int member_no) {
+		return bookMapper.getReturnDate(member_no);
 	}
 
 	@Override
 	public int getRentCount(int memberNo) {
 		return bookMapper.getRentCount(memberNo);
 	}
+
+	@Override
+	public Book findBookByBno(int bno) {
+		return bookMapper.findBookByBno(bno);
+	}
+
 
 	
 

@@ -80,7 +80,8 @@
 					alert("카트 담기 성공");
 				},
 				error : function() {
-					alert("카트 담기 실패");
+					alert("서재에 담겨있는 책입니다.");
+					location.href="/search/cartList";
 				}
 			});
 		});

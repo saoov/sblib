@@ -45,9 +45,11 @@ public interface SearchService {
 	// returnId로 책 반납 테이블에 등록
 	void returnBook(int rentId);
 
-	List<Rent> getReturnDate();
+	List<Rent> getReturnDate(int member_no);
 
 	// 대여 권수
 	int getRentCount(int memberNo);
+	
+	Book findBookByBno(int bno);
 
 }

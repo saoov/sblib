@@ -2,6 +2,8 @@ package org.sb.search.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.sb.member.domain.MemberVO;
 import org.sb.search.domain.BookCart;
 import org.sb.search.domain.BookCartList;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -54,20 +55,17 @@ public class SearchController {
 	
 	@ResponseBody
 	@PostMapping("/addCart")
-	public void addCart(BookCart cart) {
-		MemberVO member = new MemberVO();
-		member.setMember_no(1);
+	public void addCart(BookCart cart, HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
 		log.info("member : " + member);
 		cart.setMember_no(member.getMember_no());
 		log.info("cart : "+cart);
 		service.addCart(cart);
-		
 	}
 	
 	@GetMapping("/cartList")
-	public void getCartList(Model model) {
-		MemberVO member = new MemberVO();
-		member.setMember_no(1);
+	public void getCartList(Model model,HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
 		
 		log.info("회원 번호 " +member.getMember_no()+"에 대한 getCartList Method");
 		
@@ -77,12 +75,11 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping("/deleteCart")
-	public int deleteCart(@RequestParam(value = "chbox[]")List<String> chArr, BookCart cart) {
+	public int deleteCart(@RequestParam(value = "chbox[]")List<String> chArr, BookCart cart, HttpSession session) {
 		log.info("deleteCart");
 		log.info("chArr : " + chArr);
 		log.info("cart : "+cart);
-		MemberVO member = new MemberVO();
-		member.setMember_no(1);
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
 		int userNo = member.getMember_no();
 		
 		int result = 0;
@@ -106,11 +103,10 @@ public class SearchController {
 	
 	//chArr : cartList.jsp에서 넘겨 받은 대여 도서 bno 배열
 	@PostMapping("/cartList")
-	public String rent(@RequestParam(value = "chbox[]")List<Integer> chArr, Rent rent, Model model) {
+	public String rent(@RequestParam(value = "chbox[]")List<Integer> chArr, Rent rent, Model model, HttpSession session) {
 		log.info("chArr 객체 : "+ chArr);
 		
-		MemberVO member = new MemberVO();
-		member.setMember_no(1);
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
 		int memberNo = member.getMember_no();
 		
 		//임의의 1번 아이디
@@ -142,20 +138,21 @@ public class SearchController {
 	
 	//반납 목록 확인
 	@GetMapping("/returnList")
-	public void getReturnList(Model model) {
+	public void getReturnList(Model model, HttpSession session) {
 //		MemberVO member = new MemberVO();
 //		member.setMember_no(1);
 //		int memberNo = member.getMember_no();
 //		
 //		List<Rent> rentList = service.returnList(memberNo);
-		List<Rent> rentList = service.getReturnDate();
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
+		int member_no = member.getMember_no();
+		List<Rent> rentList = service.getReturnDate(member_no);
 		model.addAttribute("rentList", rentList);
 	}
 	
 	@GetMapping("/rentList")
-	public void getRentList(Rent rent, Model model) {
-		MemberVO member = new MemberVO();
-		member.setMember_no(1);
+	public void getRentList(Rent rent, Model model, HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("userSession");
 		int memberNo = member.getMember_no();
 		
 		List<Rent> rentList = service.rentList(memberNo);

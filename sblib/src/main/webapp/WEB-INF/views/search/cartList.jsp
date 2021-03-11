@@ -6,6 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.table{
+	width : 400px;
+	margin : 0 auto;
+	}
+</style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -18,8 +24,7 @@
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
-	<ul>
-		<li>
+		<!-- 버튼  -->
 			<div class="allCheck">
 				<input type="checkbox" name="allCheck" id="allCheck"><label for="allCheck">모두선택</label>
 				<script>
@@ -62,25 +67,38 @@
 					});
 				</script>
 			</div>
-		</li>
+		<!-- 버튼  -->
 		<!-- 카트 목록 -->
+		<table border="1" class="table">
+			<tr>
+				<td>선택</td>
+				<td>제목</td>
+				<td>저자</td>
+				<td>출판사</td>
+				<td>ISBN</td>
+				<td>서재등록일</td>
+				<td>삭제</td>
+			</tr>
 		
 		<c:forEach items="${cartList }" var="cartList">
+		<tr>
+			<td>
 			<div class="checkBox">
 				<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cartList.cartNum }" data-bno="${cartList.bno }">
+			
 				<script>
 					$(".chBox").on("click",function() {
 						$("#allCheck").prop("checked", false);
 					});
 				</script>
 			</div>
-				<ul>
-					<li>${cartList.title }</li>
-					<li>${cartList.author }</li>
-					<li>${cartList.publisher }</li>
-					<li>${cartList.isbn }</li>
-					<li>${cartList.addDate }</li>
-				</ul>
+			</td>
+					<td>${cartList.title }</td>
+					<td>${cartList.author }</td>
+					<td>${cartList.publisher }</td>
+					<td>${cartList.isbn }</td>
+					<td><fmt:formatDate value="${cartList.addDate }" pattern="yyyy/MM/dd"/></td>
+			<td>
 			<div class="delete">
 				<button type="button" class="delete${cartList.cartNum }btn" data-cartNum="${cartList.cartNum }">삭제</button>
 				<script>
@@ -109,10 +127,10 @@
 					});
 				</script>
 			</div>
-			<hr>
+			</td>
 		</c:forEach>
+		</table>
 		<!-- 카트 목록 -->
-	</ul>
 		<button type="button" class="selectLoan_btn">선택대여</button>
 			<script>
 					$(".selectLoan_btn").on("click",function(){
