@@ -42,10 +42,10 @@ public interface SearchMapper {
 	void returnByBno(int bno);
 	
 	//returnId로 책 반납 테이블에 등록
-	void returnBook(String rentId);
-	
-	
-	
+	void returnBook(int rentId);
 	
 	List<Rent> getReturnDate();
+	
+	//대여 권수
+	int getRentCount(int memberNo);
 }

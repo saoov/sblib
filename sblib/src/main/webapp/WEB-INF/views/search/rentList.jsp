@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
+<link rel="stylesheet" href="resources/css/slick.css">
+<body>    
+
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
 	<ul>
 		<c:forEach items="${rentList}" var="rentList">
@@ -38,12 +46,14 @@
 						rentId : rentid
 					},
 					success : function() {
-						alert("무야호");
+						alert("도서를 반납하였습니다.");
 						location.href="/search/rentList";					
 						}
  			});
 			}
 		});
 	</script>
+	<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
 </html>

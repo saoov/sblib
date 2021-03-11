@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
+<link rel="stylesheet" href="resources/css/slick.css">
+<body>    
+
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
 	<ul>
 		<li>
@@ -56,7 +64,7 @@
 			</div>
 		</li>
 		<!-- 카트 목록 -->
-		<c:set var="sum" value="0"/>
+		
 		<c:forEach items="${cartList }" var="cartList">
 			<div class="checkBox">
 				<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cartList.cartNum }" data-bno="${cartList.bno }">
@@ -66,12 +74,13 @@
 					});
 				</script>
 			</div>
-			<li>
-				<p>제목 : ${cartList.title }</p>
-				<p>지은이 : ${cartList.author }</p>
-				<p>출판사 : ${cartList.publisher }</p>
-				<p>ISBN : ${cartList.isbn }</p>
-			</li>
+				<ul>
+					<li>${cartList.title }</li>
+					<li>${cartList.author }</li>
+					<li>${cartList.publisher }</li>
+					<li>${cartList.isbn }</li>
+					<li>${cartList.addDate }</li>
+				</ul>
 			<div class="delete">
 				<button type="button" class="delete${cartList.cartNum }btn" data-cartNum="${cartList.cartNum }">삭제</button>
 				<script>
@@ -83,6 +92,7 @@
 							
 							checkArr.push($(this).attr("data-cartNum"));
 							//이 부분 result값을 controller에서 잘못받는 듯.......(수정 필요)
+							//선택 삭제시 location조정 필요
 							$.ajax({
 								url : "/search/deleteCart",
 								type : "post",
@@ -102,15 +112,7 @@
 			<hr>
 		</c:forEach>
 		<!-- 카트 목록 -->
-		<c:set var="sum" value="${cartList.size() }"/>
 	</ul>
-	<div class="sum">
-		대출 권수 : ${sum } 권
-	</div>
-	<div class="rentOpen">
-		<button type="button" class="rentOpen_btn">대여정보</button>
-	</div>
-	
 		<button type="button" class="selectLoan_btn">선택대여</button>
 			<script>
 					$(".selectLoan_btn").on("click",function(){
@@ -128,13 +130,17 @@
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
-									alert("도서를 대여하였습니다.");									
-									location.href = "/search/rentList";
+									alert("도서를 대여하였습니다.");
+									location.href="/search/cartList";
+								},
+								error : function(msg){
+									alert("대여수를 초과하였습니다.");
 								}
 							});
 						}
 					});
 				</script>
-	
+	    <!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
 </html>

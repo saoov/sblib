@@ -18,15 +18,16 @@
 <!-- home -->
     <section id="banner">
         <div class="frame">
-            <article class="searchbar">
-                <div class="bar" style="width: 100%; height: 100%;">
-                    <action form="" method="get">
-                        <input id="bar" type="text" name="search" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
-                        <button id="searchbtn"></button>
-                    </action>
-                </div>
-            </article>
-            <article class="quick">퀵메뉴</article>
+			<form action="/search/searchResult" method="get">
+				<article class="searchbar">
+					<div class="bar" style="width: 100%; height: 100%;">
+						<input id="bar" type="text" name="keyword" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
+						<input type="hidden" name="type" value="T">
+						<button id="searchbtn"></button>
+					</div>
+				</article>
+			</form>
+			<article class="quick">퀵메뉴</article>
         </div>
     </section>
     

@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class ReturnInfo {
 
-	private String rentId;
+	private int rentId;
 	private Date returnDate;
 	
 }

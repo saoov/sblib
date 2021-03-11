@@ -217,7 +217,7 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public void returnBook(String rentId) {
+	public void returnBook(int rentId) {
 		bookMapper.returnBook(rentId);
 		
 	}
@@ -225,6 +225,11 @@ public class SearchServiceImpl implements SearchService{
 	@Override
 	public List<Rent> getReturnDate() {
 		return bookMapper.getReturnDate();
+	}
+
+	@Override
+	public int getRentCount(int memberNo) {
+		return bookMapper.getRentCount(memberNo);
 	}
 
 	

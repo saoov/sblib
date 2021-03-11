@@ -50,10 +50,12 @@
 			]]>
 		</select>
 		
+		<!-- 모든 도서 개수 -->
 		<select id="getTotalCount" resultType="int">
-			select count(*) from book where
+			select count(*) from book 
+			where
 			<include refid="search"></include>
-			 bno > 0 
+			bno > 0
 		</select>
 		
 		<delete id="deleteById">
@@ -94,7 +96,7 @@
 		
 		<!-- 반납된 도서 목록 보기 -->
 		<select id="returnList" resultType="org.sb.search.domain.Rent">
-			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, re.returnDate
+			select r.rentid, r.bno, r.member_no, r.rentDate, b.title, re.returnDate
 			from rentinfo r
 				inner join book b on r.bno = b.bno
 				inner join returninfo re on re.rentid = r.rentid 
@@ -138,7 +140,15 @@
     				when returndate < sysdate then '반납완료'
     				end as status
 			from rentInfo
+			order by rentid desc
 		]]>
+		</select>
+		
+		<!-- 대여중인 책 수 -->
+		<select id="getRentCount" resultType="int">
+			select count(*)
+			from rentInfo
+            where member_no = #{member_no} and returndate is null
 		</select>
 
 		

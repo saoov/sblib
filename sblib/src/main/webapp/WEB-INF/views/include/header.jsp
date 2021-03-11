@@ -3,7 +3,7 @@
 
     <header id="header">
         <nav id="header1" style="height: 60px">
-            <h2 style="float: left; position: relative; top: 10px;"><a href style="text-decoration: none;">Samboo Library</a></h2>
+            <h2 style="float: left; position: relative; top: 10px;"><a href="/" style="text-decoration: none;">Samboo Library</a></h2>
             <div class="toplink">
                 <ul>
                     <li><a href="#">로그인</a>｜</li>
@@ -18,7 +18,7 @@
             <label for="toggle" onclick>MENU</label>
             <input type="checkbox" id="toggle"/>
             <ul class="menuul">
-                <li><a href="#">자료검색</a>
+                <li><a href="/search/searchSimple">자료검색</a>
                 </li>
                 <li><a href="#">프로그램</a>
                     <ul>
