@@ -133,6 +133,7 @@
 		<!-- 카트 목록 -->
 		<button type="button" class="selectLoan_btn">선택대여</button>
 			<script>
+			
 					$(".selectLoan_btn").on("click",function(){
 						var confirm_val = confirm("선택된 도서를 대여하시겠습니까?");
 						
@@ -151,8 +152,11 @@
 									alert("도서를 대여하였습니다.");
 									location.href="/search/cartList";
 								},
-								error : function(msg){
-									alert("대여수를 초과하였습니다.");
+								error : function(request){
+									console.log('request : ' +request);
+									var result = '${msg}';
+									console.log('result : '+result);
+									alert("대여에 실패하였습니다.");
 								}
 							});
 						}

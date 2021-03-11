@@ -32,7 +32,7 @@
 			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
 		</insert>
 		
-		<select id="getBookById" resultType="org.sb.manage.domain.Book">
+		<select id="getBookByBno" resultType="org.sb.manage.domain.Book">
 			select * from book where bno = #{bno}
 		</select>
 		
@@ -83,7 +83,7 @@
 		</delete>
 		
 		<!-- 대여하기 -->
-		<insert id="rentInfo">
+		<insert id="rentBook">
 			insert into rentInfo(rentId, member_no, bno)
 			values(seq_rentid.nextval, #{member_no}, #{bno})
 		</insert>

@@ -14,7 +14,7 @@ public interface SearchMapper {
 	
 	List<Book> getList(Page page);
 	
-	Book getBookById(long bno);
+	Book getBookByBno(long bno);
 	
 	void deleteById(long bno);
 	
@@ -27,7 +27,7 @@ public interface SearchMapper {
 	void deleteCart(BookCart cart);
 	
 	//대여 정보
-	void rentInfo(Rent rent);
+	void rentBook(Rent rent);
 	
 	void cartAllDelete(int memberNo);
 	

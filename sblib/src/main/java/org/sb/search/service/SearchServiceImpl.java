@@ -167,8 +167,8 @@ public class SearchServiceImpl implements SearchService{
 
 
 	@Override
-	public Book getBookById(long bno) {
-		return bookMapper.getBookById(bno);
+	public Book getBookByBno(long bno) {
+		return bookMapper.getBookByBno(bno);
 	}
 
 	@Override
@@ -187,8 +187,10 @@ public class SearchServiceImpl implements SearchService{
 	}
 
 	@Override
-	public void rentInfo(Rent rent) {
-		bookMapper.rentInfo(rent);
+	public void rentBook(Rent rent) {
+		log.info("rentBook 제어 2");
+		bookMapper.rentByBno(rent.getBno());
+		bookMapper.rentBook(rent);
 	}
 
 	@Override

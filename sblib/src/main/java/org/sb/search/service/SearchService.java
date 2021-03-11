@@ -16,7 +16,7 @@ public interface SearchService {
 
 	List<Book> getList(Page page);
 
-	Book getBookById(long bno);
+	Book getBookByBno(long bno);
 
 	void removeById(long bno);
 
@@ -28,7 +28,7 @@ public interface SearchService {
 
 	void deleteCart(BookCart cart);
 
-	void rentInfo(Rent rent);
+	void rentBook(Rent rent);
 
 	void cartAllDelete(int memberNo);
 
