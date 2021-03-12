@@ -156,6 +156,10 @@
 		<select id="findBookByBno" resultType="String">
 			select * from book where bno=#{bno}
 		</select>
+		
+		<delete id="cartDeleteByRent">
+			delete from book_cart where member_no=#{member_no} and bno = #{bno}
+		</delete>
 
 		
 	</mapper>

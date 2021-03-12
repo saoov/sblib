@@ -51,5 +51,6 @@ public interface SearchService {
 	int getRentCount(int memberNo);
 	
 	Book findBookByBno(int bno);
+	
 
 }

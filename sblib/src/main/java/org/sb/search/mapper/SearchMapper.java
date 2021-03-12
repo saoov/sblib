@@ -51,4 +51,6 @@ public interface SearchMapper {
 	
 	Book findBookByBno(int bno);
 	
+	void cartDeleteByRent(Rent rent);
+	
 }

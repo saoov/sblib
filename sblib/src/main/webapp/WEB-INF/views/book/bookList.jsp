@@ -80,7 +80,7 @@
 					<td>${book.publisher }</td>
 					<td>${book.pubdate }</td>
 					<td>${book.isbn }</td>
-					<td>${book.count }</td>
+					<td>${book.nowcount }</td>
 			</tr>
 	            <tr>
 	                <td colspan="8">줄거리: <c:out value='${book.description.replaceAll("\\\<.*?\\\>","")}'/></td>

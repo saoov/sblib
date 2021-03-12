@@ -26,7 +26,7 @@
                         <li><a href="/book/bookList">도서목록확인</a></li>
                         <li><a href="/book/addBook">도서추가</a></li>
                     </ul>
-                <li><a href="/book/userList">회원관리</a>
+                <li><a href="/admin/userList">회원관리</a>
 
             </ul>
         </nav>

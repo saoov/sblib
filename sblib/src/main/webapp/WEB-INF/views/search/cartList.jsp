@@ -56,11 +56,8 @@
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
-									if(result == 1){
-										location.href = "/search/bookList";
-									} else {
-										alert("삭제 실패"+result);
-									}
+									alert("내 서재에 삭제하였습니다.");
+									location.href = "/search/cartList";
 								}
 							});
 						}
@@ -93,7 +90,7 @@
 				</script>
 			</div>
 			</td>
-					<td>${cartList.title }</td>
+					<td><a href="/search/getBook?bno=${cartList.bno }">${cartList.title }</a></td>
 					<td>${cartList.author }</td>
 					<td>${cartList.publisher }</td>
 					<td>${cartList.isbn }</td>
@@ -116,15 +113,12 @@
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
-									if(result == 1){
-										location.href = "/search/bookList";
-									} else {
-										alert("삭제 실패"+result);
+										alert("내 서재에 삭제하였습니다.");
+										location.href = "/search/cartList";
 									}
-								}
-							});
-						}
-					});
+								});
+							};
+						});
 				</script>
 			</div>
 			</td>
@@ -153,9 +147,6 @@
 									location.href="/search/cartList";
 								},
 								error : function(request){
-									console.log('request : ' +request);
-									var result = '${msg}';
-									console.log('result : '+result);
 									alert("대여에 실패하였습니다.");
 								}
 							});

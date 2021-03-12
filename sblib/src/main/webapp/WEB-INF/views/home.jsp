@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>삼부도서관</title>
 </head>
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>

@@ -64,8 +64,8 @@
 	</div>
 	<div class="bookData">
 		<button type="button" class="addCart_btn">서재에 담기</button>
-		<button type="button">내 서재 보기</button>
 		<button type="button" class="historyback">뒤로가기</button>
+		<a href="/search/cartList">내 서재</a>
 	</div>
 	<script>
 		$(".addCart_btn").on("click", function() {

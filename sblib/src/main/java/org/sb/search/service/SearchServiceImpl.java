@@ -190,6 +190,7 @@ public class SearchServiceImpl implements SearchService{
 	public void rentBook(Rent rent) {
 		log.info("rentBook 제어 2");
 		bookMapper.rentByBno(rent.getBno());
+		bookMapper.cartDeleteByRent(rent);
 		bookMapper.rentBook(rent);
 	}
 
@@ -238,6 +239,8 @@ public class SearchServiceImpl implements SearchService{
 	public Book findBookByBno(int bno) {
 		return bookMapper.findBookByBno(bno);
 	}
+
+	
 
 
 	

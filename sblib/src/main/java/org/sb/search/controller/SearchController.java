@@ -134,9 +134,7 @@ public class SearchController {
 			}
 			service.rentBook(rent);
 		}
-		
 		log.info("rent 객체 : " + rent);
-		service.cartAllDelete(memberNo);
 		return "redirect:/search/rentList";
 	}
 	
