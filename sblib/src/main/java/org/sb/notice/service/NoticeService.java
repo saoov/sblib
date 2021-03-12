@@ -17,4 +17,9 @@ public interface NoticeService {
 	int modify(NoticeVO noticeVO);
 	
 	int getTotal(Page page);
+	
+	NoticeVO selectFlie(int notice_no);
+	
+	void deleteFile(String notice_fileid);
+
 }

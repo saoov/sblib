@@ -22,10 +22,11 @@
 
         .toplink {
             position: absolute;
-            width: 150px;
+            width: 500px;
             height: 25px;
             right: 0px;
             top:18px;
+            letter-spacing: 1px;
         }
         .toggler{
             display: none;
@@ -34,15 +35,18 @@
         }
         .toplink ul{
             list-style-type: none;
-            font-size: 18px;
-            
+            font-size: 15px;
+            float: right;
         }
         .toplink ul li{
-            float: left;
+            
         }
         .toplink ul li a{
             color: #564A3D;
-            font-weight: bold;
+        }
+        .toplink ul li a:hover{
+            text-decoration: none;
+            
         }
 
         #menusection {

@@ -1,7 +1,5 @@
 package org.sb.notice.domain;
 
-import org.springframework.web.util.UriComponentsBuilder;
-
 import lombok.Data;
 
 @Data
@@ -13,25 +11,16 @@ public class Page {
 	private String keyword;
 
 	public Page() {
-		this(1, 10);
+		this(1, 9);
 	}
 
 	public Page(int pageNum, int amount) {
+		super();
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
 	
 	public String[] getTypeArr() {
-		return type == null ? new String[] {} : type.split("");
-	}
-	
-	public String getListLink() {
-		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
-				.queryParam("pageNum", this.pageNum)
-				.queryParam("amount", this.getAmount())
-				.queryParam("type", this.getType())
-				.queryParam("keyword", this.getKeyword());
-		return builder.toUriString();
-				
+		return type == null? new String[] {}: type.split("");
 	}
 }

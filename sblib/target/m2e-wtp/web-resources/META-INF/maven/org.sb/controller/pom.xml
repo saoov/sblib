@@ -133,6 +133,12 @@
             <artifactId>tiles-jsp</artifactId>
             <version>3.0.8</version>
         </dependency>
+        <!-- korean error -->
+		<dependency>
+		<groupId>xerces</groupId>
+		<artifactId>xercesImpl</artifactId>
+		<version>2.9.1</version>
+		</dependency>
 	
 		<!-- Test -->
 		<dependency>

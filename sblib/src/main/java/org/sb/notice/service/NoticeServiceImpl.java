@@ -18,7 +18,7 @@ private final NoticeMapper mapper;
 	
 	@Override
 	public int register(NoticeVO noticeVO) {
-		mapper.insert(noticeVO);
+		mapper.insertSelectKey(noticeVO);
 		return noticeVO.getNotice_no();
 	}
 
@@ -29,6 +29,7 @@ private final NoticeMapper mapper;
 
 	@Override
 	public NoticeVO get(int notice_no) {
+		mapper.updateReadcount(notice_no);
 		return mapper.read(notice_no);
 	}
  
@@ -44,7 +45,17 @@ private final NoticeMapper mapper;
 
 	@Override
 	public int getTotal(Page page) {
-		return mapper.getTotalCount(page);
+		return mapper.getTotal(page);
+	}
+	
+	@Override
+	public NoticeVO selectFlie(int notice_no) {
+		return mapper.selectFlie(notice_no);
+	}
+	
+	@Override
+	public void deleteFile(String notice_fileid) {
+		mapper.deleteFile(notice_fileid);
 	}
 	
 }
