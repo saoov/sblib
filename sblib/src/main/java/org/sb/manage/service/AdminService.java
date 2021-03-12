@@ -16,5 +16,6 @@ public interface AdminService {
 	int getTotalCount();
 	
 	int searchgetTotalCount(long member_no);
+
 	
 }

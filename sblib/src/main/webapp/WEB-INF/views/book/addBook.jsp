@@ -95,7 +95,7 @@
 						function() {
 
 							   var result = '<c:out value="${result}"/>';
-
+							   var title = '<c:out value="${title}"/>';
 									checkModal(result);
 
 									history.replaceState({}, null, null);
@@ -107,14 +107,18 @@
 										}
 										if (result === 'success') {
 											$(".modal-title").html("등록성공");
-											$(".modal-body").html("");
+											$(".modal-body").html(title+"이 등록되었습니다.");
 
 										} else if (result === 'fail') {
 											$(".modal-title").html("삭제실패");
 											$(".modal-body").html("해당도서는 이미존재합니다.");
 										}
 										$("#myModal").modal("show");
+									
+
+											
 							}
 							});
+		
 		</script>
      

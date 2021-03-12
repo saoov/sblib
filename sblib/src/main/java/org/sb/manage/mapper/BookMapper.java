@@ -17,5 +17,11 @@ public interface BookMapper {
 	
 	int getTotalCount();
 	
+	int getTotalTodayBookCount();
+	
+	void setTodaybook (long bno);
+
+	void downTodaybook(long bno);
+	
 	
 }

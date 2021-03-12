@@ -1,7 +1,7 @@
 package org.sb.manage.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,10 +10,8 @@ import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
 /*import org.sb.domain.UserVO;*/
 import org.sb.manage.service.BookService;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,24 +58,23 @@ public class BookController {
    
 
    @PostMapping("addBooks")
-   public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
+   public String addBooks(Model model,Book books,String keyword,RedirectAttributes redirectAttributes) throws IOException {
       log.info("관리자 책추가 post");
-   
+      String Result = URLDecoder.decode(keyword, "UTF-8");
+
+ 
        if(books!=null) {
+    	   		
              service.register(books);
-             rs.setContentType("text/html; charset=UTF-8");
-             PrintWriter o =rs.getWriter();
-             o.print("<script>");
-             o.print("alert('"+books.getTitle()+"이 등록되었습니다.');");
-             o.print("history.back();");
-             o.print("</script>");
-             o.flush();
-            
+             model.addAttribute("keyword",keyword);
+             redirectAttributes.addFlashAttribute("title", books.getTitle());
+             redirectAttributes.addFlashAttribute("result", "success");
              }
+       return "redirect:/book/addBook?keyword="+Result;
    }
 
    @PostMapping("bookdelete")
-   public String bookdelete(HttpServletResponse rs,RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+   public String bookdelete(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("관리자 책삭제 post");
       long bno=Long.parseLong(sbno); 
       if(bno!=-1)
@@ -98,6 +95,32 @@ public class BookController {
          
          return "redirect:/book/bookList";
          
+   }
+   
+   @PostMapping("tbinsert")
+   public String tbinsert(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+      log.info("오늘의북 책 선정");
+      long bno=Long.parseLong(sbno); 
+      if(service.getTotalTodayBookCount()>6)
+      {
+      service.setTodaybook(bno);
+      	redirectAttributes.addFlashAttribute("result", "setsuccess");//성공
+      }
+      else
+      {
+    	  redirectAttributes.addFlashAttribute("result", "setfail");// 실패
+      }
+      return "redirect:/book/bookList";
+   }
+   
+   @PostMapping("tbdelete")
+   public String tbdelete(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+      log.info("오늘의북 책 선정삭제");
+      long bno=Long.parseLong(sbno); 
+      service.downTodaybook(bno);
+      redirectAttributes.addFlashAttribute("result", "downsuccess");
+      return "redirect:/book/bookList";
+     
    }
    
    /*
