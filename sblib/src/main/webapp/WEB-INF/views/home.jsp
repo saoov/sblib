@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,32 @@
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>
 <link rel="stylesheet" href="resources/css/slick.css">
+<style>
+	#calendar{
+		position:relateve;
+		width:100%;
+		height:100%;
+	}
+	.fc-daygrid-day-number{
+		font-size: 10px;
+	}
+	.fc-col-header-cell-cushion {
+		font-size:10px;
+	}
+	.fc-event-title-container{
+		display:none;
+	}
+	.fc-event-main-frame{
+		height:1px;
+	}
+	.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+      position: relative;
+      min-height: 11px;
+	}
+	.fc .fc-daygrid-day-number{
+		padding:0;
+	}
+</style>
 <body>    
 
 <!-- header -->
@@ -18,16 +47,14 @@
 <!-- home -->
     <section id="banner">
         <div class="frame">
-			<form action="/search/searchResult" method="get">
-				<article class="searchbar">
-					<div class="bar" style="width: 100%; height: 100%;">
-						<input id="bar" type="text" name="keyword" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
-						<input type="hidden" name="type" value="T">
-						<button id="searchbtn"></button>
-					</div>
-				</article>
-			</form>
-			<article class="quick">퀵메뉴</article>
+        <form action="" method="get">
+            <article class="searchbar">
+                <div class="bar" style="width: 100%; height: 100%;">
+                        <input id="bar" type="text" name="search" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
+                        <button id="searchbtn"></button>
+                </div>
+            </article>
+        </form>
         </div>
     </section>
     
@@ -65,9 +92,10 @@
             
             <div class="box3">
                 <p style="text-align: center; margin-top: 10px;">일정 안내</p>
-                <hr style="margin-left: 20px; margin-right: 20px;">
+                <hr style="margin-left: 20px; margin-right: 20px; margin-bottom:0;">
                 <div class="calendar">
-                    캘린더로 일정안내 
+                    <div id='calendar'>
+                    </div>
                 </div>
             </div>
         </article>
@@ -112,7 +140,19 @@
                 <a class="schedule" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
                 <div class="holidays">
-                    당월의 휴일을 달력에서 찾아서 보여주는 곳입니다. 어떻게 찾을지는 지금부터 생각해봅시다. 플러스 버튼 클릭하면 행사일정 페이지로 가서 달력을 보여줍니다.
+                    <c:set var="now" value="<%=new java.util.Date() %>"/>
+                    <c:set var="today"><fmt:formatDate value="${now }" pattern="오늘은 MM월 dd일 입니다"/></c:set>
+                    <c:out value="${today }"/>
+                    <ul>
+                    	<c:forEach items="${holiday }" var="holiday">
+                    		<li>
+                    			<div style="width:50px; height:50px; background-color: red; border-radius: 50%">
+                    				<h2 style="text-align: center; line-height: 1.3">${holiday.holiday_start }</h2>
+                    			</div>
+                    		</li>
+                    	</c:forEach>
+                    </ul>
+                    
                 </div>
             </div>
             <div class="box2">
@@ -181,6 +221,51 @@ $(".slider").slick({
 	]
 }); 
 
+getRandomColor = function(_isAlpha) {
+	  let r = getRand(0, 255),
+	  g = getRand(0, 255),
+	  b = getRand(0, 255),
+	  a = getRand(0, 10) / 10;
+
+	  let rgb = _isAlpha ? 'rgba' : 'rgb';
+	  rgb += '(' + r + ',' + g + ',' + b;
+	  rgb += _isAlpha ? ',' + a + ')' : ')';
+
+	  return rgb;
+
+	  // Return random number from in to max
+	  function getRand(min, max) {
+	    if (min >= max) return false;
+	    return ~~(Math.random() * (max - min + 1)) + min;
+	  };
+	};
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+    	initialView: 'dayGridMonth',
+    	headerToolbar:false,
+    	events:[
+        	<c:forEach items="${list}" var="event">
+            {
+              start: "${event.event_start}",
+              end: "${event.event_end}",
+              color: getRandomColor()
+            },
+            </c:forEach>
+            <c:forEach items="${holiday}" var="holiday">
+            {
+              start: "${holiday.holiday_start}",
+              end: "${holiday.holiday_end}",
+              color: "#e3f2fd",
+              backgroundColor: "#0d47a1"
+            },
+            </c:forEach>
+    	]
+    });
+    calendar.render();
+  });
+ 
 </script>
 <!-- footer -->
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>

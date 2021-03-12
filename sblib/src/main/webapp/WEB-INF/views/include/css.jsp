@@ -16,3 +16,5 @@
 <!-- fullcalendar -->
 <link href='/resources/fullcalendar-scheduler/main.css' rel='stylesheet' />
 
+<!-- side -->
+<link href="../resources/css/side.css" rel="stylesheet">

@@ -8,59 +8,6 @@
 <head>
 
 <style>
-	#body{
-	position:relative;
-	margin:0 auto;
-	width: 1200px;
-	margin-top: 50px;
-	margin-bottom: 10px;
-	height: 1650px;
-	}
-	#sidemenu {
-		width: 18%;
-		background-color: white;
-		float:left;
-		margin-right: 4%;
-	}
-	
-	#jun{
-		position: relative;
-		width:78%;
-		height:100%;
-		float: left;
-	}
-	
-	#sidemenu ul{
-		margin : 0;
-		padding : 0;
-		background-color: gray;
-		border-radius: 10px;
-		
-	}
-	#sidemenu ul li{
-		list-style: none;
-		width : 100%;
-		height : 50px;
-		line-height: 3.5;
-        text-align: center;
-        border-bottom: 0.7px solid white;
-	}
-	#sidemenu ul li a{
-		display : block;
-		color : white;
-	}
-	#sidemenu ul li a:hover{
-		background-color: #424242;
-		text-decoration: none;
-	}
-	#sidemenu .title{
-		width: 100%;
-	}
-	.title h1{
-		text-align: center;
-		margin-top: 10px;
-	}
-	
 	.eventlist{
 		width:100%;
 	}
@@ -73,13 +20,9 @@
 		list-style-type: none;
 		margin: 2%;
 		width:29.3333%;
-		height: 470px;
+		height: 440px;
 		float:left;
-		border: 0.5px solid #e0e0e0;
-	}
-	.eventlist ul li a p img{
-		position:relative;
-		width:100px;
+		margin-bottom: 5%;
 	}
 	
 	.eventsearch{
@@ -90,9 +33,12 @@
 		padding: 12px;
 	}
 	.eventsearchbox1{
-		width: 370px;
-		height: 100%;
-		margin:0 auto;
+		height: 50px;
+	}
+	#searchForm{
+		width:80%;
+		margin-right:5%;
+		margin-left:15%;
 	}
 	.eventregister{
 		position: absolute;
@@ -102,13 +48,36 @@
 		top: 12px;
 	}
 	.pagingbar{
-		position: absolute;
+		position:absolute;
+		bottom:0;
 		width:100%;
-		bottom:10px;
+		margin:0 auto;
 	}
-	.pagingbar ul{
-		margin-left:30%;
+	.pagination{
+		width:33.3333%;
+		margin-left: 33.3333%;
+		margin-right: 33.3333%;
 	}
+	
+	/* 화면너비 0 ~ 1200px */
+    @media(max-width: 1217px) {
+    	
+    }
+    
+    /* 화면너비 0 ~ 768px */
+    @media(max-width: 768px) {
+    	.eventlist ul li{
+		width:46%;
+		}
+    }
+    
+    /* 화면너비 0 ~ 480px */
+    @media(max-width: 480px) {
+    	.eventlist ul li{
+		width:80%;
+		margin:10%;
+		}
+    }
 	
   </style>
 <meta charset="UTF-8">
@@ -124,27 +93,35 @@
 	<div id='body'>
 		<div id='sidemenu'>
 			<div class="title">
-				<h1>프로그램</h1>
+				<h2>프로그램</h2>
 			</div>
-			<hr>
 			<ul>
 				<li><a href="#">도서관일정</a></li>
 				<li><a href="#">독서문화행사</a></li>
 			</ul>
+			<div class="lastchild"></div>
 		</div>
 		
-		<div id='jun'>
-		
+		<div id='layer'>
+			<h3>독서문화행사</h3>
+			<div style="width:100%; height:20px;">
+				<ul>
+					<li>프로그램　>　</li>
+					<li>독서문화행사</li>
+				</ul>
+			</div>
+			<hr style="margin-top:30px;">
 			<!-- 행사 검색 -->
 			<div class='eventsearch'>
 				<div class='eventsearchbox1'>
 					<form id='searchForm' action="/event/eventBoard" method="get">
-						<select name="type">
+						<select class="form-control" name="type" style="width:15%; float:left;">
 							<option value="" ${paging.page.type == null? "selected":"" }>---</option>
 							<option value="T" ${paging.page.type eq 'T'? "selected":"" }>행사명</option>
 							<option value="C" ${paging.page.type eq 'C'? "selected":"" }>내용</option>
 							<option value="TC" ${paging.page.type eq 'TC'? "selected":"" }>제목+내용</option>
-						</select> <input type="text" name="keyword" value="${paging.page.keyword }">
+						</select> 
+						<input type="text" class="form-control" name="keyword"  style="width:55%; float:left;" value="${paging.page.keyword }">
 						<input type="hidden" name="pageNum" value="${paging.page.pageNum }"> 
 						<input type="hidden" name="amount" value="${paging.page.amount }">
 						<button type="button" class="btn btn-info">Search</button>
@@ -164,14 +141,11 @@
 							<img src="${event.event_image }">
 							<c:out value="${event.event_title}" />
 							</a><br> 
-							${event.event_start }<br>~${event.event_end }
-<%-- 							<fmt:parseDate pattern="yyyy-MM-dd" value="${event.event_start }"/>~  --%>
-<%-- 							<fmt:parseDate pattern="yyyy-MM-dd" value="${event.event_end }"/> --%>
+							${event.event_start }~${event.event_end }
 						 </li>
 					</c:forEach>
 				</ul>
 			</div>
-			
 			<!-- 페이징 처리 -->
 			<div class="pagingbar">
 				<ul class="pagination">
@@ -198,6 +172,7 @@
 				</ul>
 			</div>
 		</div>
+		
 </div>
 <form id='actionForm' action="/event/eventBoard" method="get">
 	<input type="hidden" name="pageNum" value="${paging.page.pageNum }">

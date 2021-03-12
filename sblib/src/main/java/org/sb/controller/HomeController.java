@@ -1,24 +1,27 @@
 package org.sb.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
+import org.sb.event.service.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	public final EventService service;
 	
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {
-
+		model.addAttribute("list", service.calList());
+		model.addAttribute("holiday", service.showSchedule());
 		return "home";
 	}
 	

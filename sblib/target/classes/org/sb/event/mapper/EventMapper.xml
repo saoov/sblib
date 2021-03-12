@@ -39,7 +39,7 @@
 		
 		<insert id="insert">
 			insert into event(event_no, event_title, event_info, event_start, event_end, event_image) 
-			values (seq_event.nextval, #{event_title}, #{event_info}, to_date(#{event_start},'YYYY-MM-DD'), to_date(#{event_end},'YYYY-MM-DD'), #{event_image})
+			values (seq_event.nextval, #{event_title}, #{event_info}, #{event_start}, #{event_end}, #{event_image})
 		</insert>
 		
 		<delete id="delete">
@@ -66,7 +66,7 @@
 		
 		<insert id="addSchedule">
 			insert into holiday(holiday_title, holiday_start, holiday_end)
-			values (#{holiday_title}, to_date(#{holiday_start},'YYYY-MM-DD'), to_date(#{holiday_end},'YYYY-MM-DD'))
+			values (#{holiday_title}, #{holiday_start}, #{holiday_end})
 		</insert>
 		<select id="showSchedule" resultType="org.sb.event.domain.HolidayVO">
 			select * from holiday

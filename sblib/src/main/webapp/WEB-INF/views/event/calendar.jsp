@@ -8,75 +8,22 @@
 <head>
 
 <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    }
-
-    .add-button{
-    position: absolute;
-    top: 1px;
-    right:200px;
-    background:#2c3e50;
-    border:0;
-    color:white;
-    height:40px;
-    border-radius:3px;
-    width:90px;
-    }
-	
-	#body{
+.add-button{
+   position: absolute;
+   top: 1px;
+   right:200px;
+   background:#2c3e50;
+   border:0;
+   color:white;
+   height:40px;
+   border-radius:3px;
+   width:90px;
+}
+#calendar{
 	position:relative;
-	margin:0 auto;
-	width: 1200px;
-	margin-top: 50px;
-	margin-bottom: 10px;
-	}
-	#sidemenu {
-		width: 18%;
-		background-color: white;
-		float:left;
-		margin-right: 4%;
-	}
-	#calendar{
-		position:relative;
-		width: 78%;
-	}
-	
-	#sidemenu ul{
-		margin : 0;
-		padding : 0;
-		background-color: gray;
-		border-radius: 10px;
-	}
-	#sidemenu ul li{
-		list-style: none;
-		width : 100%;
-		height : 50px;
-		line-height: 3.5;
-        text-align: center;
-        border-bottom: 0.7px solid white;
-	}
-	#sidemenu ul li a{
-		display : block;
-		color : white;
-	}
-	#sidemenu ul li a:hover{
-		background-color: #424242;
-		text-decoration: none;
-	}
-	#sidemenu .title{
-		width: 100%;
-	}
-	.title h1{
-		text-align: center;
-		margin-top: 10px;
-	}
-
-	
-
-  </style>
+	width: 100%;
+}
+</style>
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
@@ -91,18 +38,28 @@
 	<div id='body'>
 		<div id='sidemenu'>
 			<div class="title">
-				<h1>프로그램</h1>
+				<h2>프로그램</h2>
 			</div>
-			<hr>
 			<ul>
 				<li><a href="#">도서관일정</a></li>
 				<li><a href="#">독서문화행사</a></li>
 			</ul>
+			<div class="lastchild"></div>
 		</div>
-		<div id='calendar'>
-			<button class="add-button" type="button" onclick="click_add();">일정추가</button>
+		<div id="layer">
+			<h3>도서관 일정</h3>
+			<div style="width:100%; height:20px;">
+				<ul>
+					<li>프로그램　>　</li>
+					<li>도서관 일정</li>
+				</ul>
+			</div>
+			<hr style="margin-top:30px;">
+			<div id='calendar'>
+				<button class="add-button" type="button" onclick="click_add();">휴관일 등록</button>
+			</div>
 		</div>
-		</div>
+	</div>
 
  <!-- js -->
 <tiles:insertAttribute name="js"></tiles:insertAttribute>
@@ -131,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
     	initialView: 'dayGridMonth',
         headerToolbar: {
-        	left: '',
-          center: 'title'
+        	left: 'title',
+          center: ''
         },
         events: [
         	<c:forEach items="${list}" var="event">
@@ -152,6 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
               backgroundColor: "#0d47a1"
             },
             </c:forEach>
+            {
+            	title: "gg",
+            	start: "2021-03-24",
+            	end: "2021-03-27T14:30:00"
+            }
 
           ]
     });

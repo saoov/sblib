@@ -3,7 +3,9 @@
 
     <header id="header">
         <nav id="header1" style="height: 60px">
-            <h2 style="float: left; position: relative; top: 10px;"><a href="/" style="text-decoration: none;">Samboo Library</a></h2>
+            <div class="logo">
+            	<a href="/"><img src="../resources/images/logo.png"></a>
+            </div>
             <div class="toplink">
                 <ul>
                     <li><a href="#">로그인</a>｜</li>
@@ -15,15 +17,16 @@
     <section id="menusection">
         
         <nav class="menus">
-            <label for="toggle" onclick>MENU</label>
+            <label for="toggle">MENU▼</label>
             <input type="checkbox" id="toggle"/>
             <ul class="menuul">
-                <li><a href="/search/searchSimple">자료검색</a>
+                <li><a href="#">자료검색</a>
                 </li>
                 <li><a href="#">프로그램</a>
                     <ul>
                         <li><a href="/event/calendar">도서관일정</a></li>
                         <li><a href="/event/eventBoard">독서문화행사</a></li>
+                        <li></li>
                     </ul>
                 </li>
                 <li><a href="#">열린공간</a>

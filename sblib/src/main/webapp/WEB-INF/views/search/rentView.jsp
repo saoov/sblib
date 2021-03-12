@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<!-- css -->
-<tiles:insertAttribute name="css"></tiles:insertAttribute>
-<link rel="stylesheet" href="resources/css/slick.css">
-<body>    
-
-<!-- header -->
-<tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
-
 	<c:forEach items="${rentView}" var="rentView">
 		<p>대여일:<fmt:formatDate value="${rentView.rentDate }" pattern="yyyy년 MM월 dd일" /></p>
 		<p>서명:${rentView.title}</p>
