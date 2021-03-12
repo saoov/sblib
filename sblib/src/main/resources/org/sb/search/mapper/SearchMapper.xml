@@ -32,7 +32,7 @@
 			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
 		</insert>
 		
-		<select id="getBookById" resultType="org.sb.manage.domain.Book">
+		<select id="getBookByBno" resultType="org.sb.manage.domain.Book">
 			select * from book where bno = #{bno}
 		</select>
 		
@@ -50,10 +50,12 @@
 			]]>
 		</select>
 		
+		<!-- 모든 도서 개수 -->
 		<select id="getTotalCount" resultType="int">
-			select count(*) from book where
+			select count(*) from book 
+			where
 			<include refid="search"></include>
-			 bno > 0 
+			bno > 0
 		</select>
 		
 		<delete id="deleteById">
@@ -81,7 +83,7 @@
 		</delete>
 		
 		<!-- 대여하기 -->
-		<insert id="rentInfo">
+		<insert id="rentBook">
 			insert into rentInfo(rentId, member_no, bno)
 			values(seq_rentid.nextval, #{member_no}, #{bno})
 		</insert>
@@ -94,7 +96,7 @@
 		
 		<!-- 반납된 도서 목록 보기 -->
 		<select id="returnList" resultType="org.sb.search.domain.Rent">
-			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, re.returnDate
+			select r.rentid, r.bno, r.member_no, r.rentDate, b.title, re.returnDate, b.author
 			from rentinfo r
 				inner join book b on r.bno = b.bno
 				inner join returninfo re on re.rentid = r.rentid 
@@ -104,7 +106,7 @@
 		
 		<!-- 대여 목록 보기 -->
 		<select id="rentList" resultType="org.sb.search.domain.Rent">
-			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title
+			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, b.author
 			from rentinfo r
 				inner join book b on r.bno = b.bno
 			where member_no = #{member_no} and r.returnDate is null
@@ -132,13 +134,27 @@
 
 		<select id="getReturnDate" resultType="org.sb.search.domain.Rent">
 		<![CDATA[
-			select rentid,bno,member_no,rentdate, returndate,
+			select r.rentid,r.bno,r.member_no,r.rentdate, r.returndate,b.title,
  				case 
-    				when returndate is null then '대여중'
-    				when returndate < sysdate then '반납완료'
+    				when r.returndate is null then '대여중'
+    				when r.returndate < sysdate then '반납완료'
     				end as status
-			from rentInfo
+			from rentInfo r
+				inner join book b on b.bno = r.bno
+				where r.member_no = #{member_no}
+			order by rentid desc
 		]]>
+		</select>
+		
+		<!-- 대여중인 책 수 -->
+		<select id="getRentCount" resultType="int">
+			select count(*)
+			from rentInfo
+            where member_no = #{member_no} and returndate is null
+		</select>
+		
+		<select id="findBookByBno" resultType="String">
+			select * from book where bno=#{bno}
 		</select>
 
 		

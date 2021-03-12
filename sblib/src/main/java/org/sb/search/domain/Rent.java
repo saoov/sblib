@@ -9,11 +9,12 @@ import lombok.ToString;
 @ToString
 public class Rent {
 
-	private String rentId;
+	private int rentId;
 	private int member_no;
 	private int bno;
 	private Date rentDate;
 	private String title;
+	private String author;
 	private Date returnDate;
 	private String status;
 }

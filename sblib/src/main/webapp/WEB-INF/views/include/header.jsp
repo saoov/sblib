@@ -20,7 +20,7 @@
             <label for="toggle">MENU▼</label>
             <input type="checkbox" id="toggle"/>
             <ul class="menuul">
-                <li><a href="#">자료검색</a>
+                <li><a href="/search/searchSimple">자료검색</a>
                 </li>
                 <li><a href="#">프로그램</a>
                     <ul>

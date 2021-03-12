@@ -47,10 +47,11 @@
 <!-- home -->
     <section id="banner">
         <div class="frame">
-        <form action="" method="get">
+        <form action="/search/searchResult" method="get">
             <article class="searchbar">
                 <div class="bar" style="width: 100%; height: 100%;">
-                        <input id="bar" type="text" name="search" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
+                        <input id="bar" type="text" name="keyword" placeholder="도서 이름을 입력해주세요" style="font-size: 25px">
+                        <input type="hidden" name="type" value="T">
                         <button id="searchbtn"></button>
                 </div>
             </article>

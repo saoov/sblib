@@ -14,7 +14,7 @@ public interface SearchMapper {
 	
 	List<Book> getList(Page page);
 	
-	Book getBookById(long bno);
+	Book getBookByBno(long bno);
 	
 	void deleteById(long bno);
 	
@@ -27,7 +27,7 @@ public interface SearchMapper {
 	void deleteCart(BookCart cart);
 	
 	//대여 정보
-	void rentInfo(Rent rent);
+	void rentBook(Rent rent);
 	
 	void cartAllDelete(int memberNo);
 	
@@ -42,10 +42,13 @@ public interface SearchMapper {
 	void returnByBno(int bno);
 	
 	//returnId로 책 반납 테이블에 등록
-	void returnBook(String rentId);
+	void returnBook(int rentId);
 	
+	List<Rent> getReturnDate(int member_no);
 	
+	//대여 권수
+	int getRentCount(int memberNo);
 	
+	Book findBookByBno(int bno);
 	
-	List<Rent> getReturnDate();
 }
