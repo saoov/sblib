@@ -8,7 +8,7 @@
 	<!-- 회원가입 -->
 	<insert id="memberRegister">
 	INSERT INTO member (member_no, member_name, member_id, member_pw, member_birth, member_addr, member_tel, member_email, member_grade)
-	values(memberno_seq.NEXTVAL, #{member_name}, #{member_id}, #{member_pw}, #{member_birth},#{member_addr}, #{member_tel},  #{member_email}, 'manager')
+	values(memberno_seq.NEXTVAL, #{member_name}, #{member_id}, #{member_pw}, #{member_birth},#{member_addr}, #{member_tel},  #{member_email}, 'member')
 	</insert>
 	
 	<!-- 아이디 중복 검사 -->

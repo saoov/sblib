@@ -57,7 +57,7 @@ public class BookController {
       model.addAttribute("keyword",keyword);
    }
    
-   @PostMapping("addBooks")A
+   @PostMapping("addBooks")
    public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
       log.info("관리자 책추가 post");
    
