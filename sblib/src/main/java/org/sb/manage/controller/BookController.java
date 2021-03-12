@@ -10,12 +10,15 @@ import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
 /*import org.sb.domain.UserVO;*/
 import org.sb.manage.service.BookService;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -55,6 +58,7 @@ public class BookController {
       model.addAttribute("keyword",keyword);
    }
    
+
    @PostMapping("addBooks")
    public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
       log.info("관리자 책추가 post");
@@ -73,7 +77,7 @@ public class BookController {
    }
 
    @PostMapping("bookdelete")
-   public void bookdelete(HttpServletResponse rs,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+   public String bookdelete(HttpServletResponse rs,RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("관리자 책삭제 post");
       long bno=Long.parseLong(sbno); 
       if(bno!=-1)
@@ -81,27 +85,18 @@ public class BookController {
          if(nowcount==1) {
          log.info("대여아님");
          service.removeById(bno);
-         rs.setContentType("text/html; charset=UTF-8");
-            PrintWriter o =rs.getWriter();
-            o.print("<script>");
-            o.print("alert('"+bookname+"이 삭제되었습니다.');");
-            o.print("location.href='/book/bookList';");
-            o.print("</script>");
-            o.flush();
+         redirectAttributes.addFlashAttribute("title", bookname);
+         redirectAttributes.addFlashAttribute("result", "success");
+         
          }
          else {
             log.info("대여중");
-            rs.setContentType("text/html; charset=UTF-8");
-               PrintWriter o =rs.getWriter();
-               o.print("<script>");
-               o.print("alert('회원이 대여중입니다. 삭제불가');");
-               o.print("location.href='/book/bookList';");
-               o.print("</script>");
-               o.flush();
+            redirectAttributes.addFlashAttribute("title", bookname);
+            redirectAttributes.addFlashAttribute("result", "fail");
          }
       }
          
-         
+         return "redirect:/book/bookList";
          
    }
    

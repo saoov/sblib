@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+</head>
+
+
          <form id='actionForm' action="/book/bookList" method="get">
       <input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
       <input type="hidden" name="amount" value="${pageDTO.page.amount }">
@@ -58,7 +61,7 @@
       </div>
     </div>
   
-    <table>
+    <table class="table table-striped table-bordered table-hover">
        <thead>
           <tr>
              <td>사진</td>
@@ -97,6 +100,14 @@
              <!--  -->      <input type="hidden" name="nowcount" value="${book.nowcount }" >
                <input type="submit" value="삭제">
           </form>
+           <form action="/book/bookdelete" method="post">
+          
+          <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
+             <!--  -->      <input type="hidden" name="bookname" value="${book.title }" >
+             <!--  -->      <input type="hidden" name="nowcount" value="${book.nowcount }" >
+               <input type="submit" value="오늘의도서 추가">
+          </form>
+      
       </td>
    </tr>
      </c:forEach>
@@ -105,7 +116,7 @@
 
     <!-- table -->
     <!-- pagination -->
-   <div class="pagination" style="right : 50%">
+    <div class="pull-right">
       <ul style="list-style: none;">
          <c:if test="${pageDTO.prev }">
             <li style="float: left"><a style="font-size: 20px; color: black " class="k" href='${pageDTO.startPage - 1 }'>Prev</a></li>
@@ -120,14 +131,62 @@
          </c:if>
       </ul>
    </div>
+   
+   <div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Save
+						changes</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
    <!-- pagination -->
    <script>
       $(document).ready(function(){
          
          var result = '<c:out value="${result}"/>';
+         var title = '<c:out value="${title}"/>';
+         
          var actionForm = $("#actionForm");
          var searchForm = $("#searchForm");
          
+         var result = '<c:out value="${result}"/>';
+
+			checkModal(result);
+
+			history.replaceState({}, null, null);
+
+			function checkModal(result) {
+
+				if (result === '' || history.state) {
+					return;
+				}
+				if (result === 'success') {
+					$(".modal-title").html("삭제성공");
+					$(".modal-body").html(title+"이 삭제되었습니다.");
+
+				} else if (result === 'fail') {
+					$(".modal-title").html("삭제실패");
+					$(".modal-body").html(title+"을 대여하는 회원이 존재합니다. 삭제실패");
+				}
+				$("#myModal").modal("show");
+			}
+			
          $(".k").on("click",function(e){
             e.preventDefault();
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));

@@ -105,7 +105,7 @@
 
     <!-- table -->
     <!-- pagination -->
-   <div class="pagination" style="right : 50%">
+   <div class="pull-right">
       <ul style="list-style: none;">
          <c:if test="${pageDTO.prev }">
             <li style="float: left"><a style="font-size: 20px; color: black " class="k" href='${pageDTO.startPage - 1 }'>Prev</a></li>
