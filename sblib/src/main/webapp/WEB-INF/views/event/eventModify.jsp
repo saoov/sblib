@@ -7,60 +7,6 @@
 <html>
 <head>
 
-<style>
-	#body{
-	position:relative;
-	margin:0 auto;
-	width: 1200px;
-	margin-top: 50px;
-	margin-bottom: 10px;
-	height: 900px;
-	}
-	#sidemenu {
-		width: 18%;
-		background-color: white;
-		float:left;
-		margin-right: 4%;
-	}
-	
-	#sidemenu ul{
-		margin : 0;
-		padding : 0;
-		background-color: gray;
-		border-radius: 10px;
-		
-	}
-	#sidemenu ul li{
-		list-style: none;
-		width : 100%;
-		height : 50px;
-		line-height: 3.5;
-        text-align: center;
-        border-bottom: 0.7px solid white;
-	}
-	#sidemenu ul li a{
-		display : block;
-		color : white;
-	}
-	#sidemenu ul li a:hover{
-		background-color: #424242;
-		text-decoration: none;
-	}
-	#sidemenu .title{
-		width: 100%;
-	}
-	.title h1{
-		text-align: center;
-		margin-top: 10px;
-	}
-	#jun{
-		position: relative;
-		width:78%;
-		height:100%;
-		float: left;
-	}
-	
-  </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -76,16 +22,24 @@
 	<div id='body'>
 		<div id='sidemenu'>
 			<div class="title">
-				<h1>프로그램</h1>
+				<h2>프로그램</h2>
 			</div>
-			<hr>
 			<ul>
 				<li><a href="#">도서관일정</a></li>
 				<li><a href="#">독서문화행사</a></li>
 			</ul>
+			<div class="lastchild"></div>
 		</div>
 
-		<div id='jun'>
+		<div id='layer'>
+			<h3>도서관 일정</h3>
+			<div style="width:100%; height:20px;">
+				<ul>
+					<li>프로그램　>　</li>
+					<li>도서관 일정</li>
+				</ul>
+			</div>
+			<hr style="margin-top:30px;">
 			<form action="/event/eventModify" method="post">
 				<table class="table table-bordered">
 					<tr>
@@ -108,7 +62,9 @@
 						</td>
 					</tr>
 				</table>
-				<button type="submit" class="btn btn-primary" style="position: absolute; right: 0">등록</button>
+				<div style="width:100%; height: 60px">
+					<button type="submit" class="btn btn-primary" style="position: absolute; right: 0">등록</button>
+				</div>
 				<input type="hidden" name="pageNum" value="${page.pageNum }">
                 <input type="hidden" name="amount" value="${page.amount }">
                 <input type="hidden" name="event_no" value="${event.event_no }">
