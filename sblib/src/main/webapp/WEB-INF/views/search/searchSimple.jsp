@@ -57,28 +57,55 @@
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
-	<h1>도서관 자료 검색</h1>
-	<!-- search -->
-	<div class="searchBar">
-		<form id='searchForm' action='/search/searchResult' method='get'>
-			<select name='type'>
-				<option value="T">서명</option>
-				<option value='A'>저자</option>
-				<option value='P'>출판사</option>
-				<option value='TA'>서명 + 저자</option>
-				<option value='TP'>서명 + 출판사</option>
-				<option value='TAP'>서명 + 저자 + 출판사</option>
-			</select>
-			<input type="text" name='keyword' placeholder="도서명을 입력하세요.">
-			<input type="hidden" name="pageNum" value="1">
-			<input type="hidden" name="amount" value="10">
-			<button>검색</button>
-		</form>
+	<!-- sidebar -->
+	<div id='body'>
+		<div id='sidemenu'>
+			<div class="title">
+				<h2>자료검색</h2>
+			</div>
+			<ul>
+				<li><a href="/search/searchSimple">도서검색</a></li>
+			</ul>
+			<div class="lastchild"></div>
+		</div>
+	<!-- sidebar -->
+	<!-- content -->
+		<div id='layer'>
+			<h3>도서검색</h3>
+			<div style="width: 100%; height: 20px;">
+				<ul>
+					<li>도서검색</li>
+				</ul>
+			</div>
+			<hr style="margin-top: 30px;">
+				<!-- search -->
+				<div class="searchBar">
+					<form id='searchForm' action='/search/searchResult' method='get'>
+						<select name='type'>
+							<option value="T">서명</option>
+							<option value='A'>저자</option>
+							<option value='P'>출판사</option>
+							<option value='TA'>서명 + 저자</option>
+							<option value='TP'>서명 + 출판사</option>
+							<option value='TAP'>서명 + 저자 + 출판사</option>
+						</select> <input type="text" name='keyword' placeholder="도서명을 입력하세요.">
+						<input type="hidden" name="pageNum" value="1"> <input
+							type="hidden" name="amount" value="10">
+						<button>검색</button>
+					</form>
+				</div>
+				<!-- search -->
+		</div>
 	</div>
-	<!-- search -->
-	<div style="height:1000px">
 	
+	<div style="height:1000px">
+		<!-- 빈공간 div-->
 	</div>
+			
+	<!-- content -->
+	
+	
+	
 	<script>
 		$(document).ready(function(){
 			

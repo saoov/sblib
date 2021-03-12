@@ -13,8 +13,7 @@
 	padding : 30px 25px;
 	margin : 20px;
 	}
-
-
+	
 	.bookList{
 	margin: 20px 20px;
 	}
@@ -22,9 +21,9 @@
 	display: block;
 	list-style: none;
 	}
-	.listWrap<li{
-	display: list-item;
-	}
+ 	.listWrap<li{ 
+ 	display: list-item; 
+ 	} 
 	
 	.bookData{
 	position : relative;
@@ -40,7 +39,7 @@
 	box-sizing: border-box;
 	}
 	.bookInfo{
-	position: relative;
+ 	position: relative; 
 	margin-left : 170px;
 	padding-bottom: 40px;
 	box-sizing: border-box;
@@ -58,108 +57,139 @@
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
 <body>
+	<!-- hidden form -->
 	<form id='actionForm' action="/search/searchResult" method="get">
 		<input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
 		<input type="hidden" name="amount" value="${pageDTO.page.amount }">
 		<input type="hidden" name="type" value="${pageDTO.page.type }">
 		<input type="hidden" name="keyword" value="${pageDTO.page.keyword }">		
 	</form>
-	<h1>도서관 자료 검색</h1>
-	<!-- search -->
-	<div class="searchBar">
-		<form id='searchForm' action='/search/searchResult' method='get'>
-			<select name='type'>
-				<option value="T">서명</option>
-				<option value='A'>저자</option>
-				<option value='P'>출판사</option>
-				<option value='TA'>서명 + 저자</option>
-				<option value='TP'>서명 + 출판사</option>
-				<option value='TAP'>서명 + 저자 + 출판사</option>
-			</select>
-			<input type="text" name='keyword' placeholder="도서명을 입력하세요.">
-			<input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
-			<input type="hidden" name="amount" value="${pageDTO.page.amount }">
-			<button>검색</button>
-		</form>
-	</div>
-	<!-- search -->
-	<!-- bookList -->
-	<div class="bookList">
-		<ul class="listWrap">
-			<c:forEach items="${bookList}" var="book">
-			<li>
-				<div class="bookData">
-					<div class="bookImg">
-						<img src="${book.image}">
-					</div>
-					<div class="bookInfo">
-						<ul>
-							<li><a class='move' href='<c:out value="${book.bno }"/>'><c:out
-										value='${book.title }' /></a></li>
-							<li>저자 : ${book.author}</li>
-							<li>출판사 : ${book.publisher }</li>
-							<li>출판일 : ${book.pubdate }</li>
-							<li>ISBN : ${book.isbn }</li>
-							<c:choose>
-								<c:when test="${book.nowcount eq '1' }">대여 가능</c:when>
-								<c:otherwise>대여 불가</c:otherwise>
-							</c:choose>
-						</ul>
-					</div>
-				</div>
-				</li>
-			</c:forEach>
-		</ul>
-	</div>
-	<!-- bookList -->
-    <!-- pagination -->
-	<div class="pull-right">
+	<!-- hidden form -->
+	<!-- sidebar -->
+	<div id='body'>
+		<div id='sidemenu'>
+			<div class="title">
+				<h2>자료검색</h2>
+			</div>
+			<ul>
+				<li><a href="/search/searchSimple">도서검색</a></li>
+			</ul>
+			<div class="lastchild"></div>
+		</div>
+
+		<div id='layer'>
+			<h3>도서검색</h3>
+			<div style="width: 100%; height: 20px;">
+				<ul>
+					<li>도서검색</li>
+				</ul>
+			</div>
+			<hr style="margin-top: 30px;">
+			<!-- search -->
+			<div class="searchBar">
+				<form id='searchForm' action='/search/searchResult' method='get'>
+					<select name='type'>
+						<option value="T">서명</option>
+						<option value='A'>저자</option>
+						<option value='P'>출판사</option>
+						<option value='TA'>서명 + 저자</option>
+						<option value='TP'>서명 + 출판사</option>
+						<option value='TAP'>서명 + 저자 + 출판사</option>
+					</select> <input type="text" name='keyword' placeholder="도서명을 입력하세요.">
+					<input type="hidden" name="pageNum"
+						value="${pageDTO.page.pageNum }"> <input type="hidden"
+						name="amount" value="${pageDTO.page.amount }">
+					<button>검색</button>
+				</form>
+			</div>
+			<!-- search -->
+			<!-- bookList -->
+			<div class="bookList">
+				<ul class="listWrap">
+					<c:forEach items="${bookList}" var="book">
+						<li>
+							<div class="bookData">
+								<div class="bookImg">
+									<img src="${book.image}">
+								</div>
+								<div class="bookInfo">
+									<ul>
+										<li><a class='move' href='<c:out value="${book.bno }"/>'><c:out
+													value='${book.title }' /></a></li>
+										<li>저자 : ${book.author}</li>
+										<li>출판사 : ${book.publisher }</li>
+										<li>출판일 : ${book.pubdate }</li>
+										<li>ISBN : ${book.isbn }</li>
+										<c:choose>
+											<c:when test="${book.nowcount eq '1' }">대여 가능</c:when>
+											<c:otherwise>대여 불가</c:otherwise>
+										</c:choose>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+			<!-- bookList -->
+	<!-- pagination -->
+	<div class="page">
 		<ul class="pagination">
 			<c:if test="${pageDTO.prev }">
-				<li class="paginate_button previous"><a href='${pageDTO.startPage - 1 }'>Prev</a></li>
+				<li class="paginate_button previous"><a
+					href='${pageDTO.startPage - 1 }'>Prev</a></li>
 			</c:if>
-			
-			<c:forEach var="num" begin="${pageDTO.startPage }" end="${pageDTO.endPage }">
+
+			<c:forEach var="num" begin="${pageDTO.startPage }"
+				end="${pageDTO.endPage }">
 				<li class="paginate_button"><a href="${num }">${num }</a></li>
 			</c:forEach>
-			
+
 			<c:if test="${pageDTO.next }">
-				<li class="paginate_button next"><a href='${pageDTO.endPage + 1 }'>Next</a></li>
+				<li class="paginate_button next"><a
+					href='${pageDTO.endPage + 1 }'>Next</a></li>
 			</c:if>
 		</ul>
 	</div>
 	<!-- pagination -->
-	
+
+		</div>
+	</div>
+	<!-- sidebar -->
+
+
+
+
 	<script>
-		$(document).ready(function(){
-			
-			var result = '<c:out value="${result}"/>';
-			var actionForm = $("#actionForm");
-			var searchForm = $("#searchForm");
-			
-			$(".paginate_button a").on("click",function(e){
-				e.preventDefault();
-				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-				actionForm.submit();
-			});
-			
-			$(".move").on("click",function(e){
-				e.preventDefault();
-				actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
-				actionForm.attr("action", "/search/getBook");
-				actionForm.submit();
-			})
-			
-			$("#searchForm button").on("click",function(e){
-				if(!searchForm.find("input[name='keyword']").val()){
-					alert('키워드를 입력하세요');
-					return false;
-				}
-				searchForm.find("input[name='pageNum']").val("1");
-				e.preventDefault();
-				searchForm.submit();
-			})
-		});
+		$(document).ready(function() {
+
+							var result = '<c:out value="${result}"/>';
+							var actionForm = $("#actionForm");
+							var searchForm = $("#searchForm");
+
+							$(".paginate_button a").on("click", function(e) {
+										e.preventDefault();
+										actionForm .find("input[name='pageNum']") .val($(this).attr("href"));
+										actionForm.submit();
+									});
+
+							$(".move") .on("click",function(e) {
+												e.preventDefault();
+												actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+												actionForm.attr("action","/search/getBook");
+												actionForm.submit();
+											})
+
+							$("#searchForm button").on("click",function(e) {
+												if (!searchForm.find("input[name='keyword']").val()) {
+													alert('키워드를 입력하세요');
+													return false;
+												}
+												searchForm.find("input[name='pageNum']").val("1");
+												e.preventDefault();
+												searchForm.submit();
+											})
+						});
 	</script>
 	  <!-- footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>

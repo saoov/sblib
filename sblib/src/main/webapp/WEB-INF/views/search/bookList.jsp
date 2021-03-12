@@ -10,12 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<!-- hidden form -->
 	<form id='actionForm' action="/book/bookList" method="get">
 		<input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
 		<input type="hidden" name="amount" value="${pageDTO.page.amount }">
 		<input type="hidden" name="type" value="${pageDTO.page.type }">
 		<input type="hidden" name="keyword" value="${pageDTO.page.keyword }">		
 	</form>
+	<!-- hidden form -->
 	<!-- table -->
 	<div class="table">
     <table>

@@ -1,7 +1,11 @@
 package org.sb.manage.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
@@ -24,59 +28,90 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/book/*")
 public class BookController {
 
-	private final BookService service;
-	
-	@GetMapping("bookList")
-	public void bookList(Model model,@RequestParam(required = false ,defaultValue = "1") String pageNum,@RequestParam(required = false ,defaultValue = "10")String amount) {
-		Page page=new Page(Integer.parseInt(pageNum),Integer.parseInt(amount));
-		model.addAttribute("bookList", service.getList(page));
-		
-		int total = service.getTotalCount();
-		
-		model.addAttribute("pageDTO", new PageDTO(page,total));
-		
-	}
-	
-	
-	@GetMapping({"/getBook","/modify"})
-	public void getBook(long bno, Model model, Page page) {
-		log.info("북리스트 게시글 get요청");
-		model.addAttribute("book",service.getBookById(bno));
-	}
-	
-	
-	@GetMapping("addBook")
-	public void addBook(Model model,@RequestParam(required=false,defaultValue = "")String keyword) {
-		log.info("관리자 책추가리스트 검색get");
-		model.addAttribute("bookList",service.searchByKeyword(keyword,100,1));
-		model.addAttribute("keyword",keyword);
-	}
-	
-	@PostMapping("addBooks")
-	public String addBooks(Model model,@RequestParam(required=false)String keyword,Book books) throws UnsupportedEncodingException {
-		log.info("관리자 책추가 post");
-		model.addAttribute("bookList",service.searchByKeyword(keyword,100,1));
-		 if(books!=null) {
+   private final BookService service;
+   
+   @GetMapping("bookList")
+   public void bookList(Model model,@RequestParam(required = false ,defaultValue = "1") String pageNum,@RequestParam(required = false ,defaultValue = "10")String amount) {
+      Page page=new Page(Integer.parseInt(pageNum),Integer.parseInt(amount));
+      model.addAttribute("bookList", service.getList(page));
+      
+      int total = service.getTotalCount();
+      
+      model.addAttribute("pageDTO", new PageDTO(page,total));
+      
+   }
+   
+   
+   @GetMapping({"/getBook","/modify"})
+   public void getBook(long bno, Model model, Page page) {
+      log.info("북리스트 게시글 get요청");
+      model.addAttribute("book",service.getBookById(bno));
+      
+   }
+   
+   
+   @GetMapping("addBook")
+   public void addBook(Model model,@RequestParam(required=false,defaultValue = "")String keyword) {
+      log.info("관리자 책추가리스트 검색get");
+      model.addAttribute("bookList",service.searchByKeyword(keyword,100,1));
+      model.addAttribute("keyword",keyword);
+   }
+   
+   @PostMapping("addBooks")A
+   public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
+      log.info("관리자 책추가 post");
+   
+       if(books!=null) {
              service.register(books);
+             rs.setContentType("text/html; charset=UTF-8");
+             PrintWriter o =rs.getWriter();
+             o.print("<script>");
+             o.print("alert('"+books.getTitle()+"이 등록되었습니다.');");
+             o.print("history.back();");
+             o.print("</script>");
+             o.flush();
+            
              }
-		 String enkeyword = URLEncoder.encode(keyword, "UTF-8");
-		 return "redirect:/book/addBook?keyword="+enkeyword;
-	}
+   }
 
-	@PostMapping("bookdelete")
-	public String bookdelete(Model model,long bno) {
-		log.info("관리자 책삭제 post");
-			service.removeById(bno);
-			
-			return "redirect:/book/bookList?pageNum=1&amount=10";
-	}
-	/*
-	 * @GetMapping("userList") public void userList(Model
-	 * model,@RequestParam(required=false)UserVO user) {
-	 * //model.addAttribute("userlist",) }
-	 */
-	
-	
-	
-	
+   @PostMapping("bookdelete")
+   public void bookdelete(HttpServletResponse rs,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+      log.info("관리자 책삭제 post");
+      long bno=Long.parseLong(sbno); 
+      if(bno!=-1)
+      {
+         if(nowcount==1) {
+         log.info("대여아님");
+         service.removeById(bno);
+         rs.setContentType("text/html; charset=UTF-8");
+            PrintWriter o =rs.getWriter();
+            o.print("<script>");
+            o.print("alert('"+bookname+"이 삭제되었습니다.');");
+            o.print("location.href='/book/bookList';");
+            o.print("</script>");
+            o.flush();
+         }
+         else {
+            log.info("대여중");
+            rs.setContentType("text/html; charset=UTF-8");
+               PrintWriter o =rs.getWriter();
+               o.print("<script>");
+               o.print("alert('회원이 대여중입니다. 삭제불가');");
+               o.print("location.href='/book/bookList';");
+               o.print("</script>");
+               o.flush();
+         }
+      }
+         
+         
+         
+   }
+   
+   /*
+    * @GetMapping("userList") public void userList(Model
+    * model,@RequestParam(required=false)UserVO user) {
+    * //model.addAttribute("userlist",) }
+    */
+   
+   
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
@@ -25,9 +26,19 @@ public class HomeController {
 		return "home";
 	}
 	
-//	@RequestMapping(value ="/calendar")
-//	public void calendar() {
-//		
-//	}
+	@GetMapping("/info/userGuide")
+	public void userGuide() {
+	}
+	
+	@GetMapping("/info/libStatus")
+	public void libStatus() {
+	}
+	
+	@GetMapping("/info/comingWay")
+	public void comingWay() {
+	}
+	@GetMapping("/info/greeting")
+	public void greeting() {
+	}
 	
 }

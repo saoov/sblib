@@ -36,11 +36,12 @@
                         <li><a href="#">책이야기</a></li>
                     </ul>
                 </li>
-                <li><a href="#">도서관안내</a>
+                <li><a href="/info/greeting">도서관안내</a>
                     <ul>
-                        <li><a href="#">도서관현황</a></li>
-                        <li><a href="#">이용안내</a></li>
-                        <li><a href="#">오시는길</a></li>
+						<li><a href="/info/greeting">인삿말</a></li>
+						<li><a href="/info/libStatus">도서관현황</a></li>
+						<li><a href="/info/userGuide">이용안내</a></li>
+						<li><a href="/info/comingWay">오시는길</a></li>
                     </ul>
                 </li>
                 <li><a href="#">마이라이브러리</a>
