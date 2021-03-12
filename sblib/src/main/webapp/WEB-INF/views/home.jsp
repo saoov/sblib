@@ -113,11 +113,11 @@
                 <ul><li>책이야기</li></ul>
                 </li>
                 <li>
-                <a href="#"><i class="fas fa-inbox" aria-hidden="true"></i></a>
+                <a href="/info/libStatus"><i class="fas fa-inbox" aria-hidden="true"></i></a>
                 <ul><li>자료현황</li></ul>
                 </li>
                 <li>
-                <a href="#"><i class="far fa-file-alt" aria-hidden="true"></i></a>
+                <a href="/info/userGuide"><i class="far fa-file-alt" aria-hidden="true"></i></a>
                 <ul><li>이용안내</li></ul>
                 </li>
                 <li>
@@ -125,7 +125,7 @@
                 <ul><li>묻고답하기</li></ul>
                 </li>
                 <li>
-                <a href="#"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
+                <a href="/info/comingWay"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></a>
                 <ul><li>오시는길</li></ul>
                 </li>
               </ul>

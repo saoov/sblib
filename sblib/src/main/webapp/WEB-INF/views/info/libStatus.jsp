@@ -28,7 +28,7 @@
          <h2>도서관안내</h2>
       </div>
       <ul>
-       	 <li><a href="/info/greeting">인삿말</a></li>
+       	 <li><a href="/info/greeting">인사말</a></li>
          <li><a href="/info/libStatus">도서관현황</a></li>
          <li><a href="/info/userGuide">이용안내</a></li>
          <li><a href="/info/comingWay">오시는길</a></li>
@@ -47,16 +47,10 @@
    </div>
    <hr style="margin-top:30px;">
 		<div id="info">
-			<p>안녕하세요. 삼부도서관 홈페이지에 오신 것을 환영합니다.</p>
-			<p>삼부도서관은 2021년 개관한 서울특별시 소속 무인도서관으로 지역주민들의 지식정보 및 문화활동과 평생학습
-				증진을 위해 최선의 노력을 기울이고 있습니다.</p>
-			<p>언제 어디서나 누구나 원하는 자료와 정보를 얻을 수 있도록 하며, 평생학습도시 강남구와 함께 다양한 강좌 및
-				전시회 등을 통하여 지역주민의 삶의 질 향상에 기여하고자 합니다.</p>
-			<p>우리도서관은 ‘창의적 민주시민을 기르는 혁신미래 교육’이라는 서울교육 방향에 발맞춰 도서관을 이용하시는 모든 분
-				들이 도서관을 통해 미래를 꿈꾸고 만들어 갈 수 있도록 지원하겠습니다.</p>
-			<p>지역사회를 아우르는 소통과 감동이 있는 삼부도서관이 될 수 있도록 최선을 다하겠습니다.</p>
-			<p>-서울특별시 삼부도서관장-</p>
+			<img src="../resources/images/dataStatus.PNG">
+			<img src="../resources/images/dataStatus1.PNG">
 		</div>
+		<br><br><br><br><br><br><br>
 		</div>
 </div>
 

@@ -2,14 +2,12 @@ package org.sb.manage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.sb.manage.domain.Book;
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
-import org.sb.manage.domain.Book;
 /*import org.sb.domain.UserVO;*/
 import org.sb.manage.service.BookService;
 import org.springframework.stereotype.Controller;
@@ -57,7 +55,7 @@ public class BookController {
       model.addAttribute("keyword",keyword);
    }
    
-   @PostMapping("addBooks")A
+   @PostMapping("addBooks")
    public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
       log.info("관리자 책추가 post");
    
