@@ -13,20 +13,20 @@
             <!-- bk 로그인 상태표시 수정 -->
 				<c:choose>
 					<c:when test= "${userSession eq null}">
-						<li><a href="/member/login"> 로그인 |</a>
-						<a href="/member/register"> 회원가입</a></li>
+						<li><a href="/member/login"> 로그인 </a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+						<a href="/member/register">회원가입</a></li>
 
 					</c:when>
 					<c:when test= "${userSession.member_name eq '관리자'}">
-						<li> ${userSession.member_name}님,반갑습니다!</li>
-						<li><a href="/member/logout">로그아웃</a></li>
-						<li><a href="/book/addBook"> 도서관리</a>
+						<li> ${userSession.member_name}님, 반갑습니다!&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<a href="/member/logout">로그아웃</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+						<a href="/book/addBook"> 도서관리</a></li>
 					</c:when>
 					<c:otherwise>
-						<li> ${userSession.member_name}님,반갑습니다!</li>
-						<li><a href="/member/logout">로그아웃</a></li>
-						<li><a href="/member/update">회원정보수정</a></li>
-						<li><a href="/member/delete">회원탈퇴</a></li>
+						<li> ${userSession.member_name}님, 반갑습니다!&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<a href="/member/logout">로그아웃</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+						<a href="/member/update">회원정보수정</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+						<a href="/member/delete">회원탈퇴</a></li>
 					</c:otherwise>
 				</c:choose>
                 </ul>

@@ -150,6 +150,7 @@ CREATE UNIQUE INDEX "BOOK_PK" ON "BOOK" ("BNO")
 CREATE SEQUENCE seq_book
 ALTER TABLE "BOOK" ADD CONSTRAINT "BOOK_PK" PRIMARY KEY ("BNO") ENABLE
 ALTER TABLE "BOOK" MODIFY ("BNO" NOT NULL ENABLE)
+alter table book add constraint isbn_uk UNIQUE(ISBN);
 ---------------------------------------------------
 --rentinfo table
 ---------------------------------------------------
@@ -165,6 +166,7 @@ returndate date
 alter table rentInfo add constraint rent_pk primary key(rentid);
 alter table rentInfo add constraint rent_memberno_fk foreign key(member_no) references member(member_no);
 alter table rentInfo add constraint rent_book_fk foreign key(bno) references book(bno);
+alter table rentinfo add constraint bno_fk foreign key(bno) references book(bno) on delete CASCADE;
 
 ---------------------------------------------------
 --book_cart
