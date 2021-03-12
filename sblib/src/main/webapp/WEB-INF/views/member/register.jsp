@@ -6,49 +6,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member Register</title>
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<title>회원가입</title>
 </head>
 <body>
-<form action="/member/register" method="post">
+<div class="container">
+	<div class="col-lg-4"></div>		
+		<div class="col-lg-4">
+		<div class="jumbotron" style="padding-top: 20px;">
+		<form action="/member/register" method="post">
+
 			<!-- 아이디 -->
-			<div class="form-group">
-				<label for="member_id">아이디</label>
-					<input type="text" class="form-control" id="member_id" name="member_id" placeholder="ID" required>
+				<div class="form-group row">
+				<label for="member_id">아이디</label>				
+					<input type="text" class="form-control" id="member_id" name="member_id" placeholder="ID" required="required">				
 				<div class="check_font" id="id_check"></div>
 			</div>
 			<!-- 비밀번호 -->
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="member_pw">비밀번호</label>
-					<input type="password" class="form-control" id="member_pw" name="member_pw" placeholder="Password" required>
+					<input type="password" class="form-control" id="member_pw" name="member_pw" placeholder="Password" required="required">
 				<div class="check_font" id="pw_check"></div>
 			</div>
 			<!-- 비밀번호 재확인 -->
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="member_pw2">비밀번호 확인</label>
-					<input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="Password Confirm" required>
+					<input type="password" class="form-control" id="member_pw2" name="member_pw2" placeholder="Password Confirm" required="required">
 				<div class="check_font" id="pw2_check"></div>
 			</div>
 			<!-- 이름 -->
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="member_name">이름</label>
-					<input type="text" class="form-control" id="member_name" name="member_name" placeholder="Name" required>
+					<input type="text" class="form-control" id="member_name" name="member_name" placeholder="Name" required="required">
 				<div class="check_font" id="name_check"></div>
 			</div>
 			<!-- 생년월일 -->
-			<div class="form-group required">
+			<div class="form-group row">
 				<label for="member_birth">생년월일</label>
-					<input type="text" class="form-control" id="member_birth" name="member_birth" placeholder="ex) 19990415" required>
+					<input type="text" class="form-control" id="member_birth" name="member_birth" placeholder="ex) 19990101" required="required">
 				<div class="check_font" id="birth_check"></div>
 			</div>
 			<!-- 주소 -->
-			<div class="form-group required">
+			<div class="form-group row">
 				<label for="member_addr">주소</label>
-					<input type="text" class="form-control" id="member_addr" name="member_addr" placeholder="ex) 서울시 영등포구" required>
+					<input type="text" class="form-control" id="member_addr" name="member_addr" placeholder="ex) 서울시 영등포구" required="required">
 			</div>
 			<!-- 본인확인 이메일 -->
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="member_email">이메일</label>
-					<input type="text" class="form-control" name="member_email" id="member_email" placeholder="E-mail" required>
+					<input type="text" class="form-control" name="member_email" id="member_email" placeholder="E-mail" required="required">
 					<!-- <input type="text" style="margin-top: 5px;"class="email_form" name="email_confirm" id="email_confirm" placeholder="인증번호를 입력해주세요!" required>
 						<button type="button" class="btn btn-outline-danger btn-sm px-3" onclick="confirm_email()">
 							<i class="fa fa-envelope"></i>&nbsp;인증
@@ -59,18 +67,23 @@
 					<div class="check_font" id="email_check"></div>
 			</div>
 			<!-- 휴대전화 -->
-			<div class="form-group">
-				<label for="member_tel">휴대전화 ('-' 없이 번호만 입력해주세요)</label>
-				<input type="text" class="form-control" id="member_tel" name="member_tel" placeholder="Phone Number" required>
+			<div class="form-group row">
+				<label for="member_tel">휴대전화 ('-' 없이 번호만 입력)</label>
+				<input type="text" class="form-control" id="member_tel" name="member_tel" placeholder="Phone Number" required="required">
 				<div class="check_font" id="phone_check"></div>
 			</div>
-			<div class="reg_button">
-				<a class="btn btn-danger px-3" href="${pageContext.request.contextPath}">
-					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
-				</a>&emsp;&emsp;
-				<button type="submit" id="reg_submit">전송</button>
+			<div style="padding-top: 20px;">	
+				<input type="submit" value="회원가입" id="reg_submit"class="btn btn-primary form-control"> 
+			</div>
+			<div class="form-group">
+				<input type="reset" class="btn btn-danger" value="지우기" >
+				<a class="btn btn-info" href="/">메인화면</a>
 			</div>
 		</form>
+		</div>
+		</div>
+	
+		</div>
   <script src="../resources/js/jquery.min_1.12.4.js"></script>
   <script>
 		
@@ -100,7 +113,7 @@
 				
 				if (data == '1') {
 						// 1 : 아이디가 중복되는 문구
-						$("#id_check").text("사용중인 아이디입니다 :p");
+						$("#id_check").text("사용중인 아이디입니다 :(");
 						$("#id_check").css("color", "red");
 						$("#reg_submit").attr("disabled", true);
 					} else {
@@ -118,7 +131,7 @@
 							
 						} else {
 							console.log("data=1");
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :)");
+							$('#id_check').text("소문자와 숫자 4~12자리만 가능합니다 :(");
 							$('#id_check').css('color', 'red');
 							$("#reg_submit").attr("disabled", true);
 						}
@@ -138,7 +151,7 @@
 			$('#pw_check').text('');
 		} else {
 			console.log('false');
-			$('#pw_check').text('숫자 or 문자로만 4~12자리 입력');
+			$('#pw_check').text('문자와 숫자 4~12자리만 가능합니다 :(');
 			$('#pw_check').css('color', 'red');
 		}
 	});
@@ -159,7 +172,7 @@
 				console.log(nameJ.test($(this).val()));
 				$("#name_check").text('');
 		} else {
-			$('#name_check').text('이름을 확인해주세요');
+			$('#name_check').text('이름을 확인해주세요:)');
 			$('#name_check').css('color', 'red');
 		}
 	});

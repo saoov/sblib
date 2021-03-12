@@ -43,7 +43,6 @@
 		<beans:property name="maxUploadSize" value="100000000"></beans:property>
 	</beans:bean>
 	
-	<context:component-scan base-package="org.sb.manage.handler" />
 	<context:component-scan base-package="org.sb.controller" />
 	<context:component-scan base-package="org.sb.event.controller"></context:component-scan>
 	<context:component-scan base-package="org.sb.answer.controller"></context:component-scan>

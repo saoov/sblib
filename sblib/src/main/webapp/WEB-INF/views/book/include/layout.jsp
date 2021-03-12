@@ -5,22 +5,6 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-	
- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<!-- Bootstrap Core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- DataTables CSS -->
-<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-<!-- DataTables Responsive CSS -->
-<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-<!-- Bootstrap Core JavaScript -->
-<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables JavaScript -->
-<script src="/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 	<style type="text/css">
      	td{
      	border: 1px solid #444444
@@ -35,6 +19,10 @@
       	}
       	
      	</style>
+	
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <meta charset="UTF-8">
+ 
     
     
 </head>

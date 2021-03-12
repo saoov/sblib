@@ -22,12 +22,4 @@ public interface BookService {
 	void register(Book book);
 	
 	
-	int getTotalTodayBookCount();
-	
-	void setTodaybook (long bno);
-	
-	void downTodaybook (long bno);
-	
-	List<Book> getTodayBook ();
-	
 }

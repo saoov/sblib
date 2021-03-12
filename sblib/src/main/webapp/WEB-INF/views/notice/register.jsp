@@ -55,18 +55,17 @@
                             
                              <div class="form-group">
                                  <label>제목</label>
-                                 <input class="form-control" name="notice_title"> 
+                                 <input class="form-control" name="notice_title" required="required"> 
                                  <!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
                              </div>
                              
                              <div class="form-group">
                                  <label>내용</label>
-                                 <textarea rows="5" cols="50" name="notice_content" class="form-control"></textarea> 
+                                 <textarea rows="5" cols="50" name="notice_content" class="form-control" required="required"></textarea> 
                              </div>
-                             <input type='file' name='uploadFile' multiple />
-
+                             <input type='file' name='uploadFile' multiple /><hr><br><br>
                              <button type="submit" class="btn btn-default">전송</button>
-                             <button type="reset" class="btn btn-default">취소</button>
+                             <button type="reset" class="btn btn-default">reset</button>
                             
                             </form>                          
                         </div>

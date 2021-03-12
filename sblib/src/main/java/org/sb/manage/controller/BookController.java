@@ -1,7 +1,7 @@
 package org.sb.manage.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -56,25 +55,25 @@ public class BookController {
       model.addAttribute("keyword",keyword);
    }
    
-
    @PostMapping("addBooks")
-   public String addBooks(Model model,Book books,String keyword,RedirectAttributes redirectAttributes) throws IOException {
+   public void addBooks(HttpServletResponse rs,Model model,Book books) throws IOException {
       log.info("관리자 책추가 post");
-      String Result = URLDecoder.decode(keyword, "UTF-8");
-
- 
+   
        if(books!=null) {
-    	   		
              service.register(books);
-             model.addAttribute("keyword",keyword);
-             redirectAttributes.addFlashAttribute("title", books.getTitle());
-             redirectAttributes.addFlashAttribute("result", "success");
+             rs.setContentType("text/html; charset=UTF-8");
+             PrintWriter o =rs.getWriter();
+             o.print("<script>");
+             o.print("alert('"+books.getTitle()+"이 등록되었습니다.');");
+             o.print("history.back();");
+             o.print("</script>");
+             o.flush();
+            
              }
-       return "redirect:/book/addBook?keyword="+Result;
    }
 
    @PostMapping("bookdelete")
-   public String bookdelete(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+   public void bookdelete(HttpServletResponse rs,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("관리자 책삭제 post");
       long bno=Long.parseLong(sbno); 
       if(bno!=-1)
@@ -82,45 +81,28 @@ public class BookController {
          if(nowcount==1) {
          log.info("대여아님");
          service.removeById(bno);
-         redirectAttributes.addFlashAttribute("title", bookname);
-         redirectAttributes.addFlashAttribute("result", "success");
-         
+         rs.setContentType("text/html; charset=UTF-8");
+            PrintWriter o =rs.getWriter();
+            o.print("<script>");
+            o.print("alert('"+bookname+"이 삭제되었습니다.');");
+            o.print("location.href='/book/bookList';");
+            o.print("</script>");
+            o.flush();
          }
          else {
             log.info("대여중");
-            redirectAttributes.addFlashAttribute("title", bookname);
-            redirectAttributes.addFlashAttribute("result", "fail");
+            rs.setContentType("text/html; charset=UTF-8");
+               PrintWriter o =rs.getWriter();
+               o.print("<script>");
+               o.print("alert('회원이 대여중입니다. 삭제불가');");
+               o.print("location.href='/book/bookList';");
+               o.print("</script>");
+               o.flush();
          }
       }
          
-         return "redirect:/book/bookList";
          
-   }
-   
-   @PostMapping("tbinsert")
-   public String tbinsert(RedirectAttributes redirectAttributes,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
-      log.info("오늘의북 책 선정");
-      long bno=Long.parseLong(sbno); 
-      if(service.getTotalTodayBookCount()<3)
-      {
-      service.setTodaybook(bno);
-      	redirectAttributes.addFlashAttribute("result", "setsuccess");//성공
-      }
-      else
-      {
-    	  redirectAttributes.addFlashAttribute("result", "setfail");// 실패
-      }
-      return "redirect:/book/bookList";
-   }
-   
-   @PostMapping("tbdelete")
-   public String tbdelete(RedirectAttributes redirectAttributes,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
-      log.info("오늘의북 책 선정삭제");
-      long bno=Long.parseLong(sbno); 
-      service.downTodaybook(bno);
-      redirectAttributes.addFlashAttribute("result", "downsuccess");
-      return "redirect:/book/bookList";
-     
+         
    }
    
    /*
