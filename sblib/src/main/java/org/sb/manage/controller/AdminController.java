@@ -1,13 +1,11 @@
 package org.sb.manage.controller;
 
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
-import org.sb.manage.service.AdminserviceImpl;
+import org.sb.manage.service.AdminServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class AdminController {
 
 
-	private final AdminserviceImpl service;
+	private final AdminServiceImpl service;
 	
 	@GetMapping("userList")
 	public String adminlist(Model model,@RequestParam(required = false ,defaultValue = "1") String pageNum,@RequestParam(required = false ,defaultValue = "10")String amount) {
