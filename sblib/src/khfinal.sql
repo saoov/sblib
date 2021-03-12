@@ -162,10 +162,9 @@ member_no number not null,
 rentDate date default sysdate,
 returndate date
 );
-
+ 
 alter table rentInfo add constraint rent_pk primary key(rentid);
 alter table rentInfo add constraint rent_memberno_fk foreign key(member_no) references member(member_no);
-alter table rentInfo add constraint rent_book_fk foreign key(bno) references book(bno);
 alter table rentinfo add constraint bno_fk foreign key(bno) references book(bno) on delete CASCADE;
 
 ---------------------------------------------------
