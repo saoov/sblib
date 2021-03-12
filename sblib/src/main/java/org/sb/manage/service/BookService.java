@@ -28,4 +28,6 @@ public interface BookService {
 	
 	void downTodaybook (long bno);
 	
+	List<Book> getTodayBook ();
+	
 }

@@ -98,10 +98,10 @@ public class BookController {
    }
    
    @PostMapping("tbinsert")
-   public String tbinsert(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+   public String tbinsert(RedirectAttributes redirectAttributes,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("오늘의북 책 선정");
       long bno=Long.parseLong(sbno); 
-      if(service.getTotalTodayBookCount()>6)
+      if(service.getTotalTodayBookCount()<3)
       {
       service.setTodaybook(bno);
       	redirectAttributes.addFlashAttribute("result", "setsuccess");//성공
@@ -114,7 +114,7 @@ public class BookController {
    }
    
    @PostMapping("tbdelete")
-   public String tbdelete(RedirectAttributes redirectAttributes,@RequestParam(required = false)int nowcount,@RequestParam(required = false)String bookname,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
+   public String tbdelete(RedirectAttributes redirectAttributes,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("오늘의북 책 선정삭제");
       long bno=Long.parseLong(sbno); 
       service.downTodaybook(bno);

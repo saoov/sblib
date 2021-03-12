@@ -23,5 +23,7 @@ public interface BookMapper {
 
 	void downTodaybook(long bno);
 	
+	List<Book> getTodayBook ();
+	
 	
 }

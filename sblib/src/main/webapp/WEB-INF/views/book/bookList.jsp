@@ -103,28 +103,25 @@
              <!--  -->      <input type="hidden" name="nowcount" value="${book.nowcount }" >
                <input class="btn btn-danger" type="submit" value="삭제">
           </form>
-          <c:choose>
-    <c:when test="${book.todaybook eq 1}">
-           <form id="down" action="/book/bookdelete" method="post">
+  
+     <c:if test = "${book.todaybook eq 0}">
+        
+           <form id="down" action="/book/tbinsert" method="post">
           <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
              <!--  -->     
-               <input class="btn btn-info" type="submit" value="오늘의도서 삭제">
+               <input class="btn btn-info" type="submit" value="오늘의도서 적용">
           </form>
-    </c:when>
-    <c:when test="${book.todaybook eq 0}">
-        <form id="set" action="/book/bookdelete" method="post">
-          <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
-
-               <input class="btn btn-info" type="submit" value="오늘의도서 추가">
-          </form>
-          <form id="down" action="/book/bookdelete" method="post">
+      </c:if>
+      
+      <c:if test = "${book.todaybook eq 1}">
+        
+           <form id="down" action="/book/tbdelete" method="post">
           <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
              <!--  -->     
-               <input class="btn btn-info" type="submit" value="오늘의도서 삭제">
+               <input class="btn btn-danger" type="submit" value="오늘의도서 삭제">
           </form>
-    </c:when>
-	</c:choose>
-
+      </c:if>
+ 
    	</div>
       
       </td>

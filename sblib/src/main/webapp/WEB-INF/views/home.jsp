@@ -161,41 +161,16 @@
                 <a class="addbooks" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
                 <ul>
+                    <c:forEach items="${bookList}" var="book">
                     <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
+                        <a href="#"><img src="${book.image }"></a>
                         <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
+                            <li><a href="#">${book.title }</a></li>
+                          
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
+                    </c:forEach>
+                   
                 </ul>
             </div>
         </article>

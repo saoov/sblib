@@ -190,6 +190,12 @@ public class BookServiceImpl implements BookService{
 		bookMapper.downTodaybook(bno);
 	}
 
+	@Override
+	public List<Book> getTodayBook() {
+		// TODO Auto-generated method stub
+		return bookMapper.getTodayBook();
+	}
+
 
 	
 	
