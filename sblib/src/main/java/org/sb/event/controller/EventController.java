@@ -85,7 +85,7 @@ public class EventController {
 		String eventInfo = event.getEvent_info();
 		log.info(eventInfo);
 		String[] event_image = eventInfo.split("\"");
-		event.setEvent_image(event_image[3]);
+		event.setEvent_image(event_image[1]);
 		service.register(event);
 		
 		return "redirect:/event/eventBoard";
