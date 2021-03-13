@@ -23,8 +23,8 @@
 				<h2>프로그램</h2>
 			</div>
 			<ul>
-				<li><a href="#">도서관일정</a></li>
-				<li><a href="#">독서문화행사</a></li>
+				<li><a href="/event/calendar">도서관일정</a></li>
+				<li><a href="/event/eventBoard">독서문화행사</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -67,8 +67,12 @@
 				</form>
 
 				<button type="button" id="listBtn" class="btn btn-secondary" onclick=>목록으로</button>
-				<button type="button" id="modifyBtn" class="btn btn-warning">수정</button>
-				<button type="button" id="deleteBtn" class="btn btn-danger">삭제</button>
+				<c:choose>
+					<c:when test= "${userSession.member_name eq '관리자'}">
+						<button type="button" id="modifyBtn" class="btn btn-warning">수정</button>
+						<button type="button" id="deleteBtn" class="btn btn-danger">삭제</button>
+					</c:when>
+				</c:choose>
 		</div>
 		
 </div>

@@ -265,6 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
     	initialView: 'dayGridMonth',
     	headerToolbar:false,
+    	googleCalendarApiKey : "AIzaSyCvQ-pd1R-0XMH78M5nLuoRb9LKvP8hlIU",
+		eventSources:[
+			{
+				googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",
+				textColor : "#e91e63",
+				color : "#f44336"
+			}
+		],
     	events:[
         	<c:forEach items="${list}" var="event">
             {
@@ -277,8 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               start: "${holiday.holiday_start}",
               end: "${holiday.holiday_end}",
-              color: "#e3f2fd",
-              backgroundColor: "#0d47a1"
+              color: "#f44336"
             },
             </c:forEach>
     	]

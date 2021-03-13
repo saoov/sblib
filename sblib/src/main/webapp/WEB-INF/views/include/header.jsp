@@ -24,12 +24,14 @@
 
 					</c:when>
 					<c:when test= "${userSession.member_grade eq 'manager'}">
-						<li> ${userSession.member_name}님, 반갑습니다!&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<li>${userSession.member_name}님, 반갑습니다!
+						<br>
 						<a href="/member/logout">로그아웃</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
 						<a href="/book/addBook"> 도서관리</a></li>
 					</c:when>
 					<c:otherwise>
-						<li> ${userSession.member_name}님, 반갑습니다!&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<li>${userSession.member_name}님, 반갑습니다!
+						<br>
 						<a href="/member/logout">로그아웃</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
 						<a href="/member/update">회원정보수정</a></li>
 					</c:otherwise>

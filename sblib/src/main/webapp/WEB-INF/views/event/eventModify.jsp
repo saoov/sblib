@@ -25,8 +25,8 @@
 				<h2>프로그램</h2>
 			</div>
 			<ul>
-				<li><a href="#">도서관일정</a></li>
-				<li><a href="#">독서문화행사</a></li>
+				<li><a href="/event/calendar">도서관일정</a></li>
+				<li><a href="/event/eventBoard">독서문화행사</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>

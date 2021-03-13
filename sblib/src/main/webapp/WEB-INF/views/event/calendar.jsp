@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
               title: "${holiday.holiday_title}",
               start: "${holiday.holiday_start}",
               end: "${holiday.holiday_end}",
-              color: "#e3f2fd",
-              backgroundColor: "#0d47a1"
+              textColor : "#e91e63",
+              color: "#FFFFFF"
             },
             </c:forEach>
         ]
