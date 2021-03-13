@@ -52,5 +52,6 @@
 	<context:component-scan base-package="org.sb.member.controller"></context:component-scan>
 	<context:component-scan base-package="org.sb.notice.controller"></context:component-scan>
 	<context:component-scan base-package="org.sb.search.controller"></context:component-scan>
+	<context:component-scan base-package="org.sb.reply.controller"></context:component-scan>
 
 </beans:beans>
