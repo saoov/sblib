@@ -10,8 +10,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sb.manage.domain.Book;
 import org.sb.manage.domain.Page;
+import org.sb.manage.domain.Book;
 import org.sb.manage.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 import org.xmlpull.v1.XmlPullParser;
@@ -170,6 +170,30 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public void register(Book book) {
 		bookMapper.insert(book);
+	}
+
+	@Override
+	public int getTotalTodayBookCount() {
+		// TODO Auto-generated method stub
+		return bookMapper.getTotalTodayBookCount();
+	}
+
+	@Override
+	public void setTodaybook(long bno) {
+		// TODO Auto-generated method stub
+		bookMapper.setTodaybook(bno);
+	}
+
+	@Override
+	public void downTodaybook(long bno) {
+		// TODO Auto-generated method stub
+		bookMapper.downTodaybook(bno);
+	}
+
+	@Override
+	public List<Book> getTodayBook() {
+		// TODO Auto-generated method stub
+		return bookMapper.getTodayBook();
 	}
 
 

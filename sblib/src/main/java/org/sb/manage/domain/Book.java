@@ -19,6 +19,7 @@ public class Book {
 	private String isbn;
 	private String description;
 	private int nowcount;
+	private int todaybook;
 
 
 }

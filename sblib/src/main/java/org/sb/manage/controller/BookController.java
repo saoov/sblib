@@ -3,6 +3,8 @@ package org.sb.manage.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.sb.manage.domain.Book;
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
