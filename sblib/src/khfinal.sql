@@ -146,10 +146,10 @@ CREATE TABLE "BOOK" (
 );
 
 
-CREATE UNIQUE INDEX "BOOK_PK" ON "BOOK" ("BNO")
-CREATE SEQUENCE seq_book
-ALTER TABLE "BOOK" ADD CONSTRAINT "BOOK_PK" PRIMARY KEY ("BNO") ENABLE
-ALTER TABLE "BOOK" MODIFY ("BNO" NOT NULL ENABLE)
+CREATE UNIQUE INDEX "BOOK_PK" ON "BOOK" ("BNO");
+CREATE SEQUENCE seq_book;
+ALTER TABLE "BOOK" ADD CONSTRAINT "BOOK_PK" PRIMARY KEY ("BNO") ENABLE;
+ALTER TABLE "BOOK" MODIFY ("BNO" NOT NULL ENABLE);
 alter table book add constraint isbn_uk UNIQUE(ISBN);
 ---------------------------------------------------
 --rentinfo table
@@ -176,7 +176,7 @@ alter table rentinfo add constraint bno_fk foreign key(bno) references book(bno)
    "MEMBER_NO" NUMBER, 
    "BNO" NUMBER, 
    "ADDDATE" DATE DEFAULT sysdate
-   )
+   );
 
 CREATE SEQUENCE seq_book_cart;
 
@@ -189,7 +189,7 @@ CREATE SEQUENCE seq_book_cart;
 
 
   ALTER TABLE "BOOK_CART" ADD CONSTRAINT "BOOK_CART_BOOK" FOREIGN KEY ("BNO") REFERENCES "BOOK" ("BNO") ENABLE;
-  ALTER TABLE "BOOK_CART" ADD CONSTRAINT "BOOK_CART_MEMBER" FOREIGN KEY ("MEMBER_NO") REFERENCES "MEMBER" ("MEMBER_NO") ENABLE
+  ALTER TABLE "BOOK_CART" ADD CONSTRAINT "BOOK_CART_MEMBER" FOREIGN KEY ("MEMBER_NO") REFERENCES "MEMBER" ("MEMBER_NO") ENABLE;
   
 ---------------------------------------------------
 -- rentalmanage view
