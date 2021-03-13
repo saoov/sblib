@@ -6,7 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<title>회원탈퇴</title>
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -20,7 +23,10 @@
 		})
 	</script>
 <body>
-<section id="container">
+<div class="container">
+	<div class="col-lg-4"></div>		
+		<div class="col-lg-4">
+		<div class="jumbotron" style="padding-top: 20px;">
 			<form action="/member/delete" method="post">
 				<div class="form-group has-feedback">
 					<label class="control-label" for="userId">아이디</label>
@@ -35,8 +41,8 @@
 					<input class="form-control" type="text" id="member_name" name="member_name" value="${userSession.member_name}" readonly="readonly"/>
 				</div>
 				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
-					<a class="btn btn-danger px-3" href="/">
+					<button class="btn btn-danger" type="submit" id="submit">회원탈퇴</button>
+					<a class="btn btn-info px-3" href="/">
 					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기 </a>&emsp;&emsp;
 				</div>
 			</form>
@@ -45,7 +51,10 @@
 					비밀번호가 일치하지 않습니다.
 				</c:if>
 			</div>
-		</section>
+		</div>
+		</div>
+	
+		</div>
 		
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.sb.bookstory.service.BookStoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,47 +27,59 @@ public class BookStoryController {
 	@GetMapping("list")
 	public void list(Page page, Model model) {
 		log.info("list : " + page);
-		model.addAttribute("list", service.getList(page));
-		
-		int total = service.getTotal(page);
-		log.info(total);
-		model.addAttribute("page", new PageDTO(page, total));
+		model.addAttribute("list", service.getList(page));	
+		model.addAttribute("pageMaker", new PageDTO(page, service.getTotal(page)));
 	}
 
-	@GetMapping("register")
-	public void register() {
+	@GetMapping("/register")
+	public void registerGET() {
 	}
 
 	@PostMapping("/register")
-	public String register(BookStoryVO bookStory, RedirectAttributes redirectAttributes) {
-		log.info("register : " + bookStory);
-		service.register(bookStory);
-		redirectAttributes.addFlashAttribute("result", "success");
+	public String register(BookStoryVO bookstory, RedirectAttributes redirectAttributes) {
+		log.info("register : " + bookstory);
+		
+		Long story_no = service.register(bookstory);
+		
+		log.info("story_no: " + story_no);
+		
+		redirectAttributes.addFlashAttribute("result", story_no);
+		
 		return "redirect:/bookstory/list";
 	}
 	@GetMapping({"/get","/modify"})
-	public void get(@RequestParam("story_no")long story_no, Model model, Page page) {
+	public void get(@RequestParam("story_no")Long story_no, Model model, @ModelAttribute("page") Page page) {
 		log.info("북스토리 게시글 get요청");
 		model.addAttribute("bookstory",service.get(story_no));
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BookStoryVO bookStory, RedirectAttributes redirectAttributes, Page page) {
-		log.info("bookstory : "+ bookStory);
-		int count = service.modify(bookStory);
+	public String modify(BookStoryVO bookstory, RedirectAttributes redirectAttributes, Page page) {
+		log.info("bookstory : "+ bookstory);
+		int count = service.modify(bookstory);
 		if(count == 1) {
 			redirectAttributes.addFlashAttribute("result","success");
 		}
-		return "redirect:/bookstory/list"+page.getListLink();
+		redirectAttributes.addAttribute("pageNum", page.getPageNum());
+		redirectAttributes.addAttribute("amount", page.getAmount());
+		redirectAttributes.addAttribute("type", page.getType());
+		redirectAttributes.addAttribute("keyword", page.getKeyword());
+		
+		return "redirect:/bookstory/list";
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("story_no")long story_no, RedirectAttributes redirectAttributes,Page page) {
+	public String remove(@RequestParam("story_no")Long story_no, RedirectAttributes redirectAttributes,Page page) {
 		int count = service.remove(story_no);
 		if(count == 1) {
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
-		return "redirect:/bookstory/list"+page.getListLink();
+		redirectAttributes.addAttribute("pageNum", page.getPageNum());
+		redirectAttributes.addAttribute("amount", page.getAmount());
+		redirectAttributes.addAttribute("type", page.getType());
+		redirectAttributes.addAttribute("keyword", page.getKeyword());
+		
+		return "redirect:/bookstory/list";
 	}
 	
 	@GetMapping("/myList")

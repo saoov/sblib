@@ -172,10 +172,8 @@
 					<p>Modal body text goes here.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Save
-						changes</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-secondary"data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
@@ -212,15 +210,15 @@
 				}
 				else if (result === 'setsuccess') {
 					$(".modal-title").html("등록성공");
-					$(".modal-body").html("오늘의 책등록 성공");
+					$(".modal-body").html("이달의 도서 등록 성공");
 				}
 				else if (result === 'setfail') {
 					$(".modal-title").html("등록실패");
-					$(".modal-body").html("이미5개이상의 오늘의 책이있습니다.");
+					$(".modal-body").html("이미 5개의 이달의 도서가 등록되어 있습니다.");
 				}
 				else if (result === 'downsuccess') {
 					$(".modal-title").html("내리기성공");
-					$(".modal-body").html("오늘의책 내리기성공");
+					$(".modal-body").html("이달의 도서 내리기성공");
 				}
 				
 				$("#myModal").modal("show");

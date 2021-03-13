@@ -40,12 +40,6 @@ public class NoticeController {
 		model.addAttribute("list", service.getList(page));	
 		model.addAttribute("pageMaker", new PageDTO(page, service.getTotal(page)));
 	}
-	@GetMapping("/miniList")
-	public void miniList(Page page, Model model) {
-		log.info("list : " + page);
-		model.addAttribute("list", service.getList(page));	
-		model.addAttribute("pageMaker", new PageDTO(page, service.getTotal(page)));
-	}
 
 	@GetMapping("/register")
 	public void register() {

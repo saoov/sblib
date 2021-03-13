@@ -79,10 +79,8 @@
 					<p>Modal body text goes here.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Save
-						changes</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-secondary"data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>

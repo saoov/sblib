@@ -40,7 +40,7 @@ public class QuestionController {
 		log.info("list.................");
 		
 		model.addAttribute("list", service.getList(page));		
-		model.addAttribute("pageMaker", new PageDTO(page, 123));
+		model.addAttribute("pageMaker", new PageDTO(page, service.getTotal(page)));
 	}
 	
 	@GetMapping("/register")
@@ -69,25 +69,35 @@ public class QuestionController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(QuestionVO question, RedirectAttributes rttr) {
+	public String modify(QuestionVO question, Page page, RedirectAttributes rttr) {
 		
 		int count = service.modify(question);
 		
 		if(count ==1) {
 			rttr.addFlashAttribute("result", "success");
-		}
+		}		
+		rttr.addAttribute("pageNum", page.getPageNum());
+		rttr.addAttribute("amount", page.getAmount());
+		rttr.addAttribute("type", page.getType());
+		rttr.addAttribute("keyword", page.getKeyword());
+		
 		return "redirect:/question/list";
 		
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("que_no")Long que_no, RedirectAttributes rttr) {
+	public String remove(@RequestParam("que_no")Long que_no, Page page, RedirectAttributes rttr) {
 		
 		int count = service.remove(que_no);
 		
 		if(count ==1) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		rttr.addAttribute("pageNum", page.getPageNum());
+		rttr.addAttribute("amount", page.getAmount());
+		rttr.addAttribute("type", page.getType());
+		rttr.addAttribute("keyword", page.getKeyword());
+		
 		return "redirect:/question/list";
 		
 	}

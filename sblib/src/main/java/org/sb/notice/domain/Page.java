@@ -9,7 +9,7 @@ public class Page {
 	
 	private String type;
 	private String keyword;
-	private String member_no;
+
 	public Page() {
 		this(1, 9);
 	}

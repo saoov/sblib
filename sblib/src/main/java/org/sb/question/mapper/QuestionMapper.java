@@ -1,6 +1,7 @@
 package org.sb.question.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.sb.question.domain.Page;
 import org.sb.question.domain.QuestionVO;
@@ -19,10 +20,13 @@ public interface QuestionMapper {
 	
 	int update(QuestionVO question);
 	
-	//페이징
+	//페이징//
 	List<QuestionVO> getListWithPaging(Page page);
 	
 	int getTotal(Page page);
+	
+	//검색//
+	List<QuestionVO> searchTest(Map<String, Map<String,String>> map);
 	
 	//마이페이지//
 	List<QuestionVO> getMyList(String que_author);

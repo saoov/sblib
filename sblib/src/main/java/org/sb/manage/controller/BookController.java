@@ -3,8 +3,6 @@ package org.sb.manage.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.sb.manage.domain.Book;
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
@@ -101,7 +99,7 @@ public class BookController {
    public String tbinsert(RedirectAttributes redirectAttributes,Model model,@RequestParam(defaultValue = "-1",name="bno")String sbno) throws IOException {
       log.info("오늘의북 책 선정");
       long bno=Long.parseLong(sbno); 
-      if(service.getTotalTodayBookCount()<3)
+      if(service.getTotalTodayBookCount()<5)
       {
       service.setTodaybook(bno);
       	redirectAttributes.addFlashAttribute("result", "setsuccess");//성공

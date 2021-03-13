@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,24 +30,41 @@
 <script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 </head>
+
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
 <body>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">묻고 답하기 게시글 목록</h1>                                                           
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                 묻고 답하기 게시글 목록입니다.
-                            <button id="regBtn" type="button" class="btn btn-xs pull-right">글 작성</button>
-                        </div>
-                        <!-- /.panel-heading -->
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
+
+<div id='body'>
+   <div id='sidemenu'>
+      <div class="title">
+         <h2>열린공간</h2>
+      </div>
+      <ul>
+         <li><a href="/notice/list">공지사항</a></li>
+         <li><a href="/question/list">묻고답하기</a></li>
+         <li><a href="/bookstory/list">책이야기</a></li>
+      </ul>
+      <div class="lastchild"></div>
+   </div>
+   
+   <div id='layer'>
+      <h3>묻고답하기</h3>
+      <div style="width:100%; height:20px;">
+      <ul>
+         <li>열린공간　>　</li>
+         <li>묻고답하기</li>
+      </ul>
+      </div>
+        <hr style="margin-top:30px;">
+
+
                         <div class="panel-body">
+                        <button id="regBtn" type="button" class="btn btn-secondary pull-right">글 작성</button>
                             <table width="100%" class="table table-striped table-bordered table-hover">
+                                                   
                                 <thead>
                                     <tr>
                                         <th>글번호</th>
@@ -68,8 +88,20 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                            <form id="searchForm" action="/question/list" method="get">
+                               <select name="type">                                 
+                                 <option value="T" ${pageMaker.page.type eq 'T'?"selected":"" } >제목</option>
+                                 <option value="C" ${pageMaker.page.type eq 'C'?"selected":"" } >내용</option>
+                                 <option value="W" ${pageMaker.page.type eq 'W'?"selected":"" } >작성자</option>
+                                 <option value="TC" ${pageMaker.page.type eq 'TC'?"selected":"" } >제목+내용</option>
+                                 <option value="TCW" ${pageMaker.page.type eq 'TCW'?"selected":"" } >제목+내용+작성자</option>
+                               </select>
+                               <input type="text" name="keyword" value="${pageMaker.page.keyword }">
+                               <input type="hidden" name="pageNum" value="${pageMaker.page.pageNum }">
+                               <input type="hidden" name="amount" value="${pageMaker.page.amount }">
+                               <button class="btn btn-default">검색</button>
+                            </form>
                             
-                            <h3>${pageMaker }</h3>
                             <div class="pull-right">
                               <ul class="pagination">
                                 <c:if test="${pageMaker.prev}">
@@ -93,6 +125,8 @@
                             <form id='actionForm' action="/question/list" method='get'>
                                 <input type='hidden' name='pageNum' value = '${pageMaker.page.pageNum}'>
                                 <input type='hidden' name='amount' value = '${pageMaker.page.amount}'>
+                                <input type='hidden' name='type' value = '${pageMaker.page.type}'>
+                                <input type='hidden' name='keyword' value = '${pageMaker.page.keyword}'>
                             </form>
  
                         </div>
@@ -101,8 +135,11 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
+<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
             
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -185,6 +222,18 @@ $(document).ready(function() {
 		actionForm.attr("action", "/question/get").submit();
 		
 	});
+	
+	var searchForm = $("#searchForm");
+	
+	$("#searchForm button").on("click", function(e) {
+		
+		e.preventDefault();
+		console.log("..............click");
+		
+		searchForm.find("input[name='pageNum']").val(1);
+		searchForm.submit();		
+	});
+	
 });			
 			
    </script>			

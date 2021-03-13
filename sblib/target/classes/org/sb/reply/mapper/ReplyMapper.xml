@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.sb.reply.mapper.ReplyMapper">
+
+  <insert id="insert">
+    insert into reply (reply_no, story_no, reply_content, reply_author)
+    values (seq_reply.nextval, #{story_no}, #{reply_content}, #{reply_author})
+  </insert>
+  
+  <select id="read" resultType="org.sb.reply.domain.ReplyVO">
+    select * from reply where reply_no = #{reply_no}
+  </select>
+  
+  <delete id="delete">
+    delete from reply where reply_no = #{reply_no}
+  </delete>
+  
+  <select id="getListWithPaging" resultType="org.sb.reply.domain.ReplyVO">
+    select reply_no, story_no, reply_content, reply_author, reply_regdate
+    from reply
+    where story_no = #{story_no}
+    order by reply_no asc 
+  </select>
+
+</mapper>	

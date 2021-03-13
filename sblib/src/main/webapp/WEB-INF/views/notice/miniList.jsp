@@ -11,7 +11,7 @@
 <body>
 	<!-- table -->
 	<div class="panel-body">
-		<table width="100%"
+		 <table width="100%"
 			class="table table-striped table-bordered table-hover">
 			<tbody>
 				<c:forEach items="#{list }" var="noticeVO">
@@ -25,7 +25,7 @@
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+		</table> 
 	</div>
 	<!-- table -->
 </body>

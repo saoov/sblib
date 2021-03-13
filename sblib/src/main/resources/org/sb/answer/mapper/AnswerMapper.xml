@@ -11,7 +11,7 @@
   </insert>
 
   <select id="read" resultType="org.sb.answer.domain.AnswerVO">
-  select a.ans_title, a.ans_content, a.ans_regdate from answer a, question q where a.que_no= #{q.que_no}  
+  select a.ans_title, a.ans_content, a.ans_regdate from answer a, question q where a.que_no=q.que_no;  
   </select>
   
 

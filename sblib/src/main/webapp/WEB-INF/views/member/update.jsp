@@ -6,9 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member Register</title>
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<title>회원정보수정</title>
 </head>
 <body>
+<div class="container">
+	<div class="col-lg-4"></div>		
+		<div class="col-lg-4">
+		<div class="jumbotron" style="padding-top: 20px;">
 <form action="/member/update" method="post">
 			<!-- 아이디 -->
 			<div class="form-group">
@@ -60,16 +67,18 @@
 			</div>
 			<!-- 휴대전화 -->
 			<div class="form-group">
-				<label for="member_tel">휴대전화 ('-' 없이 번호만 입력해주세요)</label>
+				<label for="member_tel">휴대전화 ('-' 없이 번호만 입력)</label>
 				<input type="text" class="form-control" id="member_tel" name="member_tel" placeholder="Phone Number" required>
 				<div class="check_font" id="phone_check"></div>
 			</div>
 			<div class="reg_button">
-				<a class="btn btn-danger px-3" href="/">
-					<i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기 </a>&emsp;&emsp;
-				<button type="submit" id="reg_submit">전송</button>
+				<button type="submit" id="reg_submit" class="btn btn-primary form-control">수정</button><hr>
+				<a class="btn btn-danger" href="/member/delete" style="width: 100%">회원탈퇴</a>
 			</div>
 		</form>
+		</div>
+		</div>
+		</div>
   <script src="../resources/js/jquery.min_1.12.4.js"></script>
   <script>
 		

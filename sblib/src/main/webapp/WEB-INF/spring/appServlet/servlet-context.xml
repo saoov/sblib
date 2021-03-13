@@ -42,7 +42,6 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="100000000"></beans:property>
 	</beans:bean>
-	
 	<context:component-scan base-package="org.sb.manage.handler" />
 	<context:component-scan base-package="org.sb.controller" />
 	<context:component-scan base-package="org.sb.event.controller"></context:component-scan>
@@ -53,5 +52,6 @@
 	<context:component-scan base-package="org.sb.member.controller"></context:component-scan>
 	<context:component-scan base-package="org.sb.notice.controller"></context:component-scan>
 	<context:component-scan base-package="org.sb.search.controller"></context:component-scan>
+	<context:component-scan base-package="org.sb.reply.controller"></context:component-scan>
 
 </beans:beans>

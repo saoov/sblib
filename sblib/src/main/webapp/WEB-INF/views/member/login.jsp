@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Core JavaScript -->
+<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<title>로그인</title>
 </head>
 <body>
 <!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
@@ -14,7 +18,12 @@
 		<c:set value="checked" var="checked"/>
 	</c:if>
 <div class="container">
-			<div class="area_inputs wow fadeIn">
+<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+			<div class="jumbotron" style="padding-top: 20px; margin-top: 150px;">
+			<div class="logo1" style="padding: 20px 0; margin-bottom: 0px; text-align: center;">
+	    		<a href="/"><img src="../resources/images/logo1.png" width="210px" height="170px"></a>
+	    	</div>
 				<div class="form-group">
 					<label class="font-weight-bold text-white" for="inputId">아이디</label>
 					<div>
@@ -45,8 +54,10 @@
 				<div class="form-group">
 					<a class="btn btn-deep-orange btn-block" href="/member/register">회원가입</a>
 				</div>
+				</div>
+
 			</div>
-		
+<div class="col-lg-4"></div>
 	</div>
 	<script src="../resources/js/jquery.min_1.12.4.js"></script>
 	<script type="text/javascript">
@@ -67,6 +78,7 @@
 					if (data == 0) { //로그인 실패시
 						console.log(data);
 						$('#spanLoginCheck').text('로그인 정보를 정확히 입력해주세요.');
+						$('#spanLoginCheck').css('color', 'red');
 					} /*else if (data == -2) { //인증하지 않았다면?
 						console.log(data);
 						$('#spanLoginCheck').text('이메일 인증을 해주셔야 합니다!');						

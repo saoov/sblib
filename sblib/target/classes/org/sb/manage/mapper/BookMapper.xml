@@ -5,8 +5,8 @@
 	
 	<mapper namespace="org.sb.manage.mapper.BookMapper">
 		<insert id="insert">
-			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
-			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount,todaybook)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1,0)
 		</insert>
 		
 		<select id="getBookById" resultType="org.sb.manage.domain.Book">

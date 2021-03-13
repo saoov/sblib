@@ -94,14 +94,13 @@
         <article class="article2">
             <div class="box1">
                 <p style="text-align: center; margin-top: 10px;">공지사항</p>
-                <a class="notice" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
+                <a class="notice" href="/notice/list"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
                 <div class="noticeContent">
-                <ul>
-                <li class="noticeTitle1"><a href=""><span>title1</span></a></li>
-                <li class="noticeTitle2"><a href=""><span>title2</span></a></li>
-                <li class="noticeTitle3"><a href=""><span>title3</span></a></li>
-                </ul>
+                
+                <div class="panel-body">
+					 
+				</div>
                 </div>
             </div>
             
@@ -194,14 +193,11 @@
                 <p style="text-align: center; margin-top: 10px;">이달의 추천도서</p>
                 <a class="addbooks" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
-                <ul>
+               <ul>
                     <c:forEach items="${bookList}" var="book">
                     <li>
-                        <a href="#"><img src="${book.image }"></a>
-                        <ul>
-                            <li><a href="#">${book.title }</a></li>
-                          
-                        </ul>
+                        <a href="/search/getBook?bno=${book.bno}"><img src="${book.image }"></a>
+                      
                     </li>
                     </c:forEach>
                    
