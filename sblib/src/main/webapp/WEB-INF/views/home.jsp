@@ -99,19 +99,7 @@
                 <div class="noticeContent">
                 
                 <div class="panel-body">
-					 <table width="100%"
-						class="table table-striped table-bordered table-hover">
-						<tbody>
-							<c:forEach items="#{list }" var="noticeVO">
-								<tr class="odd gradeX">
-									<td><a class="move" href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>
-											<c:out value="${noticeVO.notice_title}" /></a>
-									</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${noticeVO.notice_regdate }" /></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table> 
+					 
 				</div>
                 </div>
             </div>
