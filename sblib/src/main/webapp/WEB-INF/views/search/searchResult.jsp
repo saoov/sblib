@@ -104,7 +104,7 @@
 			<!-- search -->
 			<div class="searchBar">
 				<form id='searchForm' action='/search/searchResult' method='get'>
-					<select name='type'>
+					<select name='type' style="font-size: 20px; height: 100%">
 						<option value="T">서명</option>
 						<option value='A'>저자</option>
 						<option value='P'>출판사</option>

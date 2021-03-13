@@ -189,6 +189,8 @@
 						}
 					});
 				</script>
+				<!-- js -->
+	<tiles:insertAttribute name="js"></tiles:insertAttribute>
 	    <!-- footer -->
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
