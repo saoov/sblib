@@ -96,13 +96,23 @@
                 <p style="text-align: center; margin-top: 10px;">공지사항</p>
                 <a class="notice" href="/notice/list"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
-                <div class="noticeContent">
-                
-                <div class="panel-body">
-					 
+				<div class="noticeContent">
+					<table width="100%">
+						<tbody>
+							<c:forEach items="#{noticeVO }" var="noticeVO">
+								<tr >
+									<td><a class="move"
+										href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>
+											<c:out value="${noticeVO.notice_title}" />
+									</a></td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${noticeVO.notice_regdate }" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
-                </div>
-            </div>
+			</div>
             
             <!-- 이미지 슬라이드 시작 -->
             <div class="box2">                        

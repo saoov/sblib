@@ -14,7 +14,7 @@
 		 <table width="100%"
 			class="table table-striped table-bordered table-hover">
 			<tbody>
-				<c:forEach items="#{list }" var="noticeVO">
+				<c:forEach items="#{noticeVO }" var="noticeVO">
 					<tr class="odd gradeX">
 						<td><a class="move"
 							href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>

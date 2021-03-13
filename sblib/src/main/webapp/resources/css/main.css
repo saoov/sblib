@@ -359,6 +359,7 @@
         .box2 ul img{
             width: 120px;
             height: 100%;
+            margin-top :  20px;
             border: 2px solid red;
         }
         .box2 ul ul{
@@ -533,6 +534,9 @@
                 margin: 0;
                 margin-top: 3.5px;
             }
+            #content1 {
+				width:100%;
+			}
 
             #content1 .article2 .box1 {
                 width: 100%;
