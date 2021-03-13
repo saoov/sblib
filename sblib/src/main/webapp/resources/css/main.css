@@ -360,7 +360,7 @@
             width: 120px;
             height: 100%;
             margin-top :  20px;
-            border: 2px solid red;
+            box-shadow: 2px 2px gray;
         }
         .box2 ul ul{
             margin-top: 5px;
