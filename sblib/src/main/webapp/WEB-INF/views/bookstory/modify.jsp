@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +21,37 @@
 <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
 </head>
+
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
 <body>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">게시글 수정/삭제 페이지</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                게시글 수정/삭제 페이지입니다.
-                        </div>
-                        <!-- /.panel-heading -->
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
+
+ <div id='body'>
+   <div id='sidemenu'>
+      <div class="title">
+         <h2>열린공간</h2>
+      </div>
+      <ul>
+         <li><a href="/notice/list">공지사항</a></li>
+         <li><a href="/question/list">묻고답하기</a></li>
+         <li><a href="/bookstory/list">책이야기</a></li>
+      </ul>
+      <div class="lastchild"></div>
+   </div>
+   
+   <div id='layer'>
+      <h3>책이야기</h3>
+      <div style="width:100%; height:20px;">
+      <ul>
+         <li>열린공간　>　</li>
+         <li>책이야기</li>
+      </ul>
+      </div>
+        <hr style="margin-top:30px;">
+ 
+ 
                         <div class="panel-body">
                         <form> 
                              <input type="hidden" name="pageNum" value="${page.pageNum }">
@@ -75,8 +94,11 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
+<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
             
 <script>
 

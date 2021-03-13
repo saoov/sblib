@@ -23,15 +23,18 @@
 
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<body>
+
 	<!-- sidebar -->
 	<div id='body'>
 		<div id='sidemenu'>
 			<div class="title">
-				<h2>자료검색</h2>
+				<h2>MyLibrary</h2>
 			</div>
 			<ul>
-				<li><a href="/search/searchSimple">도서검색</a></li>
+	 			<li><a href="/notice/list">내서재</a></li>
+                <li><a href="/question/list">장바구니</a></li>
+                <li><a href="/bookstory/list">내질문답변</a></li>
+                <li><a href="/bookstory/list">내책이야기</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -41,6 +44,7 @@
 			<h3>도서검색</h3>
 			<div style="width: 100%; height: 20px;">
 				<ul>
+				    <li>MyLibrary　>　</li>
 					<li>도서검색</li>
 				</ul>
 			</div>

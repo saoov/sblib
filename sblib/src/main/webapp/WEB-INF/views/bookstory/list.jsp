@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE html>
 <html>
@@ -62,7 +61,7 @@
 	
 	<!-- table -->
 	<div class="panel-body">
-	<button id="regBtn" type="button" class="btn btn-secondary pull-right">글 작성</button>
+	<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
 		<table width="100%" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>

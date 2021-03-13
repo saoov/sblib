@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,70 +21,62 @@
 <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
 </head>
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
 <body>
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">질문,답변 작성글 내용</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                             작성글 내용입니다.
-                        </div>
-                        <!-- /.panel-heading -->
+  <div id='body'>
+   <div id='sidemenu'>
+      <div class="title">
+         <h2>열린공간</h2>
+      </div>
+      <ul>
+         <li><a href="/notice/list">공지사항</a></li>
+         <li><a href="/question/list">묻고답하기</a></li>
+         <li><a href="/bookstory/list">책이야기</a></li>
+      </ul>
+      <div class="lastchild"></div>
+   </div>
+   
+   <div id='layer'>
+      <h3>책이야기</h3>
+      <div style="width:100%; height:20px;">
+      <ul>
+         <li>열린공간　>　</li>
+         <li>책이야기</li>
+      </ul>
+      </div>
+        <hr style="margin-top:30px;">
                         
-                        <div class="panel-body">
-                 
-                             <div class="form-group">
-                                 <label>글번호</label>
-                                 <input class="form-control" name="que_no" readonly="readonly" value='<c:out value="${question.que_no}"/>'> 
-                                 <!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
-                             </div>  
+                         <div class="table table-responsive">
+ 
+                          <table class="table">
+                          
+                          <tr>	
+		                    <th class="success" style="background-color: #ffedd7">글번호</th>
+	                    	<td><c:out value="${question.que_no }"/></td>
+	
+                          </tr>
                             
-                             <div class="form-group">
-                                 <label>제목</label>
-                                 <input class="form-control" name="que_title" readonly="readonly" value='<c:out value="${question.que_title}"/>'> 
-                                 <!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
-                             </div>
+                            <tr>	
+                              <th class="success" style="background-color: #ffedd7">작성자</th>
+                              <td><c:out value="${question.que_author}"/></td>
+                              <th class="success" style="background-color: #ffedd7">작성일</th>
+                              <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.que_regdate }" /></td>
+                           </tr>
                              
-                             <div class="form-group">
-                                 <label>내용</label>
-                                 <textarea rows="5" cols="50" name="que_content" class="form-control"><c:out value="${question.que_content}"/></textarea> 
-                             </div>
+                            <tr>
+	                        	<th class="success" style="background-color: #ffedd7">제목</th>
+	                        	<td colspan="3"><c:out value="${bookstory.story_title }"/></td>
+	                        </tr>
+	
+	                        <tr>
+	                            <th class="success" style="background-color: #ffedd7">내용</th>
+		                        <td colspan="3"><textarea rows="5" cols="50" style="border: none"><c:out value="${bookstory.story_content}"/></textarea></td>
+	                         </tr>
                              
-                             <div class="form-group">
-                                 <label>작성자</label>
-                                 <input class="form-control" name="que_author" value='<c:out value="${question.que_author}"/>'>
-                             </div>
-                             
-                             <div class="form-group">
-                                 <label>처리상태</label>
-                                 <input class="form-control" name="que_status" value='<c:out value="${question.que_status}"/>'>
-                             </div>
-                             <hr>
-                             
-                             <!-- 답변 -->
-                             <div class="form-group">
-                                 <label>제목</label>
-                                 <input class="form-control" name="ans_title" readonly="readonly" value='<c:out value="${answer.ans_title}"/>'> 
-                             </div>
-                             
-                             <div class="form-group">
-                                 <label>내용</label>
-                                 <textarea rows="5" cols="50" name="ans_content" class="form-control"><c:out value="${answer.ans_content}"/></textarea> 
-                             </div>
-                             
-                             <div class="form-group">
-                                 <label>등록일</label>
-                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${question.que_regdate}" /> 
-                             </div>
-                             
-                             <!-- 답변 -->
                              
                              <form id='actionForm' action="/question/list" method='get'>
                                 <input type='hidden' name='pageNum' value = '${page.pageNum}'>
@@ -92,6 +86,8 @@
                                 <input type='hidden' name='keyword' value = '${page.keyword}'>
                              </form>
                              
+                             <tr>
+                             <td colspan="4">
                              <button type="button" class="btn btn-default listBtn"><a href='/question/list'>목록</a></button>
                              <button type="button" class="btn btn-default modBtn"><a href='/question/modify?que_no=<c:out value="${question.que_no}"/>'>수정</a></button>
 							<c:choose>
@@ -99,6 +95,9 @@
 									<button type="button" class="btn btn-info ansBtn">답변</button>
 								</c:when>
 							</c:choose>
+							</td>
+                            </tr>
+                           </table>
 					<script>
 						var actionForm = $("#actionForm");
 
@@ -126,7 +125,9 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
 </html>
