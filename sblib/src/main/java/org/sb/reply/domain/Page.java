@@ -1,4 +1,4 @@
-package org.sb.bookstory.domain;
+package org.sb.reply.domain;
 
 
 import lombok.Getter;
