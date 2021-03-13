@@ -10,6 +10,8 @@ public interface NoticeService {
 	
 	List<NoticeVO> getList(Page page);
 	
+	public List<NoticeVO> List();
+	
 	NoticeVO get(int notice_no);
 	
 	int remove(int notice_no);

@@ -26,6 +26,11 @@ private final NoticeMapper mapper;
 	public List<NoticeVO> getList(Page page) {
 		return mapper.getListWithPaging(page);
 	}
+	
+	@Override
+	public List<NoticeVO> List() {
+		return mapper.getList();
+	} 
 
 	@Override
 	public NoticeVO get(int notice_no) {

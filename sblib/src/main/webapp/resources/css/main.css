@@ -19,13 +19,15 @@
         	width:220px;
         	height: 50px;
         }
-
+		.header1{
+			display:table;
+		}
         .toplink {
             position: absolute;
             width: 500px;
-            height: 25px;
+            height: 100%;
             right: 0px;
-            top:18px;
+            top: 10px;
             letter-spacing: 1px;
         }
         .toggler{
@@ -359,7 +361,8 @@
         .box2 ul img{
             width: 120px;
             height: 100%;
-            border: 2px solid red;
+            margin-top :  20px;
+            box-shadow: 2px 2px gray;
         }
         .box2 ul ul{
             margin-top: 5px;
@@ -478,9 +481,6 @@
             .footer{
                 width: 100%;
             }
-            #content1{
-                width: 100%;
-            }
             #content2 {
                 width: 100%;
             }
@@ -499,12 +499,15 @@
 
         /* 화면너비 0 ~ 768px */
         @media(max-width: 768px) {
+<<<<<<< HEAD
             
 
             #banner .frame {
                 height: 378px;
                 background-color: dimgray;
             }
+=======
+>>>>>>> a21e5188cd706ac4319f95747624897aa33b964a
             .toggler{
                 display: block;
                 width:100%;
@@ -519,17 +522,27 @@
                 z-index: 101;
                 height: auto;
             }
-            
             .menus label{
                 display: block;
+            }
+            #banner .frame {
+                height: 80px;
+                background-color: white;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
             #banner {background: none;}
             #banner .searchbar {
                 width: 100%;
                 top: 0px;
                 margin: 0;
-                margin-top: 3.5px;
             }
+            #banner .searchbar{
+            	border:2px solid #bdbdbd;
+            }
+            #content1 {
+				width:100%;
+			}
 
             #content1 .article2 .box1 {
                 width: 100%;
@@ -538,7 +551,7 @@
             
             #content1 .article2 .box2 {
                 width: 100%;
-                height: 300px;
+                height: 400px;
                 margin-left: 0;
                 margin-top: 2%
             }
@@ -549,7 +562,7 @@
         
             #content1 .slider .slider-box{
                 width: 100%;
-                height: 250px;
+                height: 100%;
             }
 
             #content1 .article2 .box3 {
@@ -616,6 +629,9 @@
 
             #content1 {
                 padding: 0
+            }
+            #content1 .article2 .box2 {
+                height: 300px;
             }
 
             #content2 {

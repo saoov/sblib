@@ -41,8 +41,8 @@
 				<h2>프로그램</h2>
 			</div>
 			<ul>
-				<li><a href="#">도서관일정</a></li>
-				<li><a href="#">독서문화행사</a></li>
+				<li><a href="/event/calendar">도서관일정</a></li>
+				<li><a href="/event/eventBoard">독서문화행사</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -56,7 +56,11 @@
 			</div>
 			<hr style="margin-top:30px;">
 			<div id='calendar'>
-				<button class="add-button" type="button" onclick="click_add();">휴관일 등록</button>
+			 <c:choose>
+					<c:when test= "${userSession.member_name eq '관리자'}">
+						<button class="add-button" type="button" onclick="click_add();">휴관일 등록</button>
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -115,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
               title: "${holiday.holiday_title}",
               start: "${holiday.holiday_start}",
               end: "${holiday.holiday_end}",
-              color: "#e3f2fd",
-              backgroundColor: "#0d47a1"
+              textColor : "#e91e63",
+              color: "#FFFFFF"
             },
             </c:forEach>
         ]

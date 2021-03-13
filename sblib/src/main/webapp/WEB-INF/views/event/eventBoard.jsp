@@ -96,8 +96,8 @@
 				<h2>프로그램</h2>
 			</div>
 			<ul>
-				<li><a href="#">도서관일정</a></li>
-				<li><a href="#">독서문화행사</a></li>
+				<li><a href="/event/calendar">도서관일정</a></li>
+				<li><a href="/event/eventBoard">독서문화행사</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -128,7 +128,11 @@
 					</form>
 				</div>
 				<div class="eventregister">
+				 <c:choose>
+					<c:when test= "${userSession.member_name eq '관리자'}">
 					<button id="regBtn" type="button" class="btn btn-secondary">행사등록</button>
+					</c:when>
+				</c:choose>
 				</div>
 			</div>
 			

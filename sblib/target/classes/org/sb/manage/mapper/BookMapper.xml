@@ -5,8 +5,8 @@
 	
 	<mapper namespace="org.sb.manage.mapper.BookMapper">
 		<insert id="insert">
-			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount)
-			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1)
+			insert into book(bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount,todaybook)
+			values (seq_book.nextval,#{title}, #{link},#{image},#{author},#{price},#{discount},#{publisher},#{pubdate},#{isbn},#{description},1,0)
 		</insert>
 		
 		<select id="getBookById" resultType="org.sb.manage.domain.Book">
@@ -15,13 +15,18 @@
 		
 		<select id="getList" resultType="org.sb.manage.domain.Book">
 			<![CDATA[
-				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
-				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount
+				select bno,title,link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount,todaybook
+				from (select rownum rn, bno, title, link,image,author,price,discount,publisher,pubdate,isbn,description,nowcount,nvl(todaybook,'0')todaybook
 					from book where rownum <= #{pageNum} * #{amount} 
 					)
 					where rn > (#{pageNum} -1 ) * #{amount}
 			]]>
 		</select>
+		
+		<select id="getTodayBook" resultType="org.sb.manage.domain.Book">
+			select * from book where todaybook=1
+		</select>
+		
 		
 		<select id="getTotalCount" resultType="int">
 			select count(*) from BOOK where bno > 0
@@ -30,5 +35,18 @@
 		<delete id="deleteById">
 			delete from book where bno = #{bno}
 		</delete>
+		
+		<select id="getTotalTodayBookCount" resultType="int">
+			select count(*) from book where nvl(todaybook,'0')=1
+		</select>
+		
+		<update id="setTodaybook" >
+			update book set todaybook = 1 where bno=#{bno}
+		</update>
+		
+		<update id="downTodaybook">
+			update book set todaybook = 0 where bno=#{bno}
+		</update>
+		
 		
 	</mapper>

@@ -123,10 +123,28 @@
 				<p>책 소개</p>
 				${book.description }
 			</div>
+<<<<<<< HEAD
 			<div class="book_button">
 				<button type="button" class="btn addCart_btn btn-warning"><span class="white">서재에 담기</span></button>
 				<button type="button" class="btn myCart_btn btn-warning"><span class="white">내 서재</span></button>
 				<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
+=======
+			<div class="bookData">
+				<c:choose>
+					<c:when test="${userSession eq null}">
+						<button type="button" class="addCart_btn" onclick="javascript:login()">서재에 담기</button>
+						<a href="/search/cartList" onclick="javascript:login()">내 서재</a>
+						<button type="button" class="historyback">뒤로가기</button>
+					</c:when>
+					<c:otherwise>
+					<button type="button" class="addCart_btn">서재에 담기</button>
+						<a href="/search/cartList">내 서재</a>
+						<button type="button" class="historyback">뒤로가기</button>
+					</c:otherwise>
+				</c:choose>
+
+
+>>>>>>> a21e5188cd706ac4319f95747624897aa33b964a
 			</div>
 		</div>
 	</div>
@@ -154,9 +172,16 @@
 			history.back();
 		});
 		
+<<<<<<< HEAD
 		$(".myCart_btn").on("click", function() {
 			location.href='/search/cartList';
 		});
+=======
+		function login(){ 
+    		alert('로그인이 필요한 서비스입니다.'); 
+    		document.location.href="/member/login";
+    	} 
+>>>>>>> a21e5188cd706ac4319f95747624897aa33b964a
 	</script>
 	<!-- js -->
 	<tiles:insertAttribute name="js"></tiles:insertAttribute>

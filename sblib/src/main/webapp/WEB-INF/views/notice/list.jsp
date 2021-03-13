@@ -69,7 +69,11 @@
 
 				<!-- table -->
 				<div class="panel-body">
-										<button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
+				 <c:choose>
+					<c:when test= "${userSession.member_name eq '관리자'}">
+						<button id="regBtn" type="button" class="btn btn-secondary pull-right">글 작성</button>
+					</c:when>
+				</c:choose>
 					<table width="100%"
 						class="table table-striped table-bordered table-hover">
 						<thead>

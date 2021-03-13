@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-         <form id='actionForm' action="/book/bookList" method="get">
+</head>
+
+
+        <form id='actionForm' action="/book/bookList" method="get">
       <input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
       <input type="hidden" name="amount" value="${pageDTO.page.amount }">
 <%--       <input type="hidden" name="type" value="<c:out value='${pageDTO.page.type }'/>"> --%>
@@ -58,7 +61,7 @@
       </div>
     </div>
   
-    <table>
+    <table class="table table-striped table-bordered table-hover">
        <thead>
           <tr>
              <td>사진</td>
@@ -90,13 +93,37 @@
 
    <tr>
    <td colspan="8">
+   	<div style="float: left">
+   	
+
          <form action="/book/bookdelete" method="post">
           
           <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
              <!--  -->      <input type="hidden" name="bookname" value="${book.title }" >
              <!--  -->      <input type="hidden" name="nowcount" value="${book.nowcount }" >
-               <input type="submit" value="삭제">
+               <input class="btn btn-danger" type="submit" value="삭제">
           </form>
+  
+     <c:if test = "${book.todaybook eq 0}">
+        
+           <form id="down" action="/book/tbinsert" method="post">
+          <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
+             <!--  -->     
+               <input class="btn btn-info" type="submit" value="이달의 도서 적용">
+          </form>
+      </c:if>
+      
+      <c:if test = "${book.todaybook eq 1}">
+        
+           <form id="down" action="/book/tbdelete" method="post">
+          <!--  -->   <input type="hidden" name="bno" value="${book.bno }" >
+             <!--  -->     
+               <input class="btn btn-danger" type="submit" value="이달의 도서 삭제">
+          </form>
+      </c:if>
+ 
+   	</div>
+      
       </td>
    </tr>
      </c:forEach>
@@ -105,37 +132,118 @@
 
     <!-- table -->
     <!-- pagination -->
-   <div class="pagination" style="right : 50%">
-      <ul style="list-style: none;">
-         <c:if test="${pageDTO.prev }">
-            <li style="float: left"><a style="font-size: 20px; color: black " class="k" href='${pageDTO.startPage - 1 }'>Prev</a></li>
-         </c:if>
-         
-         <c:forEach var="num" begin="${pageDTO.startPage }" end="${pageDTO.endPage }">
-            <li style="float: left"><a style="font-size: 20px; color: black " class="k" href='${num }'>| ${num } |</a></li>
-         </c:forEach>
-         
-         <c:if test="${pageDTO.next }">
-            <li style="float: left"><a style="font-size: 20px; color: black " class="k" href='${pageDTO.endPage + 1 }'>Next</a></li>
-         </c:if>
-      </ul>
+    <div class="pagination">
+      <ul class="pagination">
+							<c:if test="${pageDTO.prev}">
+								<li class="page-item"><a class="page-link"
+									href="${pageDTO.startPage - 1}" tabindex="-1">이전</a></li>
+							</c:if>
+							<c:forEach begin="${pageDTO.startPage}"
+								end="${pageDTO.endPage}" var="num">
+								<li class="page-item ${pageDTO.page.pageNum == num?"active":""}">
+									<a class="page-link" href="${num }">${num }</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pageDTO.next}">
+								<li class="page-item"><a class="page-link"
+									href="${pageDTO.endPage + 1}" tabindex="-1">다음</a></li>
+							</c:if>
+						</ul>
+						<form id='actionForm3' action="/book/bookList" method="get">
+						<input type='hidden' name='pageNum'
+							value='${pageDTO.page.pageNum}'> <input type='hidden'
+							name='amount' value='${pageDTO.page.amount}'>
+							<input type='hidden'
+							name='amount' value='${pageDTO.page.amount}'>
+					</form>
    </div>
+   
+   <div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-secondary"data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
    <!-- pagination -->
    <script>
       $(document).ready(function(){
          
          var result = '<c:out value="${result}"/>';
+         var title = '<c:out value="${title}"/>';
+         
          var actionForm = $("#actionForm");
          var searchForm = $("#searchForm");
          
-         $(".k").on("click",function(e){
-            e.preventDefault();
-            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-            actionForm.submit();
-         });
-         
-         
-         
+         var result = '<c:out value="${result}"/>';
+		 
+			checkModal(result);
+
+			history.replaceState({}, null, null);
+
+			function checkModal(result) {
+
+				if (result === '' || history.state) {
+					return;
+				}
+				if (result === 'success') {
+					$(".modal-title").html("삭제성공");
+					$(".modal-body").html(title+"이 삭제되었습니다.");
+
+				} else if (result === 'fail') {
+					$(".modal-title").html("삭제실패");
+					$(".modal-body").html(title+"을 대여하는 회원이 존재합니다. 삭제실패");
+				}
+				else if (result === 'setsuccess') {
+					$(".modal-title").html("등록성공");
+					$(".modal-body").html("오늘의 책등록 성공");
+				}
+				else if (result === 'setfail') {
+					$(".modal-title").html("등록실패");
+					$(".modal-body").html("이미4 개이상의 오늘의 책이 등록되어 있습니다.");
+				}
+				else if (result === 'downsuccess') {
+					$(".modal-title").html("내리기성공");
+					$(".modal-body").html("오늘의책 내리기성공");
+				}
+				
+				$("#myModal").modal("show");
+			}
+			
+			var actionForm = $("#actionForm3");
+
+			$(".page-link").on(
+					"click",
+					function(e) {
+
+						e.preventDefault();
+
+						var targetPage = $(this).attr("href");
+
+						console.log(targetPage);
+
+						actionForm
+								.find("input[name='pageNum']")
+								.val(targetPage);
+						actionForm.submit();
+
+					});
+			
+
          $(".move").on("click",function(e){
             e.preventDefault();
             actionForm.append("<input type='hidden' name='bno' value='"+

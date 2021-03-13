@@ -96,25 +96,23 @@
                 <p style="text-align: center; margin-top: 10px;">공지사항</p>
                 <a class="notice" href="/notice/list"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
-                <div class="noticeContent">
-                
-                <div class="panel-body">
-					 <table width="100%"
-						class="table table-striped table-bordered table-hover">
+				<div class="noticeContent">
+					<table width="100%">
 						<tbody>
-							<c:forEach items="#{list }" var="noticeVO">
-								<tr class="odd gradeX">
-									<td><a class="move" href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>
-											<c:out value="${noticeVO.notice_title}" /></a>
-									</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${noticeVO.notice_regdate }" /></td>
+							<c:forEach items="#{noticeVO }" var="noticeVO">
+								<tr >
+									<td><a class="move"
+										href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>
+											<c:out value="${noticeVO.notice_title}" />
+									</a></td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${noticeVO.notice_regdate }" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table> 
+					</table>
 				</div>
-                </div>
-            </div>
+			</div>
             
             <!-- 이미지 슬라이드 시작 -->
             <div class="box2">                        
@@ -134,6 +132,7 @@
             
             <div class="box3">
                 <p style="text-align: center; margin-top: 10px;">일정 안내</p>
+                <a class="calender" href="/event/calendar"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px; margin-bottom:0;">
                 <div class="calendar">
                     <div id='calendar'>
@@ -150,7 +149,7 @@
             <div class="bar_icon">
               <ul>
                 <li>
-                <a href="#"><i class="fas fa-book-open" aria-hidden="true"></i></a>
+                <a href="/bookstory/list"><i class="fas fa-book-open" aria-hidden="true"></i></a>
                 <ul><li>책이야기</li></ul>
                 </li>
                 <li>
@@ -162,7 +161,7 @@
                 <ul><li>이용안내</li></ul>
                 </li>
                 <li>
-                <a href="#"><i class="far fa-comment-dots" aria-hidden="true"></i></a>
+                <a href="/question/list"><i class="far fa-comment-dots" aria-hidden="true"></i></a>
                 <ul><li>묻고답하기</li></ul>
                 </li>
                 <li>
@@ -201,49 +200,24 @@
                     <img src="resources/images/stackedbooks2.png">
                 </div>
             </div>
-            <div class="box2">
-                <p style="text-align: center; margin-top: 10px;">이달의 추천도서</p>
-                <a class="addbooks" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
-                <hr style="margin-left: 20px; margin-right: 20px;">
-                <ul>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><img src="resources/images/logo.png"></a>
-                        <ul>
-                            <li><a href="#">책제목</a></li>
-                            <li>지은이</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </article>
+			<div class="box2">
+				<p style="text-align: center; margin-top: 10px;">이달의 추천도서</p>
+				<c:choose>
+					<c:when test="${userSession.member_name eq '관리자'}">
+						<a class="addbooks" href="/book/bookList"><img src="resources/images/plus.png"
+							style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
+					</c:when>
+				</c:choose>
+				<hr style="margin-left: 20px; margin-right: 20px;">
+				<ul>
+					<c:forEach items="${bookList}" var="book">
+						<li><a href="/search/getBook?bno=${book.bno}"><img
+								src="${book.image }"></a></li>
+					</c:forEach>
+
+				</ul>
+			</div>
+		</article>
     </section>
 
 
@@ -291,6 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
     	initialView: 'dayGridMonth',
     	headerToolbar:false,
+    	googleCalendarApiKey : "AIzaSyCvQ-pd1R-0XMH78M5nLuoRb9LKvP8hlIU",
+		eventSources:[
+			{
+				googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",
+				textColor : "#e91e63",
+				color : "#f44336"
+			}
+		],
     	events:[
         	<c:forEach items="${list}" var="event">
             {
@@ -303,8 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               start: "${holiday.holiday_start}",
               end: "${holiday.holiday_end}",
-              color: "#e3f2fd",
-              backgroundColor: "#0d47a1"
+              color: "#f44336"
             },
             </c:forEach>
     	]

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,23 +22,39 @@
 <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
 </head>
+<!-- css -->
+<tiles:insertAttribute name="css"></tiles:insertAttribute>
 <body>
+<!-- header -->
+<tiles:insertAttribute name="header"></tiles:insertAttribute>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">나의 묻고 답하기 게시글</h1>                                                           
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                                                 나의 묻고 답하기 게시글 목록입니다.
-                            
-                        </div>
-                        <!-- /.panel-heading -->
+<div id='body'>
+   <div id='sidemenu'>
+      <div class="title">
+         <h2>MyLibrary</h2>
+      </div>
+      <ul>
+         <li><a href="/notice/list">내서재</a></li>
+         <li><a href="/question/list">장바구니</a></li>
+         <li><a href="/bookstory/list">내질문답변</a></li>
+         <li><a href="/bookstory/list">내책이야기</a></li>
+      </ul>
+      <div class="lastchild"></div>
+   </div>
+   
+   <div id='layer'>
+      <h3>내가 쓴 질문답변</h3>
+      <div style="width:100%; height:20px;">
+      <ul>
+         <li>MyLibrary　>　</li>
+         <li>내질문답변</li>
+      </ul>
+      </div>
+        <hr style="margin-top:30px;">
+
+
+
+
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
@@ -70,7 +87,10 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
+<!-- footer -->
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+  
 </body>
 </html>

@@ -13,11 +13,37 @@
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>
 <link rel="stylesheet" href="resources/css/slick.css">
-<body>    
 
+<body>
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<body>
+
+<div id='body'>
+   <div id='sidemenu'>
+      <div class="title">
+         <h2>MyLibrary</h2>
+      </div>
+      <ul>
+         <li><a href="/notice/list">내서재</a></li>
+         <li><a href="/question/list">장바구니</a></li>
+         <li><a href="/bookstory/list">내질문답변</a></li>
+         <li><a href="/bookstory/list">내책이야기</a></li>
+      </ul>
+      <div class="lastchild"></div>
+   </div>
+   
+   <div id='layer'>
+      <h3>내서재</h3>
+      <div style="width:100%; height:20px;">
+      <ul>
+         <li>MyLibrary　>　</li>
+         <li>내서재</li>
+      </ul>
+      </div>
+        <hr style="margin-top:30px;">
+
+
+
 	<table border="1" class="table">
 		<tr>
 			<td>제목</td>	
@@ -37,6 +63,8 @@
 		</tr>
 		</c:forEach>
 	</table>
+	</div>
+	</div>
 		
 	<script>
 		$(".returnBtn").on("click", function() {
@@ -61,6 +89,8 @@
 			}
 		});
 	</script>
+	<!-- js -->
+<tiles:insertAttribute name="js"></tiles:insertAttribute>
 	<!-- footer -->
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>

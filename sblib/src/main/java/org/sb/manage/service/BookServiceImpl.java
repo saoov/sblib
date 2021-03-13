@@ -172,6 +172,30 @@ public class BookServiceImpl implements BookService{
 		bookMapper.insert(book);
 	}
 
+	@Override
+	public int getTotalTodayBookCount() {
+		// TODO Auto-generated method stub
+		return bookMapper.getTotalTodayBookCount();
+	}
+
+	@Override
+	public void setTodaybook(long bno) {
+		// TODO Auto-generated method stub
+		bookMapper.setTodaybook(bno);
+	}
+
+	@Override
+	public void downTodaybook(long bno) {
+		// TODO Auto-generated method stub
+		bookMapper.downTodaybook(bno);
+	}
+
+	@Override
+	public List<Book> getTodayBook() {
+		// TODO Auto-generated method stub
+		return bookMapper.getTodayBook();
+	}
+
 
 	
 	

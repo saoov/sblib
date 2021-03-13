@@ -10,7 +10,7 @@
            
         </form>
         </div>
-  <table>
+  <table class="table table-striped table-bordered table-hover">
        <thead>
           <tr>
              <td>사진</td>
@@ -64,3 +64,59 @@
     </table>
    
      </div>
+     
+	<div id="myModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					<button type="button" class="btn btn-secondary"data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal -->
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+
+							   var result = '<c:out value="${result}"/>';
+							   var title = '<c:out value="${title}"/>';
+									checkModal(result);
+
+									history.replaceState({}, null, null);
+
+									function checkModal(result) {
+
+										if (result === '' || history.state) {
+											return;
+										}
+										if (result === 'success') {
+											$(".modal-title").html("등록성공");
+											$(".modal-body").html(title+"이 등록되었습니다.");
+
+										} else if (result === 'fail') {
+											$(".modal-title").html("삭제실패");
+											$(".modal-body").html("해당도서는 이미존재합니다.");
+										}
+										$("#myModal").modal("show");
+									
+
+											
+							}
+							});
+		
+		</script>
+     
