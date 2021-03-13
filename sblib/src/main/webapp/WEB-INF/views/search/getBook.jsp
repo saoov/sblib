@@ -1,34 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<title>Insert title here</title>
+<title>삼부도서관</title>
 <style>
-.bookData {
+.bookDetailInformation .bookInfoWrap.cate_volume{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+.bookDataDiv {
+    min-height: 350px;
+    position: relative;
+    padding: 30px 30px 30px 250px;
+    margin-bottom: 30px;
+    border: 1px solid #e2e2e2;
+}
+.bookDataDiv .bookImg {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 190px;
+    height: 264px;
+}
+.book_title{
+	margin-bottom: 30px;
+}
+.book_title > span{
+	font-size: 30px;
+}
+.book_description{
+	min-height: 200px;
 	position: relative;
+	padding: 30px;
+	margin-bottom: 30px;
 	border: 1px solid #e2e2e2;
-	padding: 30px 25px;
-	margin: 20px;
 }
-
-.bookImg {
-	position: absolute;
-	left: 25px;
-	top: 30px;
-	width: 200px;
-	box-sizing: border-box;
-}
-
-.bookInfo {
+.book_button{
+	min-height: 100px;
 	position: relative;
-	margin-left: 250px;
-	padding-bottom: 150px;
-	box-sizing: border-box;
+	padding: 20px;
+	margin-bottom: 50px;
+	border: 1px solid #e2e2e2;
+}
+.white{
+	color : white;
+}
+.btn{
+	margin : 10px 30px;
+	
 }
 </style>
 </head>
@@ -60,31 +87,46 @@
 				</ul>
 			</div>
 			<hr style="margin-top: 30px;">
-			<div class="bookData">
-				<div class="bookImg">
-					<img src="${book.image}">
-				</div>
-				<div class="bookInfo">
-					<ul>
-						<li>${book.author}지음</li>
-						<li>출판사 : ${book.publisher }</li>
-						<li>출판일 : ${book.pubdate }</li>
-						<li>ISBN : ${book.isbn }</li>
-						<c:choose>
-							<c:when test="${book.nowcount eq '1' }">대여 가능</c:when>
-							<c:otherwise>대여 불가</c:otherwise>
-						</c:choose>
-					</ul>
+			<div class="bookDetailInformation">
+				<div class="bookInfoWrap cate_volume">
+					<div class="bookDataDiv">
+						<div class="bookImg">
+							<img src="${book.image}">
+						</div>
+						<div class="bookInfo">
+							<div class="book_title">
+								<span>${book.title }</span>
+							</div>
+							<div class="book_publish">
+								<span>${book.author } | </span>
+								<span>${book.publisher }</span>
+							</div>
+							<div class="book_pubdate">
+								<span>${book.pubdate }</span>
+							</div>
+							<div class="book_isbn">
+								<span>${book.isbn }</span>
+							</div>
+							<div class="rent">
+								<span>상태 : 
+									<c:choose>
+										<c:when test="${book.nowcount eq '1' }">대여 가능</c:when>
+										<c:otherwise>대여 불가</c:otherwise>
+									</c:choose>
+								</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="bookData">
+			<div class="book_description">
 				<p>책 소개</p>
 				${book.description }
 			</div>
-			<div class="bookData">
-				<button type="button" class="addCart_btn">서재에 담기</button>
-				<button type="button" class="historyback">뒤로가기</button>
-				<a href="/search/cartList">내 서재</a>
+			<div class="book_button">
+				<button type="button" class="btn addCart_btn btn-warning"><span class="white">서재에 담기</span></button>
+				<button type="button" class="btn myCart_btn btn-warning"><span class="white">내 서재</span></button>
+				<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
 			</div>
 		</div>
 	</div>
@@ -108,10 +150,16 @@
 		});
 		
 		
-		$(".historyback").on("click", function() {
+		$(".historyBack_btn").on("click", function() {
 			history.back();
 		});
+		
+		$(".myCart_btn").on("click", function() {
+			location.href='/search/cartList';
+		});
 	</script>
+	<!-- js -->
+	<tiles:insertAttribute name="js"></tiles:insertAttribute>
 	<!-- footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>

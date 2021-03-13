@@ -168,7 +168,13 @@ public class SearchServiceImpl implements SearchService{
 
 	@Override
 	public Book getBookByBno(long bno) {
-		return bookMapper.getBookByBno(bno);
+		Book book = bookMapper.getBookByBno(bno);
+		String year = book.getPubdate().substring(0,4);
+		String month = book.getPubdate().substring(4,6);
+		String day = book.getPubdate().substring(6);
+		String pubdate = year+"년 "+month+"월 "+day+"일";
+		book.setPubdate(pubdate);
+		return book;
 	}
 
 	@Override

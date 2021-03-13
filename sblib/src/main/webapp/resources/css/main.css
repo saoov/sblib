@@ -499,13 +499,7 @@
 
         /* 화면너비 0 ~ 768px */
         @media(max-width: 768px) {
-            .toplink{
-                display: none;
-            }
             
-            .userinfo {
-                display: none;
-            }
 
             #banner .frame {
                 height: 378px;

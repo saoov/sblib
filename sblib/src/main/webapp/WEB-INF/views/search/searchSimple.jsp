@@ -44,19 +44,34 @@
 	padding-bottom: 40px;
 	box-sizing: border-box;
 	}
+	.searchInputbox{
+	
+	}
+	#searchType{
+		float: left;
+	}
+	#searchBook{
+		margin-left: -10px;
+		font-size: 30px;
+	}
+	#searchInputtext{
+		outline: none;
+	}
+	option{
+		font-size: 0.7em;
+	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<title>Book List</title>
+<title>삼부도서관</title>
 </head>
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>
-<link rel="stylesheet" href="resources/css/slick.css">
 <body>    
 
+<body>
 <!-- header -->
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<body>
 	<!-- sidebar -->
 	<div id='body'>
 		<div id='sidemenu'>
@@ -65,6 +80,7 @@
 			</div>
 			<ul>
 				<li><a href="/search/searchSimple">도서검색</a></li>
+				<li><a href="http://www.dlibrary.go.kr/" target="_blank">국회원문 DB</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -74,25 +90,31 @@
 			<h3>도서검색</h3>
 			<div style="width: 100%; height: 20px;">
 				<ul>
+					<li>자료검색　>　</li>
 					<li>도서검색</li>
 				</ul>
 			</div>
 			<hr style="margin-top: 30px;">
 				<!-- search -->
 				<div class="searchBar">
-					<form id='searchForm' action='/search/searchResult' method='get'>
-						<select name='type'>
-							<option value="T">서명</option>
-							<option value='A'>저자</option>
-							<option value='P'>출판사</option>
-							<option value='TA'>서명 + 저자</option>
-							<option value='TP'>서명 + 출판사</option>
-							<option value='TAP'>서명 + 저자 + 출판사</option>
-						</select> <input type="text" name='keyword' placeholder="도서명을 입력하세요.">
-						<input type="hidden" name="pageNum" value="1"> <input
-							type="hidden" name="amount" value="10">
-						<button>검색</button>
-					</form>
+								<form id='searchForm' action='/search/searchResult' method='get'>
+										<div id="searchType">
+											<select name='type' style="font-size:30px; height: 100%">
+												<option value="T">서명</option>
+												<option value='A'>저자</option>
+												<option value='P'>출판사</option>
+												<option value='TA'>서명+저자</option>
+												<option value='TP'>서명+출판사</option>
+												<option value='TAP'>서명+저자+출판사</option>
+											</select>
+										</div>
+										<div class="searchInputbox" style="width: 100%; height: 100%;">
+											<input id="searchInputtext" type="text" name='keyword' placeholder=" 검색어를 입력하세요." style="font-size:30px">
+											<input type="hidden" name="pageNum" value="1"> 
+											<input type="hidden" name="amount" value="10">
+											<button id="searchBook"><img src="/resources/images/searchBook.png" style="height:30px; width:30px"></button>
+										</div>
+								</form>
 				</div>
 				<!-- search -->
 		</div>
@@ -123,6 +145,8 @@
 			})
 		});
 	</script>
+	<!-- js -->
+	<tiles:insertAttribute name="js"></tiles:insertAttribute>
 	  <!-- footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 </body>
