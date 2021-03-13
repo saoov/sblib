@@ -94,31 +94,32 @@
                              
                              <button type="button" class="btn btn-default listBtn"><a href='/question/list'>목록</a></button>
                              <button type="button" class="btn btn-default modBtn"><a href='/question/modify?que_no=<c:out value="${question.que_no}"/>'>수정</a></button>
-                             <button type="button" class="btn btn-info ansBtn">답변</button>
-                            
-                             <script>
-                             
-                             var actionForm = $("#actionForm");
-                             
-                             $(".listBtn").click(function(e){
-                            	e.preventDefault();
-                            	actionForm.find("input[name='que_no']").remove();
-                            	actionForm.submit();
-                             });
-                             
-                             $(".modBtn").click(function(e){
-                             	e.preventDefault();
-                             	actionForm.attr("action","/question/modify");
-                             	actionForm.submit();
-                              });
-                             
-                             $(".ansBtn").click(function(e){
-                              	e.preventDefault();
-                              	actionForm.attr("action","/answer/register");
-                              	actionForm.submit();
-                              });
-                             
-                             </script>
+							<c:choose>
+								<c:when test="${userSession.member_grade eq 'manager'}">
+									<button type="button" class="btn btn-info ansBtn">답변</button>
+								</c:when>
+							</c:choose>
+					<script>
+						var actionForm = $("#actionForm");
+
+						$(".listBtn").click(function(e) {
+							e.preventDefault();
+							actionForm.find("input[name='que_no']").remove();
+							actionForm.submit();
+						});
+
+						$(".modBtn").click(function(e) {
+							e.preventDefault();
+							actionForm.attr("action", "/question/modify");
+							actionForm.submit();
+						});
+
+						$(".ansBtn").click(function(e) {
+							e.preventDefault();
+							actionForm.attr("action", "/answer/register");
+							actionForm.submit();
+						});
+					</script>
                         </div>
                         <!-- /.panel-body -->
                     </div>

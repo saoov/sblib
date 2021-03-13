@@ -122,6 +122,7 @@
             
             <div class="box3">
                 <p style="text-align: center; margin-top: 10px;">일정 안내</p>
+                <a class="calender" href="/event/calendar"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px; margin-bottom:0;">
                 <div class="calendar">
                     <div id='calendar'>
@@ -138,7 +139,7 @@
             <div class="bar_icon">
               <ul>
                 <li>
-                <a href="#"><i class="fas fa-book-open" aria-hidden="true"></i></a>
+                <a href="/bookstory/list"><i class="fas fa-book-open" aria-hidden="true"></i></a>
                 <ul><li>책이야기</li></ul>
                 </li>
                 <li>
@@ -150,7 +151,7 @@
                 <ul><li>이용안내</li></ul>
                 </li>
                 <li>
-                <a href="#"><i class="far fa-comment-dots" aria-hidden="true"></i></a>
+                <a href="/question/list"><i class="far fa-comment-dots" aria-hidden="true"></i></a>
                 <ul><li>묻고답하기</li></ul>
                 </li>
                 <li>
@@ -189,21 +190,24 @@
                     <img src="resources/images/stackedbooks2.png">
                 </div>
             </div>
-            <div class="box2">
-                <p style="text-align: center; margin-top: 10px;">이달의 추천도서</p>
-                <a class="addbooks" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
-                <hr style="margin-left: 20px; margin-right: 20px;">
-               <ul>
-                    <c:forEach items="${bookList}" var="book">
-                    <li>
-                        <a href="/search/getBook?bno=${book.bno}"><img src="${book.image }"></a>
-                      
-                    </li>
-                    </c:forEach>
-                   
-                </ul>
-            </div>
-        </article>
+			<div class="box2">
+				<p style="text-align: center; margin-top: 10px;">이달의 추천도서</p>
+				<c:choose>
+					<c:when test="${userSession.member_name eq '관리자'}">
+						<a class="addbooks" href="/book/bookList"><img src="resources/images/plus.png"
+							style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
+					</c:when>
+				</c:choose>
+				<hr style="margin-left: 20px; margin-right: 20px;">
+				<ul>
+					<c:forEach items="${bookList}" var="book">
+						<li><a href="/search/getBook?bno=${book.bno}"><img
+								src="${book.image }"></a></li>
+					</c:forEach>
+
+				</ul>
+			</div>
+		</article>
     </section>
 
 

@@ -82,9 +82,20 @@
 				${book.description }
 			</div>
 			<div class="bookData">
-				<button type="button" class="addCart_btn">서재에 담기</button>
-				<button type="button" class="historyback">뒤로가기</button>
-				<a href="/search/cartList">내 서재</a>
+				<c:choose>
+					<c:when test="${userSession eq null}">
+						<button type="button" class="addCart_btn" onclick="javascript:login()">서재에 담기</button>
+						<a href="/search/cartList" onclick="javascript:login()">내 서재</a>
+						<button type="button" class="historyback">뒤로가기</button>
+					</c:when>
+					<c:otherwise>
+					<button type="button" class="addCart_btn">서재에 담기</button>
+						<a href="/search/cartList">내 서재</a>
+						<button type="button" class="historyback">뒤로가기</button>
+					</c:otherwise>
+				</c:choose>
+
+
 			</div>
 		</div>
 	</div>
@@ -111,6 +122,11 @@
 		$(".historyback").on("click", function() {
 			history.back();
 		});
+		
+		function login(){ 
+    		alert('로그인이 필요한 서비스입니다.'); 
+    		document.location.href="/member/login";
+    	} 
 	</script>
 	<!-- footer -->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>

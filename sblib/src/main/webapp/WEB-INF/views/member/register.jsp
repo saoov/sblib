@@ -73,7 +73,7 @@
 				<div class="check_font" id="phone_check"></div>
 			</div>
 			<div style="padding-top: 20px;">	
-				<input type="submit" value="회원가입" id="reg_submit"class="btn btn-primary form-control"> 
+				<input type="submit" value="회원가입" id="reg_submit" class="btn btn-primary form-control" > 
 			</div>
 			<div class="form-group">
 				<input type="reset" class="btn btn-danger" value="지우기" >
