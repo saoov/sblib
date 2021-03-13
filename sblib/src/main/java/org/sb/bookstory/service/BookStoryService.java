@@ -9,13 +9,15 @@ public interface BookStoryService {
 
 	Long register(BookStoryVO bookstory);
 	
+	List<BookStoryVO> getList();
+	
 	List<BookStoryVO> getList(Page page);
 	
 	BookStoryVO get(Long story_no);
 	
 	int remove(Long story_no);
 	
-	int modify(BookStoryVO bookStory);
+	int modify(BookStoryVO bookstory);
 	
 	int getTotal(Page page);
 	

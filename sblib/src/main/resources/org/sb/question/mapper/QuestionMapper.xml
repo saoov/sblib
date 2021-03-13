@@ -7,16 +7,20 @@
 
   <sql id="page">
 		<trim prefix="(" suffix=") AND">
-			<foreach collection="typeArr" item="type" separator="OR">
-				<if test="type=='T'.toString()">
-					title like '%'||#{keyword}||'%'
-				</if>
-				<if test="type=='C'.toString()">
-					content like '%'||#{keyword}||'%'
-				</if>
-			</foreach>
-			</trim>
+	  <foreach collection="typeArr" item="type" separator="OR">
+	    <if test="type == 'T'.toString()">
+          que_title like '%'||#{keyword}||'%'
+        </if>
+        <if test="type == 'C'.toString()">
+          que_content like '%'||#{keyword}||'%'
+        </if>
+        <if test="type == 'W'.toString()">
+          que_author like '%'||#{keyword}||'%'
+        </if>	  
+	  </foreach>
+	  </trim>
   </sql>
+  
   <select id="getList" resultType="org.sb.question.domain.QuestionVO">
      select * from question order by que_no desc
   </select> 
@@ -26,18 +30,19 @@
   
      <![CDATA[
 		select * from
-			(
-			select /*+ INDEX_DESC(question pk_question) */ rownum rn, que_no, que_title, que_content, que_author, que_regdate, que_status 
-			from question 
-			where
-			]]>
-			<include refid="page"></include>
-			<![CDATA[
-			que_no > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
-			)
+		(
+		select /*+ INDEX_DESC(question pk_question) */ rownum rn, que_no, que_title, que_content, que_author, que_regdate, que_status 
+		from question 
+		where
+	 ]]>
+	  	  
+	 <include refid="page"></include>
+	 
+	 <![CDATA[
+		que_no > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
+		)
 		where rn > (#{pageNum}-1) * #{amount}
-		]]>
-
+	 ]]>
   </select>
   <!-- 페이징 -->
   
@@ -72,7 +77,19 @@
   </update>
   
   <select id="getTotal" resultType="int">
-			select count(que_no) from question where <include refid="page"></include> que_no > 0
+  select count(que_no) from question where <include refid="page"></include> que_no > 0
+  </select>
+  
+  <select id="searchTest" resultType="org.sb.question.domain.QuestionVO">
+    <![CDATA[
+    select * from question    
+    where
+    ]]>
+            
+    <![CDATA[
+    rownum < 10
+    ]]>
+  
   </select>
   
 <!-- 마이페이지 -->		

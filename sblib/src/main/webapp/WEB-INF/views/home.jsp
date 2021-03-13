@@ -38,6 +38,36 @@
 	.fc .fc-daygrid-day-number{
 		padding:0;
 	}
+	.holidays{
+		width: 100%;
+		overflow:hidden;
+	}
+	.holidays ul li{
+		list-style-type: none;
+		float: left;
+		width:45px; height:45px;
+		background-color: #f8bbd0;
+		border: 2px solid #f06292;
+		border-radius: 50%;
+		text-align: center;
+		margin: 4%;
+	}
+	.holidays ul li:nth-child(2n) {
+		background-color: #ce93d8;
+		border: 2px solid #ab47bc;
+	}
+	.holidays img{
+		position:absolute;
+		width:100%;
+		bottom:0;
+		left:0;
+		opacity: 0.5;
+	}
+	.todayFrame{
+		width:100%;
+		height:17%;
+		text-align: center;
+	}
 </style>
 <body>    
 
@@ -64,14 +94,25 @@
         <article class="article2">
             <div class="box1">
                 <p style="text-align: center; margin-top: 10px;">공지사항</p>
-                <a class="notice" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
+                <a class="notice" href="/notice/list"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
                 <hr style="margin-left: 20px; margin-right: 20px;">
                 <div class="noticeContent">
-                <ul>
-                <li class="noticeTitle1"><a href=""><span>title1</span></a></li>
-                <li class="noticeTitle2"><a href=""><span>title2</span></a></li>
-                <li class="noticeTitle3"><a href=""><span>title3</span></a></li>
-                </ul>
+                
+                <div class="panel-body">
+					 <table width="100%"
+						class="table table-striped table-bordered table-hover">
+						<tbody>
+							<c:forEach items="#{list }" var="noticeVO">
+								<tr class="odd gradeX">
+									<td><a class="move" href='/notice/get?notice_no=<c:out value="${noticeVO.notice_no}"/>'>
+											<c:out value="${noticeVO.notice_title}" /></a>
+									</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${noticeVO.notice_regdate }" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table> 
+				</div>
                 </div>
             </div>
             
@@ -138,22 +179,26 @@
         <article class="article1">
             <div class="box1">
                 <p style="text-align: center; margin-top: 10px;">휴관 안내</p>
-                <a class="schedule" href="#"><img src="resources/images/plus.png" style="position: absolute; width: 30px; height: 30px; right: 10px; top: 10px"></a>
-                <hr style="margin-left: 20px; margin-right: 20px;">
+                <hr style="margin-left: 20px; margin-right: 20px; margin-bottom: 0px;">
                 <div class="holidays">
                     <c:set var="now" value="<%=new java.util.Date() %>"/>
-                    <c:set var="today"><fmt:formatDate value="${now }" pattern="오늘은 MM월 dd일 입니다"/></c:set>
-                    <c:out value="${today }"/>
+                    <c:set var="today"><fmt:formatDate value="${now }" pattern="[ yyyy년 MM월 dd일 ]"/></c:set>
+                    <c:set var="month"><fmt:formatDate value="${now }" pattern="MM"/></c:set>
+                   	<div class="todayFrame">
+                   		<h5><c:out value="${today }"/></h5>
+                   	</div>
                     <ul>
                     	<c:forEach items="${holiday }" var="holiday">
-                    		<li>
-                    			<div style="width:50px; height:50px; background-color: red; border-radius: 50%">
-                    				<h2 style="text-align: center; line-height: 1.3">${holiday.holiday_start }</h2>
-                    			</div>
-                    		</li>
+                    		<fmt:parseDate value="${holiday.holiday_start }" var="holidayDate" pattern="yyyy-MM-dd"/>
+                    		<c:set var="holMonth"><fmt:formatDate value="${holidayDate }" pattern="MM"/></c:set>
+                    		<c:if test="${month eq holMonth }">
+                    			<li>
+                    				<h2><fmt:formatDate value="${holidayDate }" pattern="dd"/></h2>
+                    			</li>
+                    		</c:if>
                     	</c:forEach>
                     </ul>
-                    
+                    <img src="resources/images/stackedbooks2.png">
                 </div>
             </div>
             <div class="box2">

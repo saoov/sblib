@@ -1,32 +1,37 @@
 package org.sb.bookstory.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 
 import org.sb.bookstory.domain.BookStoryVO;
 import org.sb.bookstory.domain.Page;
-import org.sb.manage.domain.Book;
 
 public interface BookStoryMapper {
-
-	void insert(BookStoryVO bookStory);
 	
 	List<BookStoryVO> getList();
+
+	void insert(BookStoryVO bookstory);
 	
-	List<BookStoryVO> getListWithPaging(Page page);
+	void insertSelectKey(BookStoryVO bookstory);
 	
 	BookStoryVO read(Long story_no);
 	
 	int delete(Long story_no);
 	
-	int update(BookStoryVO bookStory);
+	int update(BookStoryVO bookstory);
 	
-	int getTotalCount(Page page);
+	//getTotalCount//
+	int getTotal(Page page);
 	
-	void insertBook(Book book);
+	List<BookStoryVO> getListWithPaging(Page page);
 	
-	List<Book> getBook();
+	//검색//
+	List<BookStoryVO> searchTest(Map<String, Map<String,String>> map);
 	
-	//--추가--//
+	//추가//
 	List<BookStoryVO> getMyList(String story_author);
+	
+	int updateReadcount(Long story_no);		// 조회수
 	
 }

@@ -34,7 +34,10 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        <form>                
+                        <form> 
+                             <input type="hidden" name="pageNum" value="${page.pageNum }">
+                             <input type="hidden" name="amount" value="${page.amount }">
+                                                                     
                              <div class="form-group">
                                  <label>글번호</label>
                                  <input class="form-control" name="que_no" readonly="readonly" value='<c:out value="${question.que_no}"/>'> 

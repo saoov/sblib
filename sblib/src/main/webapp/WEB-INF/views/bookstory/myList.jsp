@@ -10,88 +10,69 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>Insert title here</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
 </head>
 <body>
 
-	<!-- table -->
-	<div class="table">
-		<table border="1">
-			<thead>
-				<tr>
-					<td>번호</td>
-					<td>제목</td>
-					<td>내용</td>
-					<td>작성자</td>
-					<td>등록일</td>
-					<td>수정일</td>
-					<td>조회수</td>   
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="#{myList }" var="bookstory">
-					<tr>
-						<td>${bookstory.story_no }</td>
-						<td><a class='move' href='<c:out value="${bookstory.story_no }"/>'><c:out value='${bookstory.story_title }'/></a></td>
-						<td>${bookstory.story_content }</td>
-						<td>${bookstory.story_author }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_regdate }"/></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_updatedate }"/></td>
-						<td>${bookstory.story_readcount }</td>   
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<!-- table -->
-	
-		<!-- search -->
-	<div class="search">
-		<form id='searchForm' action='/bookstory/myLSist' method='get'>
-			<select name='type'>
-				<option value='T'>제목</option>
-				<option value='C'>내용</option>
-				<option value='TC'>제목 + 내용</option>
-			</select>
-			<input type="text" name='keyword'>
-			<input type="hidden" name="pageNum" value="${page.page.pageNum }">
-			<input type="hidden" name="amount" value="${page.page.amount }">
-			<button>Search</button>
-		</form>
-	</div>
-	<!-- search -->
-	
-	<script>
-		$(document).ready(function(){
-			
-			var result = '<c:out value="${result}"/>';
-			var actionForm = $("#actionForm");
-			var searchForm = $("#searchForm");
-			
-			$("li a").on("click",function(e){
-				e.preventDefault();
-				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-				actionForm.submit();
-			});
-			
-			$(".move").on("click",function(e){
-				e.preventDefault();
-				actionForm.append("<input type='hidden' name='story_no' value='"+
-						$(this).attr("href")+"'>");
-				actionForm.attr("action", "/bookstory/get");
-				actionForm.submit();
-			})
-			
-			$("#searchForm button").on("click",function(e){
-				if(!searchForm.find("input[name='keyword']").val()){
-					alert('키워드를 입력하세요');
-					return false;
-				}
-				searchForm.find("input[name='pageNum']").val("1");
-				e.preventDefault();
-				searchForm.submit();
-			})
-		});
-	</script>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">나의 책이야기 게시글</h1>                                                           
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                                                 나의 책이야기 게시글 목록입니다.
+                            
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>글번호</th>
+                                        <th>제목</th>
+                                        <th>작성자</th>
+                                        <th>등록일</th>
+                                        <th>수정일</th>
+                                        <th>조회수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${myList}" var="bookstory">
+                                    <tr class="odd gradeX">
+                                        <td>${bookstory.story_no }</td>
+                                        <td><a href='/bookstory/get?story_no=<c:out value="${bookstory.story_no}"/>'><c:out value="${bookstory.story_title}"/></a></td>
+                                        <td>${bookstory.story_author }</td>
+                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_regdate}" /></td>
+                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bookstory.story_updatedate}" /></td>
+                                        <td>${bookstory.story_readcount }</td>                                        
+                                    </tr>
+                                </c:forEach>    
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+ 
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
 	
 </body>
 </html>

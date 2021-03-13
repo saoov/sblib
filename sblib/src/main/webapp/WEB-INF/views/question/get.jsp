@@ -23,7 +23,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">게시글 내용</h1>
+                    <h1 class="page-header">질문,답변 작성글 내용</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -32,9 +32,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                                             묻고 답하기 게시글 내용입니다.
+                                             작성글 내용입니다.
                         </div>
                         <!-- /.panel-heading -->
+                        
                         <div class="panel-body">
                  
                              <div class="form-group">
@@ -83,10 +84,41 @@
                              
                              <!-- 답변 -->
                              
-                             <button type="submit" class="btn btn-default"><a href='/question/list'>목록</a></button>
-                             <button type="reset" class="btn btn-default"><a href='/question/modify?que_no=<c:out value="${question.que_no}"/>'>수정</a></button>
-                             <button type="submit" class="btn btn-info"><a href='/answer/register?que_no=<c:out value="${question.que_no}"/>'>답변</a></button>
+                             <form id='actionForm' action="/question/list" method='get'>
+                                <input type='hidden' name='pageNum' value = '${page.pageNum}'>
+                                <input type='hidden' name='amount' value = '${page.amount}'>
+                                <input type='hidden' name='que_no' value = '${question.que_no}'>
+                                <input type='hidden' name='type' value = '${page.type}'>
+                                <input type='hidden' name='keyword' value = '${page.keyword}'>
+                             </form>
+                             
+                             <button type="button" class="btn btn-default listBtn"><a href='/question/list'>목록</a></button>
+                             <button type="button" class="btn btn-default modBtn"><a href='/question/modify?que_no=<c:out value="${question.que_no}"/>'>수정</a></button>
+                             <button type="button" class="btn btn-info ansBtn">답변</button>
                             
+                             <script>
+                             
+                             var actionForm = $("#actionForm");
+                             
+                             $(".listBtn").click(function(e){
+                            	e.preventDefault();
+                            	actionForm.find("input[name='que_no']").remove();
+                            	actionForm.submit();
+                             });
+                             
+                             $(".modBtn").click(function(e){
+                             	e.preventDefault();
+                             	actionForm.attr("action","/question/modify");
+                             	actionForm.submit();
+                              });
+                             
+                             $(".ansBtn").click(function(e){
+                              	e.preventDefault();
+                              	actionForm.attr("action","/answer/register");
+                              	actionForm.submit();
+                              });
+                             
+                             </script>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -95,5 +127,5 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-
+</body>
 </html>

@@ -25,8 +25,7 @@
 					<c:otherwise>
 						<li> ${userSession.member_name}님, 반갑습니다!&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 						<a href="/member/logout">로그아웃</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-						<a href="/member/update">회원정보수정</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-						<a href="/member/delete">회원탈퇴</a></li>
+						<a href="/member/update">회원정보수정</a></li>
 					</c:otherwise>
 				</c:choose>
                 </ul>

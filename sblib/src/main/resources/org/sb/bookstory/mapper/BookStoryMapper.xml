@@ -4,34 +4,38 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="org.sb.bookstory.mapper.BookStoryMapper">
-	<sql id="search">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item="type" collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-							story_title like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'C'.toString()">
-							story_content like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'A'.toString()">
-							story_author like '%'||#{keyword}||'%'
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
+	<sql id="page">
+		<trim prefix="(" suffix=") AND">
+	  <foreach collection="typeArr" item="type" separator="OR">
+	    <if test="type == 'T'.toString()">
+          story_title like '%'||#{keyword}||'%'
+        </if>
+        <if test="type == 'C'.toString()">
+          story_content like '%'||#{keyword}||'%'
+        </if>
+        <if test="type == 'W'.toString()">
+          story_author like '%'||#{keyword}||'%'
+        </if>	  
+	  </foreach>
+	  </trim>
+  </sql>
 	
 	
 		<insert id="insert">
 			insert into bookstory(story_no, story_title, story_content, story_author, story_readcount)
-			values(seq_bookstory.nextval, #{story_title}, #{story_content}, #{story_author}, #{story_readcount})
+			values(seq_story.nextval, #{story_title}, #{story_content}, #{story_author}, 0)
 		</insert>
 		
+		 <insert id="insertSelectKey">
+         <selectKey order="BEFORE" keyProperty="story_no" resultType="long">
+           select seq_story.nextval from dual
+         </selectKey>    
+           insert into bookstory (story_no, story_title, story_content, story_author, story_readcount)
+           values (#{story_no}, #{story_title}, #{story_content}, #{story_author}, 0)        
+         </insert>
+		
 		<select id="getList" resultType="org.sb.bookstory.domain.BookStoryVO">
-			select * from bookstory
+			select * from bookstory order by story_no desc
 		</select>
 		
 		<select id="read" resultType="org.sb.bookstory.domain.BookStoryVO">
@@ -47,34 +51,55 @@
 			story_content = #{story_content},
 			story_author = #{story_author},
 			story_updatedate = sysdate,
-			story_readcount = #{story_readcount}
+			story_readcount = 0
 			where story_no = #{story_no}
 		</update>
 		
 		<select id="getListWithPaging" resultType="org.sb.bookstory.domain.BookStoryVO">
 		<![CDATA[
-			select story_no, story_title, story_content, story_author, story_regdate, story_updatedate, story_readcount
-			from (select rownum rn, story_no, story_title, story_content, story_author, story_regdate, story_updatedate, story_readcount
-					from bookstory where
-		]]> 
-		<include refid="search"></include>
+		select * from
+		(
+		select /*+ INDEX_DESC(bookstory pk_bookstory) */ rownum rn, story_no, story_title, story_content, story_author, story_regdate, story_updatedate, story_readcount 
+		from bookstory 
+		where
+	    ]]>
+		 
+		<include refid="page"></include>
 		<![CDATA[
-			rownum <= #{pageNum} * #{amount}
+			story_no > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
 			)
 			where rn > (#{pageNum} -1 ) * #{amount}
 		]]>
 		</select>
 		
-		<select id="getTotalCount" resultType="int">
-			select count(*) from bookstory where 
-			<include refid="search"></include>
+		<select id="getTotal" resultType="int">
+			select count(story_no) from bookstory where 
+			<include refid="page"></include>
 			story_no > 0
 		</select>
+		
+		<select id="searchTest" resultType="org.sb.bookstory.domain.BookStoryVO">
+        <![CDATA[
+         select * from bookstory    
+         where
+        ]]>
+            
+        <![CDATA[
+         rownum < 10
+        ]]>
+  
+        </select>
 		
 		<!-- 추가 -->
 		
 		  <select id="getMyList" resultType="org.sb.bookstory.domain.BookStoryVO">
             select * from bookstory where story_author = #{story_author}
           </select>
+          
+          <update id="updateReadcount">
+           update bookstory set story_readcount =
+           story_readcount+1 where story_no = #{story_no}
+          </update>
+          
 		
 	</mapper>

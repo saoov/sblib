@@ -19,38 +19,48 @@ public class BookStoryServiceImpl implements BookStoryService{
 	
 	@Override
 	public Long register(BookStoryVO bookstory) {
-		mapper.insert(bookstory);
+		mapper.insertSelectKey(bookstory);
 		return bookstory.getStory_no();
 	}
-
-	@Override
-	public List<BookStoryVO> getList(Page page) {
-		return mapper.getListWithPaging(page);
-	}
-
+	
 	@Override
 	public BookStoryVO get(Long story_no) {
+		mapper.updateReadcount(story_no);
 		return mapper.read(story_no);
 	}
 
+	@Override
+	public int modify(BookStoryVO bookstory) {
+		return mapper.update(bookstory);
+	}
+	
 	@Override
 	public int remove(Long story_no) {
 		return mapper.delete(story_no);
 	}
 
 	@Override
-	public int modify(BookStoryVO bookStory) {
-		return mapper.update(bookStory);
-	}
-
-	@Override
-	public int getTotal(Page page) {
-		return mapper.getTotalCount(page);
+	public List<BookStoryVO> getList() {
+		return mapper.getList();
 	}
 	
+	//마이페이지//
 	@Override
 	public List<BookStoryVO> getMyList(String story_author) {
 		return mapper.getMyList("user00");
 	}
+		
+	@Override
+	public List<BookStoryVO> getList(Page page) {
+		return mapper.getListWithPaging(page);
+	}
+	
+	@Override
+	public int getTotal(Page page) {
+		return mapper.getTotal(page);
+	}
+
+
+
 
 }

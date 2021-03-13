@@ -1,14 +1,12 @@
 package org.sb.bookstory.domain;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.ToString;
 
-@Data
 @ToString
+@Getter
 public class PageDTO {
-
-	private int startPage;
-	private int endPage;
+	private int startPage, endPage;
 	private boolean prev, next;
 	
 	private int total;
@@ -18,16 +16,16 @@ public class PageDTO {
 		this.page = page;
 		this.total = total;
 		
-		this.endPage = (int)(Math.ceil(page.getPageNum() / 10.0 )) * 10;
-		this.startPage = this.endPage - 9;
-		int realEnd = (int)(Math.ceil(total * 1.0) / page.getAmount());
+		this.endPage = (int)(Math.ceil(page.getPageNum()/10.0)) * 10; 
 		
-		if(realEnd < this.endPage) {
-			this.endPage = realEnd;
-		}
-		this.prev = this.startPage > 1;
-		this.next = realEnd > this.endPage;
+		this.startPage = endPage - 9; 
+		
+		this.prev = this.startPage > 1; 
+		
+		int realEnd = (int)( Math.ceil((total * 1.0) / page.getAmount()) ); 
+		
+		this.endPage = realEnd <= endPage? realEnd : endPage; 
+		
+		this.next = this.endPage < realEnd; 
 	}
-	
-	
 }

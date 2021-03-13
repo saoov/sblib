@@ -7,57 +7,107 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- DataTables CSS -->
+<link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
 </head>
 <body>
-	<form role="form" action="/bookstory/modify" method="post">
-			<input type='hidden' name='pageNum' value='<c:out value="${page.pageNum }"/>'>
-			<input type='hidden' name='amount' value='<c:out value="${page.amount }"/>'>
-			<input type="hidden" name="type" value="<c:out value='${page.type }'/>">
-		<input type="hidden" name="keyword" value="<c:out value='${page.keyword }'/>">		
-		<div>
-			<label>글번호</label> 
-			<input class="form-control" name="story_no" readonly="readonly" value='<c:out value="${bookstory.story_no }"/>'>
-		</div>
-		<div>
-			<label>제목</label> 
-			<input class="form-control" name="story_title" value='<c:out value="${bookstory.story_title }"/>'/>
-		</div>
-		<div>
-			<label>내용</label> 
-			<textarea rows="5" cols="50" name="story_content" class="form-control"><c:out value="${bookstory.story_content}"/></textarea>
-		</div>
-		<button class="btn btn-default" data-oper='modify'>변경</button>
-		<button class="btn btn-danger" data-oper='remove'>삭제</button>
-		<button class="btn btn-info" data-oper='list'>목록</button>
-	</form>
-	<script>
-		$(document).ready(function(){
-			var formObj = $("form");
-			
-			$('button').on("click",function(e){
-				e.preventDefault();
-			
-			var operation = $(this).data("oper");
-			
-			if(operation === 'remove'){
-				formObj.attr("action", "/bookstory/remove");
-			} else if(operation === 'list'){
-				formObj.attr("action", "/bookstory/list").attr("method","get");
-				var pageNumTag = $("input[name='pageNum']").clone();
-				var amountTag = $("input[name='amount']").clone();
-				var typeTag = $("input[name='type']").clone();
-				var keywordTag = $("input[name='keyword']").clone();
-				
-				formObj.empty();
-				formObj.append(pageNumTag);
-				formObj.append(amountTag);
-				formObj.append(typeTag);
-				formObj.append(keywordTag);
-			}
-			
-			formObj.submit();
-			});
-		})
-	</script>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">게시글 수정/삭제 페이지</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                                                게시글 수정/삭제 페이지입니다.
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                        <form> 
+                             <input type="hidden" name="pageNum" value="${page.pageNum }">
+                             <input type="hidden" name="amount" value="${page.amount }">
+                                                                     
+                             <div class="form-group">
+                                 <label>글번호</label>
+                                 <input class="form-control" name="story_no" readonly="readonly" value='<c:out value="${bookstory.story_no}"/>'> 
+                                 <!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
+                             </div>  
+                            
+                             <div class="form-group">
+                                 <label>제목</label>
+                                 <input class="form-control" name="story_title" value='<c:out value="${bookstory.story_title}"/>'> 
+                                 <!-- input쓸때 name속성(=파라미터로 수집되는 이름) 명심해야함  -->
+                             </div>
+                             
+                             <div class="form-group">
+                                 <label>내용</label>
+                                 <textarea rows="5" cols="50" name="story_content" class="form-control"><c:out value="${bookstory.story_content}"/></textarea> 
+                             </div>
+                             
+                             <div class="form-group">
+                                 <label>작성자</label>
+                                 <input class="form-control" name="story_author" value='<c:out value="${bookstory.story_author}"/>'>
+                             </div>
+                             
+                             <div class="form-group">
+                                 <label>조회수</label>
+                                 <input class="form-control" name="story_readcount" value='<c:out value="${bookstory.story_readcount}"/>'>
+                             </div>
+                             
+                             <button class="btn btn-default" data-oper='modify'>수정</button>
+                             <button class="btn btn-danger" data-oper='remove'>삭제</button>
+                             <button class="btn btn-info" data-oper='list'>목록</button>
+                        </form>    
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+<script>
+
+ $(document).ready(function(){
+	 
+	var formObj = $("form"); 
+	
+	$('.btn').click(function(e){
+		
+		e.preventDefault(); //이벤트 발생시 기본 동작(링크나 from에서 자동 submit이 일어나는것)을 막음
+		
+		var operation = $(this).data("oper");
+		
+		console.log(operation); //버튼이 눌렸는지 확인
+		
+		if(operation === 'list'){   //list버튼 눌렀을때
+			self.location = "/bookstory/list";
+		}else if(operation === 'remove'){   //remove버튼 눌렀을때
+			formObj.attr("action","/bookstory/remove")
+			.attr("method", "post");
+		    formObj.submit(); //실제로 삭제가 됨
+		    
+		}else if(operation === 'modify'){   //modify버튼 눌렀을때
+			formObj.attr("action","/bookstory/modify")
+			.attr("method", "post");
+		    formObj.submit(); 
+		}
+	})
+	
+ })
+
+</script>            
 </body>
 </html>

@@ -80,7 +80,7 @@ public class MemberController {
 		// 회원가입 메서드
 		service.memberRegister(memberVO);
 
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	
 

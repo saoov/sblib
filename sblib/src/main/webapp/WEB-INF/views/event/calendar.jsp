@@ -63,6 +63,7 @@
 
  <!-- js -->
 <tiles:insertAttribute name="js"></tiles:insertAttribute>
+
 <script>
 getRandomColor = function(_isAlpha) {
 	  let r = getRand(0, 255),
@@ -86,11 +87,20 @@ getRandomColor = function(_isAlpha) {
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
+    	themeSystem: 'bootstrap',
     	initialView: 'dayGridMonth',
         headerToolbar: {
         	left: 'title',
-          center: ''
+          	center: ''
         },
+        googleCalendarApiKey : "AIzaSyCvQ-pd1R-0XMH78M5nLuoRb9LKvP8hlIU",
+		eventSources:[
+			{
+				googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",
+				textColor : "#e91e63",
+				color : "#FFFFFF"
+			}
+		],
         events: [
         	<c:forEach items="${list}" var="event">
             {
@@ -109,13 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
               backgroundColor: "#0d47a1"
             },
             </c:forEach>
-            {
-            	title: "gg",
-            	start: "2021-03-24",
-            	end: "2021-03-27T14:30:00"
-            }
-
-          ]
+        ]
     });
     calendar.render();
   });
