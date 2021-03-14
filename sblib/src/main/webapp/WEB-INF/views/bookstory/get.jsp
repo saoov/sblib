@@ -77,7 +77,7 @@
 	
 	<tr>
 		<th class="success" style="background-color: #ffedd7">내용</th>
-		<td colspan="3"><textarea rows="5" cols="50" style="border: none"><c:out value="${bookstory.story_content}"/></textarea></td>
+		<td colspan="3">${bookstory.story_content}</td>
 	</tr>
 	
 
