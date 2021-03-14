@@ -66,7 +66,6 @@ public class BookController {
        if(books!=null) {
     	   		
              service.register(books);
-             model.addAttribute("keyword",keyword);
              redirectAttributes.addFlashAttribute("title", books.getTitle());
              redirectAttributes.addFlashAttribute("result", "success");
              }
