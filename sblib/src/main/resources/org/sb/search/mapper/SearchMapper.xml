@@ -106,7 +106,7 @@
 		
 		<!-- 대여 목록 보기 -->
 		<select id="rentList" resultType="org.sb.search.domain.Rent">
-			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, b.author
+			select r.rentid ,r.bno, r.member_no, r.rentDate, b.title, b.author, r.rentDate+14 as returnexpDate
 			from rentinfo r
 				inner join book b on r.bno = b.bno
 			where member_no = #{member_no} and r.returnDate is null

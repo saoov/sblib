@@ -83,7 +83,7 @@
 								type : "post",
 								data : {chbox : checkArr},
 								success : function(result){
-									alert("내 서재에 삭제하였습니다.");
+									alert("장바구니에서 삭제하였습니다.");
 									location.href = "/search/cartList";
 								}
 							});

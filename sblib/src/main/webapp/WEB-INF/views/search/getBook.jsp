@@ -127,13 +127,13 @@
 			<div class="book_button">
 				<c:choose>
 					<c:when test="${userSession eq null}">
-						<button type="button" class="btn addCart_btn btn-warning" onclick="javascript:login()"><span class="white">서재에 담기</span></button>
-						<button type="button" class="btn myCart_btn btn-warning" onclick="javascript:login()"><span class="white">내 서재</span></button>
+						<button type="button" class="btn addCart_btn btn-warning" onclick="javascript:login()"><span class="white">장바구니에 담기</span></button>
+						<button type="button" class="btn myCart_btn btn-warning" onclick="javascript:login()"><span class="white">내 장바구니</span></button>
 						<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn addCart${book.bno }btn btn-warning"  data-bno="${book.bno }"><span class="white">서재에 담기</span></button>
-						<button type="button" class="btn myCart_btn btn-warning"><span class="white">내 서재</span></button>
+						<button type="button" class="btn addCart${book.bno }btn btn-warning"  data-bno="${book.bno }"><span class="white">장바구니에 담기</span></button>
+						<button type="button" class="btn myCart_btn btn-warning"><span class="white">내 장바구니</span></button>
 						<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
 					</c:otherwise>
 				</c:choose>
@@ -143,7 +143,7 @@
 	</div>
 	<script>
 		$(".addCart${book.bno}btn").on("click", function() {
-			var confirm_val = confirm("서재에 저장하시겠습니까?");
+			var confirm_val = confirm("장바구니에 저장하시겠습니까?");
 
 			if(confirm_val){
 				var bno = $(this).attr("data-bno");
@@ -153,10 +153,10 @@
 				type : "post",
 				data : {bno : bno},
 				success : function() {
-					alert("서재에 저장하였습니다.");
+					alert("장바구니에 저장하였습니다.");
 				},
 				error : function() {
-					alert("서재에 저장하지 못하였습니다.");
+					alert("장바구니에 저장하지 못하였습니다.");
 					location.href="/serach/cartList";
 				}
 			});

@@ -13,6 +13,7 @@ public class Rent {
 	private int member_no;
 	private int bno;
 	private Date rentDate;
+	private Date returnExpDate;
 	private String title;
 	private String author;
 	private Date returnDate;

@@ -58,7 +58,7 @@
 					<td>${rentList.title }</td>
 					<td>${rentList.author }</td>
 					<td><fmt:formatDate value="${rentList.rentDate }" pattern="yyyy/MM/dd"/> </td>
-					<td><fmt:formatDate value="${rentList.rentDate }" pattern="yyyy/MM/dd"/></td>
+					<td><fmt:formatDate value="${rentList.returnExpDate }" pattern="yyyy/MM/dd"/></td>
 					<td><button type="button" class="returnBtn" data-rentid="${rentList.rentId }" data-bno="${rentList.bno }">반납하기</button></td>
 		</tr>
 		</c:forEach>
