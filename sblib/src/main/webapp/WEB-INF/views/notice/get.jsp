@@ -33,7 +33,7 @@
 <div id='body'>
    <div id='sidemenu'>
       <div class="title">
-         <h2>프로그램</h2>
+         <h2>열린공간</h2>
       </div>
       <ul>
          <li><a href="/notice/list">공지사항</a></li>
@@ -83,7 +83,7 @@
 	
 	<tr>
 		<th class="success" style="background-color: #ffedd7">내용</th>
-		<td colspan="3"><textarea rows="25" cols="50" style="border: none" readonly="readonly"><c:out value="${noticeVO.notice_content}"/></textarea></td>
+		<td colspan="3"><textarea rows="5" cols="50" style="border: none" readonly="readonly"><c:out value="${noticeVO.notice_content}"/></textarea></td>
 	</tr>
 	
 
