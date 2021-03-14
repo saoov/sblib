@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -55,14 +54,16 @@ public class SearchController {
 		model.addAttribute("book",service.getBookByBno(bno));
 	}
 	
-	@ResponseBody
-	@PostMapping("/addCart")
-	public void addCart(BookCart cart, HttpSession session) {
+	@PostMapping("/getBook")
+	public String getBook(String bno, HttpSession session) {
 		MemberVO member = (MemberVO)session.getAttribute("userSession");
+		BookCart cart = new BookCart();
 		log.info("member : " + member);
 		cart.setMember_no(member.getMember_no());
+		cart.setBno(Integer.parseInt(bno));
 		log.info("cart : "+cart);
 		service.addCart(cart);
+		return "/search/cartList";
 	}
 	
 	@GetMapping("/cartList")

@@ -48,7 +48,7 @@
             <ul class="menuul">
             	<li><a href="#">자료검색</a>
                     <ul>
-               			<li><a href="/search/searchSimple">자료검색</a></li>
+               			<li><a href="/search/searchSimple">도서검색</a></li>
                			<li><a href="http://www.dlibrary.go.kr/" target="_blank">국회원문 DB</a></li>
                			<li></li><li></li>
                 	</ul>

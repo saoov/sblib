@@ -74,6 +74,7 @@
 			</div>
 			<ul>
 				<li><a href="/search/searchSimple">도서검색</a></li>
+				<li><a href="http://www.dlibrary.go.kr/" target="_blank">국회원문 DB</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
@@ -131,7 +132,7 @@
 						<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn addCart_btn btn-warning"><span class="white">서재에 담기</span></button>
+						<button type="button" class="btn addCart${book.bno }btn btn-warning"  data-bno="${book.bno }"><span class="white">서재에 담기</span></button>
 						<button type="button" class="btn myCart_btn btn-warning"><span class="white">내 서재</span></button>
 						<button type="button" class="btn historyBack_btn btn-warning"><span class="white">뒤로가기</span></button>
 					</c:otherwise>
@@ -141,22 +142,24 @@
 		</div>
 	</div>
 	<script>
-		$(".addCart_btn").on("click", function() {
-			var bno = ${book.bno};
-			var data = {bno : bno};
+		$(".addCart${book.bno}btn").on("click", function() {
+			var confirm_val = confirm("서재에 저장하시겠습니까?");
 
+			if(confirm_val){
+				var bno = $(this).attr("data-bno");
+				
 			$.ajax({
-				url : "/search/addCart",
+				url : "/search/getBook",
 				type : "post",
-				data : data,
+				data : {bno : bno},
 				success : function() {
-					alert("카트 담기 성공");
+					alert("서재에 저장하였습니다.");
 				},
 				error : function() {
-					alert("서재에 담겨있는 책입니다.");
-					location.href="/search/cartList";
+					alert("서재에 저장하지 못하였습니다.");
 				}
 			});
+			}
 		});
 		
 		

@@ -19,7 +19,6 @@
 	}
 	.bookList.listViewStyle .listWrap > li .bookArea{
 		position: relative;
-		border: 1px solid #e2e2e2;
 		padding: 30px 25px;
 	}
 	.bookList.listViewStyle .listWrap > li .bookImg{
@@ -131,17 +130,25 @@
 								</div>
 								<div class="bookData">
 									<div class="book_dataInner">
-										<ul class="dot-list clearfix">
-											<li><a class='move' href='<c:out value="${book.bno }"/>'><c:out value='${book.title }' /></a></li>
-											<li class="kor on">저자 : ${book.author}</li>
-											<li class="kor on">출판사 : ${book.publisher }</li>
-											<li class="kor on">출판일 : ${book.pubdate }</li>
-											<li class="kor on">ISBN : ${book.isbn }</li>
+										<div class="title">
+											<a class='move' href='<c:out value="${book.bno }"/>'><c:out value='${book.title }' /></a>
+										</div>
+										<div class="author">
+											<span>저자 : ${book.author}</span>
+										</div>
+										<div class="publisher">
+											<span>출판사 : ${book.publisher }</span>
+										</div>
+										<div>
+											<span>출판일 : ${book.pubdate }</span>
+										</div>
+										<div>
+											<span>ISBN : ${book.isbn }</span>
+										</div>
 											<c:choose>
 												<c:when test="${book.nowcount eq '1' }">대여 가능</c:when>
 												<c:otherwise>대여 불가</c:otherwise>
 											</c:choose>
-										</ul>
 									</div>
 								</div>
 							</div>
@@ -150,28 +157,28 @@
 				</ul>
 			</div>
 			<!-- bookList -->
-	<!-- pagination -->
-	<div class="pull-right">
-		<ul class="pagination">
-			<c:if test="${pageDTO.prev }">
-				<li class="page-item"><a
-					href='${pageDTO.startPage - 1 }'>이전</a></li>
-			</c:if>
-
-			<c:forEach var="num" begin="${pageDTO.startPage }"
-				end="${pageDTO.endPage }">
-				<li class="page-item"><a href="${num }">${num }</a></li>
-			</c:forEach>
-
-			<c:if test="${pageDTO.next }">
-				<li class="page-item"><a
-					href='${pageDTO.endPage + 1 }'>다음</a></li>
-			</c:if>
-		</ul>
-	</div>
-	<!-- pagination -->
 
 		</div>
+		<!-- pagination -->
+		<div class="pull-right">
+			<ul class="pagination">
+				<c:if test="${pageDTO.prev }">
+					<li class="page-item"><a
+						href='${pageDTO.startPage - 1 }'>이전</a></li>
+				</c:if>
+	
+				<c:forEach var="num" begin="${pageDTO.startPage }"
+					end="${pageDTO.endPage }">
+					<li class="page-item"><a href="${num }">${num }</a></li>
+				</c:forEach>
+	
+				<c:if test="${pageDTO.next }">
+					<li class="page-item"><a
+						href='${pageDTO.endPage + 1 }'>다음</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<!-- pagination -->
 	</div>
 	<!-- sidebar -->
 

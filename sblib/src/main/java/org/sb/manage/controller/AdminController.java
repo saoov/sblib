@@ -1,18 +1,14 @@
 package org.sb.manage.controller;
 
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
-import org.sb.manage.service.AdminServiceImpl;
+import org.sb.manage.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
