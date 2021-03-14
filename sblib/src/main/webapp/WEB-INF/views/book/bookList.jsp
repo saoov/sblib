@@ -4,11 +4,6 @@
 </head>
 
 
-        <form id='actionForm' action="/book/bookList" method="get">
-      <input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
-      <input type="hidden" name="amount" value="${pageDTO.page.amount }">
-<%--       <input type="hidden" name="type" value="<c:out value='${pageDTO.page.type }'/>"> --%>
-<%--       <input type="hidden" name="keyword" value="<c:out value='${pageDTO.page.keyword }'/>">       --%>
    </form>
    <style type="text/css">
    .dropbtn {
@@ -152,9 +147,7 @@
 						<form id='actionForm3' action="/book/bookList" method="get">
 						<input type='hidden' name='pageNum'
 							value='${pageDTO.page.pageNum}'> <input type='hidden'
-							name='amount' value='${pageDTO.page.amount}'>
-							<input type='hidden'
-							name='amount' value='${pageDTO.page.amount}'>
+							name='amount' value='${pageDTO.page.amount}'>	
 					</form>
    </div>
    
@@ -186,9 +179,7 @@
          var result = '<c:out value="${result}"/>';
          var title = '<c:out value="${title}"/>';
          
-         var actionForm = $("#actionForm");
-         var searchForm = $("#searchForm");
-         
+ 
          var result = '<c:out value="${result}"/>';
 		 
 			checkModal(result);
