@@ -34,10 +34,10 @@
          <h2>MyLibrary</h2>
       </div>
       <ul>
-         <li><a href="/notice/list">내서재</a></li>
-         <li><a href="/question/list">장바구니</a></li>
-         <li><a href="/bookstory/list">내질문답변</a></li>
-         <li><a href="/bookstory/list">내책이야기</a></li>
+         <li><a href="/search/rentList">내서재</a></li>
+         <li><a href="/search/cartList">장바구니</a></li>
+         <li><a href="/question/myList">내질문답변</a></li>
+         <li><a href="/bookstory/myList">내책이야기</a></li>
       </ul>
       <div class="lastchild"></div>
    </div>

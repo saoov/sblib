@@ -31,21 +31,21 @@
 				<h2>MyLibrary</h2>
 			</div>
 			<ul>
-	 			<li><a href="/notice/list">내서재</a></li>
-                <li><a href="/question/list">장바구니</a></li>
-                <li><a href="/bookstory/list">내질문답변</a></li>
-                <li><a href="/bookstory/list">내책이야기</a></li>
+	 			<li><a href="/search/rentList">내서재</a></li>
+                <li><a href="/search/cartList">장바구니</a></li>
+                <li><a href="/question/myList">내질문답변</a></li>
+                <li><a href="/bookstory/myList">내책이야기</a></li>
 			</ul>
 			<div class="lastchild"></div>
 		</div>
 		<!-- sidebar -->
 		<!-- content -->
 		<div id='layer'>
-			<h3>도서검색</h3>
+			<h3>장바구니</h3>
 			<div style="width: 100%; height: 20px;">
 				<ul>
 				    <li>MyLibrary　>　</li>
-					<li>도서검색</li>
+					<li>장바구니</li>
 				</ul>
 			</div>
 			<hr style="margin-top: 30px;">

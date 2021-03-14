@@ -60,13 +60,12 @@ public class BookController {
    @PostMapping("addBooks")
    public String addBooks(Model model,Book books,String keyword,RedirectAttributes redirectAttributes) throws IOException {
       log.info("관리자 책추가 post");
-      String Result = URLDecoder.decode(keyword, "UTF-8");
+      String Result = URLEncoder.encode(keyword, "UTF-8");
 
  
        if(books!=null) {
     	   		
              service.register(books);
-             model.addAttribute("keyword",keyword);
              redirectAttributes.addFlashAttribute("title", books.getTitle());
              redirectAttributes.addFlashAttribute("result", "success");
              }

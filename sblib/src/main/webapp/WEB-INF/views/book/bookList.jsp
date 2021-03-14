@@ -4,11 +4,6 @@
 </head>
 
 
-        <form id='actionForm' action="/book/bookList" method="get">
-      <input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }">
-      <input type="hidden" name="amount" value="${pageDTO.page.amount }">
-<%--       <input type="hidden" name="type" value="<c:out value='${pageDTO.page.type }'/>"> --%>
-<%--       <input type="hidden" name="keyword" value="<c:out value='${pageDTO.page.keyword }'/>">       --%>
    </form>
    <style type="text/css">
    .dropbtn {
@@ -152,9 +147,7 @@
 						<form id='actionForm3' action="/book/bookList" method="get">
 						<input type='hidden' name='pageNum'
 							value='${pageDTO.page.pageNum}'> <input type='hidden'
-							name='amount' value='${pageDTO.page.amount}'>
-							<input type='hidden'
-							name='amount' value='${pageDTO.page.amount}'>
+							name='amount' value='${pageDTO.page.amount}'>	
 					</form>
    </div>
    
@@ -186,9 +179,7 @@
          var result = '<c:out value="${result}"/>';
          var title = '<c:out value="${title}"/>';
          
-         var actionForm = $("#actionForm");
-         var searchForm = $("#searchForm");
-         
+ 
          var result = '<c:out value="${result}"/>';
 		 
 			checkModal(result);
@@ -210,15 +201,15 @@
 				}
 				else if (result === 'setsuccess') {
 					$(".modal-title").html("등록성공");
-					$(".modal-body").html("오늘의 책등록 성공");
+					$(".modal-body").html("이달의 도서가 등록되었습니다.");
 				}
 				else if (result === 'setfail') {
 					$(".modal-title").html("등록실패");
-					$(".modal-body").html("이미4 개이상의 오늘의 책이 등록되어 있습니다.");
+					$(".modal-body").html("이미5 개이상의 이달의 도서가 등록되어 있습니다.");
 				}
 				else if (result === 'downsuccess') {
-					$(".modal-title").html("내리기성공");
-					$(".modal-body").html("오늘의책 내리기성공");
+					$(".modal-title").html("삭제성공");
+					$(".modal-body").html("이달의 도서가 삭제되었습니다");
 				}
 				
 				$("#myModal").modal("show");

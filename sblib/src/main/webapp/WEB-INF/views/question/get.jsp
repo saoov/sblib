@@ -56,7 +56,7 @@
                           
                           <tr>	
 		                    <th class="success" style="background-color: #ffedd7">글번호</th>
-	                    	<td><c:out value="${question.que_no }"/></td>
+	                    	<td colspan="3"><c:out value="${question.que_no }"/></td>
 	
                           </tr>
                             
