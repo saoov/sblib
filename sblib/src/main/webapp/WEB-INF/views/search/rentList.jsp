@@ -6,6 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.returnBtn{
+	width: 50px;
+	background-color: #fff3e0;
+	color:#e65100;
+	box-shadow: 1.5px 1.5px #ffa726;
+	border-radius: 10%;
+}
+</style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="UTF-8">
 <title>삼부도서관</title>
@@ -45,7 +54,7 @@
 
 
 
-	<table border="1" class="table">
+	<table class="table table-bordered">
 		<tr>
 			<td>제목</td>	
 			<td>저자</td>
@@ -60,7 +69,7 @@
 					<td>${rentList.author }</td>
 					<td><fmt:formatDate value="${rentList.rentDate }" pattern="yyyy/MM/dd"/> </td>
 					<td><fmt:formatDate value="${rentList.returnExpDate }" pattern="yyyy/MM/dd"/></td>
-					<td><button type="button" class="returnBtn" data-rentid="${rentList.rentId }" data-bno="${rentList.bno }">반납하기</button></td>
+					<td><button type="button" class="returnBtn" data-rentid="${rentList.rentId }" data-bno="${rentList.bno }">반납</button></td>
 		</tr>
 		</c:forEach>
 	</table>

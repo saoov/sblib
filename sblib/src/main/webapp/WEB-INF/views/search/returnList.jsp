@@ -45,11 +45,11 @@
 			</div>
 			<hr style="margin-top: 30px;">
 
-<table border="1">
+<table class="table table-bordered" style="text-align: center;">
 				<colgroup>
-					<col width="50%">
-					<col width="20%">
-					<col width="20%">
+					<col width="60%">
+					<col width="15%">
+					<col width="15%">
 					<col width="10%">
 				</colgroup>
 				<tr>
@@ -63,7 +63,15 @@
 		<td>${rentList.title }</td>
 		<td><fmt:formatDate value="${rentList.rentDate }" pattern="yyy/MM/dd"/></td>
 		<td><fmt:formatDate value="${rentList.returnDate }" pattern="yyy/MM/dd"/></td>
-		<td>${rentList.status }</td>
+		<c:choose>
+			<c:when test ="${rentList.status eq '대여중' }">
+				<td style="color:#4caf50">${rentList.status}</td>
+			</c:when>
+			<c:otherwise>
+				<td>${rentList.status}</td>
+			</c:otherwise>
+		</c:choose>
+			
 	</tr>
 	</c:forEach>
 </table>
