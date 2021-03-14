@@ -54,6 +54,7 @@ public class SearchController {
 		model.addAttribute("book",service.getBookByBno(bno));
 	}
 	
+	@ResponseBody
 	@PostMapping("/getBook")
 	public String getBook(String bno, HttpSession session) {
 		MemberVO member = (MemberVO)session.getAttribute("userSession");

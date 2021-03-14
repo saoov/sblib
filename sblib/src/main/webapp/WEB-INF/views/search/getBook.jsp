@@ -157,6 +157,7 @@
 				},
 				error : function() {
 					alert("서재에 저장하지 못하였습니다.");
+					location.href="/serach/cartList";
 				}
 			});
 			}
