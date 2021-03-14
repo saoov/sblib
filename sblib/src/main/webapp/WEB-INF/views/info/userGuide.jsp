@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>삼부도서관</title>
+<title>삼부도서관 : 도서관안내</title>
 <style>
 	.info{
 		color : #848484;
@@ -37,7 +37,7 @@
 			<div style="width: 100%; height: 20px;">
 				<ul>
 					<li>도서관안내　>　</li>
-         <li>인사말</li>
+         <li>이용안내</li>
 				</ul>
 
 			</div>

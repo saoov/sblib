@@ -22,7 +22,7 @@
 		color : #848484;
 	}
 </style>
-<title>삼부도서관</title>
+<title>삼부도서관 : 도서관안내</title>
 </head>
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>

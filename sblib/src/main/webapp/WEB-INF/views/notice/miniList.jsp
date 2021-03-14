@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관 : 열린공간</title>
 </head>
 <body>
 	<!-- table -->

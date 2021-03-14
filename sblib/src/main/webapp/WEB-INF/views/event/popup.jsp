@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관 : 일정추가</title>
 </head>
 <body>
 <h1 class = "zTree-h1"> 일정 추가 </h1>

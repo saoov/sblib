@@ -39,7 +39,7 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<title>Book List</title>
+<title>삼부도서관</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"

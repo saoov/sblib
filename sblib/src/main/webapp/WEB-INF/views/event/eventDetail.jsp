@@ -8,7 +8,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관 : 도서관일정</title>
 </head>
  <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>

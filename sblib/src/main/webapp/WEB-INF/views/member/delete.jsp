@@ -9,7 +9,7 @@
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<title>회원탈퇴</title>
+<title>삼부도서관 : 회원탈퇴</title>
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){

@@ -9,7 +9,7 @@
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<title>회원정보수정</title>
+<title>삼부도서관 : 회원정보</title>
 </head>
 <body>
 <div class="container">

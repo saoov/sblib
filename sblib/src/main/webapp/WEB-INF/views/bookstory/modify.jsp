@@ -9,7 +9,7 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관 : 책이야기</title>
 </head>
 
 <!-- css -->

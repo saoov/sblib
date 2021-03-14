@@ -8,7 +8,7 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관</title>
 </head>
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>
@@ -25,6 +25,7 @@
       </div>
       <ul>
          <li><a href="/search/rentList">내서재</a></li>
+         <li><a href="/search/returnList">대출내역</a>
          <li><a href="/search/cartList">장바구니</a></li>
          <li><a href="/question/myList">내질문답변</a></li>
          <li><a href="/bookstory/myList">내책이야기</a></li>

@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<title>Insert title here</title>
+<title>삼부도서관</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>삼부도서관</title>
 </head>
 <body>
 	<img style="width:200px" src='<c:out value="${book.image } "/>'>

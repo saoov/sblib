@@ -10,7 +10,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<title>로그인</title>
+<title>삼부도서관 : 로그인</title>
 </head>
 <body>
 <!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
