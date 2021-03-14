@@ -41,11 +41,11 @@
    </div>
    
    <div id='layer'>
-      <h3>책이야기</h3>
+      <h3>묻고답하기</h3>
       <div style="width:100%; height:20px;">
       <ul>
          <li>열린공간　>　</li>
-         <li>책이야기</li>
+         <li>묻고답하기</li>
       </ul>
       </div>
         <hr style="margin-top:30px;">
@@ -69,12 +69,12 @@
                              
                             <tr>
 	                        	<th class="success" style="background-color: #ffedd7">제목</th>
-	                        	<td colspan="3"><c:out value="${bookstory.story_title }"/></td>
+	                        	<td colspan="3"><c:out value="${question.que_title }"/></td>
 	                        </tr>
 	
 	                        <tr>
 	                            <th class="success" style="background-color: #ffedd7">내용</th>
-		                        <td colspan="3"><textarea rows="5" cols="50" style="border: none"><c:out value="${bookstory.story_content}"/></textarea></td>
+		                        <td colspan="3"><textarea rows="5" cols="50" style="border: none"><c:out value="${question.que_content}"/></textarea></td>
 	                         </tr>
                              
                              

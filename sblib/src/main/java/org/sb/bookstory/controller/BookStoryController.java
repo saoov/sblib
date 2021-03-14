@@ -7,12 +7,14 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.sb.bookstory.domain.BookStoryVO;
 import org.sb.bookstory.domain.Page;
 import org.sb.bookstory.domain.PageDTO;
 import org.sb.bookstory.service.BookStoryService;
+import org.sb.member.domain.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,9 +98,13 @@ public class BookStoryController {
 	}
 	
 	@GetMapping("/myList")
-	public void myList(String story_author, Model model) {
+	public void myList(HttpSession httpSession, Model model) {
+		
+		MemberVO member = (MemberVO) httpSession.getAttribute("userSession");
+		String story_author = member.getMember_id();
 		
 		log.info("mylist.................");
+		log.info("mylist................. :"+story_author);
 		
 		model.addAttribute("myList", service.getMyList(story_author));
 	}

@@ -47,7 +47,7 @@ public class BookStoryServiceImpl implements BookStoryService{
 	//마이페이지//
 	@Override
 	public List<BookStoryVO> getMyList(String story_author) {
-		return mapper.getMyList("user00");
+		return mapper.getMyList(story_author);
 	}
 		
 	@Override

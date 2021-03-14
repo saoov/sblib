@@ -67,13 +67,9 @@
                              
                              <div class="form-group">
                                  <label>작성자</label>
-                                 <input class="form-control" name="que_author" value="${userSession.member_name}" readonly="readonly">
+                                 <input class="form-control" name="que_author" value="${userSession.member_id}" readonly="readonly">
                              </div>
-                             
-                             <div class="form-group">
-                                 <label>처리상태</label>
-                                 <input class="form-control" name="que_status">
-                             </div>
+                            
                              
                              <button type="submit" class="btn btn-default">전송</button>
                              <button type="reset" class="btn btn-default">취소</button>

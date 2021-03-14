@@ -63,6 +63,13 @@
 		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
 	</definition>
+	<definition name="answer/*" template="/WEB-INF/views/answer/{1}.jsp">
+		<put-attribute name="css" value="/WEB-INF/views/include/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/include/js.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
+	
 	 
 	<!-- <definition name="*.tiles" extends="home">
 		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />

@@ -75,13 +75,10 @@
                              
                              <div class="form-group">
                                  <label>작성자</label>
-                                 <input class="form-control" name="que_author" value='<c:out value="${question.que_author}"/>'>
+                                 <input class="form-control" name="que_author" readonly="readonly" value='<c:out value="${question.que_author}"/>'>
                              </div>
                              
-                             <div class="form-group">
-                                 <label>처리상태</label>
-                                 <input class="form-control" name="que_status" value='<c:out value="${question.que_status}"/>'>
-                             </div>
+                            
                              
                              <button class="btn btn-default" data-oper='modify'>수정</button>
                              <button class="btn btn-danger" data-oper='remove'>삭제</button>

@@ -53,7 +53,7 @@ public class QuestionServiceImpl implements QuestionService {
 	//마이페이지//
 	@Override
 	public List<QuestionVO> getMyList(String que_author) {
-		return mapper.getMyList("user00");
+		return mapper.getMyList(que_author);
 	}
 
 	//페이징//

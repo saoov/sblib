@@ -61,7 +61,7 @@
 
 
                         <div class="panel-body">
-                        <button id="regBtn" type="button" class="btn btn-xs pull-right">글쓰기</button>
+                        <button id="regBtn" type="button" class="btn btn-secondary pull-right">글 작성</button>
                             <table width="100%" class="table table-striped table-bordered table-hover">
                                                    
                                 <thead>
@@ -70,7 +70,7 @@
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>등록일</th>
-                                        <th>처리상태</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,7 +80,7 @@
                                         <td><a class="move" href='<c:out value="${question.que_no}"/>'><c:out value="${question.que_title}"/></a></td>
                                         <td>${question.que_author }</td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.que_regdate}" /></td>
-                                        <td>${question.que_status }</td>
+                                        
                                         
                                     </tr>
                                 </c:forEach>    

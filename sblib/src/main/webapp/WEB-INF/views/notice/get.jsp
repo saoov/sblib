@@ -83,7 +83,7 @@
 	
 	<tr>
 		<th class="success" style="background-color: #ffedd7">내용</th>
-		<td colspan="3"><textarea rows="5" cols="50" style="border: none" readonly="readonly"><c:out value="${noticeVO.notice_content}"/></textarea></td>
+		<td colspan="3"><textarea rows="25" cols="50" style="border: none" readonly="readonly"><c:out value="${noticeVO.notice_content}"/></textarea></td>
 	</tr>
 	
 

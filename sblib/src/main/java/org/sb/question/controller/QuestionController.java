@@ -1,5 +1,8 @@
 package org.sb.question.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.sb.member.domain.MemberVO;
 import org.sb.question.domain.Page;
 import org.sb.question.domain.PageDTO;
 import org.sb.question.domain.QuestionVO;
@@ -104,9 +107,12 @@ public class QuestionController {
 	
 	//마이페이지//
 	@GetMapping("/myList")
-	public void myList(String que_author, Model model) {
+	public void myList(HttpSession httpSession, Model model) {
 		
-		log.info("myList..............");
+		MemberVO member = (MemberVO) httpSession.getAttribute("userSession");
+		String que_author = member.getMember_id();
+		log.info("mylist.................");
+		log.info("mylist................. :"+que_author);
 		
 		model.addAttribute("myList", service.getMyList(que_author));
 	}
