@@ -45,7 +45,7 @@
 <div id='body'>
    <div id='sidemenu'>
       <div class="title">
-         <h2>프로그램</h2>
+         <h2>열린공간</h2>
       </div>
      <ul>
          <li><a href="/notice/list">공지사항</a></li>

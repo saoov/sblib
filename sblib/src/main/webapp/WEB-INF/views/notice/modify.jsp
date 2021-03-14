@@ -36,7 +36,7 @@
 <div id='body'>
    <div id='sidemenu'>
       <div class="title">
-         <h2>프로그램</h2>
+         <h2>열린공간</h2>
       </div>
       <ul>
          <li><a href="/notice/list">공지사항</a></li>
@@ -78,7 +78,7 @@
 
 						<div class="form-group">
 							<label>내용</label>
-							<textarea rows="25" cols="50" name="notice_content"
+							<textarea rows="5" cols="50" name="notice_content"
 								class="form-control"><c:out
 									value="${noticeVO.notice_content}" /></textarea>
 						</div>
