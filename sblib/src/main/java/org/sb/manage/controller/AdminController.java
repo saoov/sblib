@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class AdminController {
 
 
-	private final AdminServiceImpl service;
+	private final AdminService service; //service단의 interface
 	
 	
 	@GetMapping("userList")
