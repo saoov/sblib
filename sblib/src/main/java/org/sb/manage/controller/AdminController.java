@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.sb.manage.domain.Page;
 import org.sb.manage.domain.PageDTO;
-import org.sb.manage.service.AdminServiceImpl;
+import org.sb.manage.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
