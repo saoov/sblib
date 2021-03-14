@@ -67,7 +67,7 @@
                              
                              <div class="form-group">
                                  <label>작성자</label>
-                                 <input class="form-control" name="story_author">
+                                 <input class="form-control" name="story_author" value="${userSession.member_name}" readonly="readonly">
                              </div>
                              
                              
