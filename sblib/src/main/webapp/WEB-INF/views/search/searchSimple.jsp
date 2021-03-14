@@ -12,6 +12,7 @@
 	border : 1px solid #e2e2e2;
 	padding : 30px 25px;
 	margin : 20px;
+	background-color: #efebe9;
 	}
 	
 	.bookBox{
@@ -36,6 +37,16 @@
 	#searchType{
 		float: left;
 		margin-right: 10px;
+		width: 20%;
+	}
+	#options{
+		width:100%;
+		float:left;
+	}
+	#searchInputtext{
+		width:60%;
+		float:left;
+		margin-right:10px;
 	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,7 +87,7 @@
 			<div class="searchBar">
 				<form id='searchForm' action='/search/searchResult' method='get'>
 					<div id="searchType">
-						<select name='type'>
+						<select name='type' id="options" class="form-control">
 							<option value="T">서명</option>
 							<option value='A'>저자</option>
 							<option value='P'>출판사</option>
@@ -86,7 +97,7 @@
 						</select>
 					</div>
 					<div class="searchInputbox">
-							<input id="searchInputtext" type="text" name='keyword' placeholder=" 검색어를 입력하세요."> 
+							<input id="searchInputtext" class="form-control" type="text" name='keyword' placeholder=" 검색어를 입력하세요."> 
 							<input type="hidden" name="pageNum" value="1"> 
 							<input type="hidden" name="amount" value="10">
 							<input type="submit" class="btn btn-warning" value="검색">

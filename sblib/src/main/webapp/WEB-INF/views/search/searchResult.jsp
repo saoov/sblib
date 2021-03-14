@@ -12,6 +12,21 @@
 		border : 1px solid #e2e2e2;
 		padding : 30px 25px;
 		margin : 20px;
+		background-color: #efebe9;
+	}
+	#searchType{
+		float: left;
+		margin-right: 10px;
+		width: 20%;
+	}
+	#options{
+		width:100%;
+		float:left;
+	}
+	#searchInputtext{
+		width:60%;
+		float:left;
+		margin-right:10px;
 	}
 
 	.bookList.listViewStyle .listWrap > li {
@@ -41,27 +56,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>삼부도서관</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link
-	href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link
-	href="/resources/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- DataTables JavaScript -->
-<script src="/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="/resources/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 </head>
 <!-- css -->
 <tiles:insertAttribute name="css"></tiles:insertAttribute>
@@ -103,17 +97,22 @@
 			<!-- search -->
 			<div class="searchBar">
 				<form id='searchForm' action='/search/searchResult' method='get'>
-					<select name='type' style="font-size: 20px; height: 100%">
+					<div id="searchType">
+					<select id="options" name='type' class="form-control">
 						<option value="T">서명</option>
 						<option value='A'>저자</option>
 						<option value='P'>출판사</option>
 						<option value='TA'>서명 + 저자</option>
 						<option value='TP'>서명 + 출판사</option>
 						<option value='TAP'>서명 + 저자 + 출판사</option>
-					</select> <input type="text" name='keyword' placeholder="도서명을 입력하세요.">
+					</select> 
+					</div>
+					<div class="searchInputbox">
+					<input id="searchInputtext" class="form-control" type="text" name='keyword' placeholder="도서명을 입력하세요.">
 					<input type="hidden" name="pageNum" value="${pageDTO.page.pageNum }"> 
 					<input type="hidden" name="amount" value="${pageDTO.page.amount }">
 					<button class="btn btn-warning">검색</button>
+					</div>
 				</form>
 			</div>
 			<!-- search -->
