@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.sb.event.mapper.ReplyMapper">
+	<insert id="insert">
+		insert into event_reply(reply_no, event_no, reply, replyer)
+		values (seq_event_reply.nextval, #{event_no}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id="read" resultType="org.sb.event.domain.ReplyVO">
+		select * from event_reply where reply_no = #{reply_no}
+	</select>
+	
+	<delete id="delete">
+		delete from event_reply where reply_no = #{reply_no}
+	</delete>
+	
+	<update id="update">
+		update event_reply set reply = #{reply}, updateDate = sysdate where reply_no = #{reply_no}
+	</update>
+	
+	<select id="list" resultType="org.sb.event.domain.ReplyVO">
+		select reply_no, event_no, reply, replyer, replyDate, updateDate
+		from event_reply
+		where event_no = #{event_no}
+		order by reply_no asc
+	</select>
+</mapper>

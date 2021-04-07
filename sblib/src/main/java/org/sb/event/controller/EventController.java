@@ -15,6 +15,7 @@ import org.sb.event.domain.EventVO;
 import org.sb.event.domain.HolidayVO;
 import org.sb.event.domain.Page;
 import org.sb.event.domain.PageDTO;
+import org.sb.event.domain.ReplyVO;
 import org.sb.event.service.EventService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,6 +74,7 @@ public class EventController {
 	@GetMapping({"eventDetail","eventModify"})
 	public void eventDetail(@RequestParam("event_no") Long event_no, @ModelAttribute("page") Page page, Model model) {
 		model.addAttribute("event", service.get(event_no));
+		model.addAttribute("replyVO", new ReplyVO()); //댓글 보여주기
 	}
 	
 	@GetMapping("eventRegister")
