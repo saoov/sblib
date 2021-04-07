@@ -16,4 +16,4 @@ KH정보교육원 파이널 프로젝트로 제작한 도서관 홈페이지 입
 > - Server : Tomcat 9.0
 
 ## DB 모델링
-![DB구조](https://user-images.githubusercontent.com/68726498/111731341-962eb180-88b6-11eb-82af-a101185513e3.png)
+![DB구조](https://user-images.githubusercontent.com/73581808/113880828-cc48bc80-97f6-11eb-8978-c200582ed6ae.png)
